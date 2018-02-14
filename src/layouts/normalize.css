@@ -1,0 +1,23 @@
+@import '../components/settings.css';
+
+html,
+body {
+  height: 100%;
+
+  color: var(--rebelz);
+
+  font: var(--size-16)/var(--size-20) var(--font-family-rebelz);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
