@@ -17,7 +17,8 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop & start-storybook -p 9001 -c .storybook",
+    "develop":
+      "concurrently -k -n \"GATSBY,STORYBOOK\" \"gatsby develop\" \"start-storybook -p 9001 -c .storybook\"",
     "format":
       "prettier --trailing-comma es5 --single-quote --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -27,6 +28,7 @@
     "@storybook/addon-info": "^3.3.13",
     "@storybook/addon-options": "^3.3.13",
     "@storybook/react": "^3.3.13",
+    "concurrently": "^3.5.1",
     "identity-obj-proxy": "^3.0.0",
     "imports-loader": "^0.7.1",
     "prettier": "^1.10.2",
