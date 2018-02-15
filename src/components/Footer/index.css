@@ -1,0 +1,140 @@
+.Footer {
+}
+
+.Footer-hero {
+  padding-top: 120px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(249, 223, 191, 0.8) 0%,
+    #622970 80%,
+    #281040 100%
+  );
+}
+
+.Footer-image {
+  width: 100%;
+}
+
+.Footer-content {
+  padding: 60px 20px;
+
+  background: url('./stars.svg'),
+    #111514;
+  background-size: cover;
+}
+
+.Footer-columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  max-width: 100%;
+}
+
+.Footer-column:not(:first-child) {
+  margin-top: 60px;
+}
+
+.Footer-largeColumn:not(:first-child) {
+  margin-top: 60px;
+}
+
+.Footer-logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.Footer-logo {
+  width: 60px;
+  height: 60px;
+
+  margin-right: 20px;
+}
+
+.Footer-subtitle {
+  min-height: 60px;
+
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 60px;
+  font-weight: bold;
+  text-transform: uppercase;
+  vertical-align: middle;
+  font-family: 'trajan-pro-3';
+}
+
+.Footer-link {
+  display: block;
+
+  margin-top: 28px;
+
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: normal;
+  font-family: 'alice';
+  text-decoration: none;
+
+  transition: color 0.3s ease-in-out;
+
+  cursor: pointer;
+}
+
+.Footer-link:hover {
+  color: #f2af36;
+}
+
+.Footer-socialLink {
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+
+  cursor: pointer;
+}
+
+.Footer-socialLink:not(:last-child) {
+  margin: 28px 28px 0 0;
+}
+
+.Footer-socialLinkIcon {
+  height: 100%;
+}
+
+@media screen and (min-width: 760px) {
+  .Footer-link {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .Footer-subtitle {
+    font-size: 20px;
+  }
+
+  .Footer-columns {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+  }
+
+  .Footer-column:not(:last-child) {
+    margin-right: 28px;
+  }
+
+  .Footer-column:not(:first-child) {
+    margin-top: 0px;
+  }
+
+  .Footer-largeColumn:not(:last-child) {
+    margin-right: 28px;
+  }
+
+  .Footer-largeColumn:not(:first-child) {
+    margin-top: 0px;
+  }
+}

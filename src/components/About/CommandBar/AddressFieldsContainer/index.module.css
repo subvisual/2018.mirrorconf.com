@@ -1,0 +1,47 @@
+.root {
+  width: 100%;
+
+  display: none;
+}
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.legend {
+  font-family: 'lores-12';
+  line-height: 28px;
+  font-size: 20px;
+  color: #000000;
+  white-space: nowrap;
+
+  margin-top: 12px;
+  margin-left: 8px;
+  min-width: 147px;
+}
+
+.input {
+  font-family: 'lores-12';
+  line-height: 28px;
+  font-size: 20px;
+  color: #000000;
+  white-space: nowrap;
+
+  background: #ffffff;
+  border: 1px solid #000000;
+  width: 100%;
+  margin: 8px 28px;
+  max-width: 600px;
+  min-width: 276px;
+  padding-left: 16px;
+
+  overflow: hidden;
+}
+
+@media screen and (min-width: 760px) {
+  .root {
+    display: block;
+  }
+}

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+environment=staging
+
+usage () {
+  cat <<EOS
+Usage: $0 [environment]
+
+Deploys the site to the target environment (staging by default).
+
+Options:
+
+  -e [environment]
+    Sets the target environment.
+
+    Accepted values:
+    * staging: Deploys the website to GitHub Pages (default).
+    * production: Deploys to AWS S3.
+
+  -h
+    Shows this message and exits.
+EOS
+}
+
+while getopts ':e:h' opt; do
+  case $opt in
+    e)
+      environment=$OPTARG
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+  esac
+done
+
+case $environment in
+  stag|staging)
+    yarn run deploy-staging
+    ;;
+  prod|production)
+    yarn run deploy-production
+    ;;
+  *)
+    echo "Unknown environment '$environment'" >&2
+    usage >&2
+    exit 1
+    ;;
+esac

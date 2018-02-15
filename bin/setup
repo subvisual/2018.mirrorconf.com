@@ -1,2 +1,13 @@
 #!/bin/bash
+set -e
+
+# Install required language versions
+asdf install
+asdf reshim
+
+# Install Yarn
+npm i -g yarn
+asdf reshim
+
+# Install JavaScript dependencies
 yarn

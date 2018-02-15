@@ -1,0 +1,142 @@
+.Schedule {
+  display: flex;
+  flex-direction: column;
+
+  padding: 60px 14px;
+
+  background: linear-gradient(to bottom, #1c3448 0%, #ffd7bb 100%);
+}
+
+.Schedule-image,
+.Schedule-mobileImage {
+  max-width: 100%;
+}
+
+.Schedule-image {
+  display: none;
+}
+
+.Schedule-mobileImage {
+  display: block;
+}
+
+.Schedule-title {
+  margin-bottom: 28px;
+
+  font-family: Amador;
+  line-height: 56px;
+  font-size: 40px;
+  color: white;
+}
+
+.Schedule-link {
+  position: relative;
+  display: inline-block;
+
+  padding: 12px 0;
+  margin: 3px 0;
+
+  font-family: 'goudy-old-style';
+  line-height: 20px;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.Schedule-link:before,
+.Schedule-link:after {
+  content: ' ';
+
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: white;
+
+  transform: translateY(-50%);
+
+  transition: all 0.3s ease-in-out;
+}
+
+.Schedule-link:hover:before,
+.Schedule-link:hover:after {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.Schedule-link:before {
+  height: 2px;
+
+  top: -5px;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.Schedule-link:after {
+  bottom: -5px;
+}
+
+.Schedule-content {
+  display: inline-block;
+
+  margin: 0 auto;
+}
+
+.Schedule-description {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .Schedule {
+    flex-direction: row;
+
+    padding: 140px 0;
+  }
+
+  .Schedule-description {
+    display: block;
+
+    max-width: 560px;
+
+    margin-bottom: 28px;
+
+    font-family: 'goudy-old-style';
+    line-height: 28px;
+    font-size: 20px;
+
+    color: #ffffff;
+  }
+
+  .Schedule-content {
+    flex: 1;
+
+    margin-bottom: 28px;
+  }
+
+  .Schedule-images {
+    flex: 1;
+
+    padding-right: 40px;
+  }
+
+  .Schedule-image {
+    display: block;
+  }
+
+  .Schedule-mobileImage {
+    display: none;
+  }
+
+  .Schedule-title {
+    line-height: 56px;
+    font-size: 40px;
+  }
+}

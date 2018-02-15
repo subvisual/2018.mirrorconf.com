@@ -1,0 +1,83 @@
+.Speakers {
+  position: relative;
+
+  background: #a10b53;
+
+  z-index: 0;
+
+  text-align: center;
+}
+
+.Speakers-background {
+  z-index: 2;
+
+  overflow: hidden;
+}
+
+.Speakers-background canvas {
+  width: 100%;
+
+  transform: translateZ(0px);
+}
+
+.Speakers-listWrapper {
+  position: absolute;
+
+  top: 0;
+
+  width: 100%;
+
+  z-index: 2;
+
+  outline: none;
+}
+
+.Speakers-list {
+  display: none;
+
+  width: 100%;
+  max-width: 100%;
+}
+
+.Speakers-listMobile {
+  position: relative;
+
+  width: 100%;
+  max-width: 100%;
+
+  z-index: 1;
+
+  transform: translateY(120px);
+}
+
+@media screen and (min-width: 700px) {
+  .Speakers {
+    position: static;
+  }
+
+  .Speakers-content,
+  .Speakers-background {
+    position: sticky;
+    position: -o-sticky;
+    position: -ms-sticky;
+    position: -moz-sticky;
+    position: -webkit-sticky;
+
+    top: 0px;
+  }
+
+  .Speakers-content {
+    width: 100%;
+    min-height: 100vh;
+
+    overflow: hidden;
+  }
+
+  .Speakers-list {
+    display: block;
+  }
+
+  .Speakers-listMobile {
+    display: none;
+  }
+}

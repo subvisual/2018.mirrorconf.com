@@ -1,0 +1,223 @@
+.visuallyHidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.Background {
+  text-align: center;
+  position: relative;
+}
+
+.Background {
+  display: inline-block;
+
+  width: 100%;
+  max-width: 916px;
+  max-height: 1000px;
+
+  transform: translateZ(0px);
+
+  margin-top: 100px;
+}
+
+.Background-machine {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 100%;
+  max-width: 800px;
+  z-index: -1;
+}
+
+.Background-content {
+  width: 100%;
+
+  padding: 0 20px;
+
+  text-align: left;
+
+  z-index: 1;
+
+  margin: 0 auto;
+  max-width: 1092px;
+}
+
+.Background-text,
+.Background-cta.secondary {
+  font-family: 'alice';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 16px;
+  opacity: 1;
+  background-image: linear-gradient(
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.00001) 100%
+  );
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.Background-visibleTitle {
+  text-align: left;
+
+  margin-top: 180px;
+}
+
+.Background-date {
+  text-align: right;
+
+  margin-top: 120px;
+}
+
+.Background-location {
+  text-align: right;
+
+  padding-top: 20px;
+}
+
+.Background-cta {
+  position: relative;
+
+  display: block;
+  height: 50px;
+
+  margin: 20px 0;
+
+  text-align: left;
+}
+
+.Background-cta.secondary {
+  display: inline-block;
+
+  min-width: 177px;
+
+  margin-top: 20px;
+
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+
+  transform: none;
+}
+
+.Background-ctaGlow {
+  position: absolute;
+  left: 0;
+  width: 177px;
+  height: 49px;
+
+  border-radius: 4px;
+
+  background: rgba(158, 26, 255, 0.71023);
+
+  opacity: 0;
+
+  z-index: 2;
+
+  filter: blur(20px);
+
+  transform: scale(0.1);
+
+  transition: ease-in 2s;
+
+  will-change: filter opacity;
+}
+
+.Background-ctaTextBackground {
+  position: absolute;
+  left: 0;
+  width: 177px;
+  height: 49px;
+  background: linear-gradient(96.66deg, #3e00d3 -10.4%, #c440ff 84.6%);
+  filter: blur(20px);
+  border-radius: 4px;
+  transition: ease-in-out 1s;
+}
+
+.Background-cta:hover .Background-ctaGlow {
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+.Background-cta:hover .Background-ctaTextBackground {
+  filter: blur(1px);
+}
+
+.Background-ctaText {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-family: 'alice';
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 16px;
+  z-index: 3;
+  width: 150px;
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+@media screen and (min-width: 700px) {
+  .Background-visibleTitle {
+    margin-top: 280px;
+  }
+
+  .Background-text,
+  .Background-cta.secondary {
+    line-height: 40px;
+    font-size: 28px;
+  }
+
+  .Background-cta.secondary {
+    min-width: none;
+    text-align: left;
+  }
+
+  .Background-cta {
+    margin: 40px 0;
+  }
+
+  .Background-ctaText {
+    font-size: 20px;
+  }
+
+  .Background-ctaTextBackground,
+  .Background-ctaGlow {
+    position: absolute;
+    right: 0;
+    left: auto;
+  }
+
+  .Background-ctaText {
+    position: absolute;
+    right: 14px;
+    left: auto;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .Background {
+    max-width: 1200px;
+    max-height: none;
+  }
+
+  .Background-visibleTitle,
+  .Background-date,
+  .Background-location {
+    position: relative;
+  }
+}

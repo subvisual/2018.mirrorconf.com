@@ -1,0 +1,294 @@
+.Navigation {
+  position: relative;
+
+  width: 100%;
+
+  padding: 0 20px;
+  margin: 60px 0 200px;
+}
+
+.Navigation-linkWrapper {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.Navigation-link,
+.Navigation-hall {
+  display: block;
+
+  margin: 8px 0;
+
+  font-family: 'mr-eaves-xl-modern';
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+
+  overflow: hidden;
+}
+
+.Navigation-scrollHint,
+.Navigation-hallOutput {
+  font-family: 'mr-eaves-xl-modern';
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+
+  text-align: center;
+}
+
+.Navigation-scrollHint {
+  margin-bottom: 60px;
+}
+
+.Navigation-link {
+  flex: 1;
+
+  position: relative;
+
+  min-height: 60px;
+
+  text-align: left;
+
+  padding: 24px 8px 8px 8px;
+
+  background: linear-gradient(
+    281.61deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  overflow: hidden;
+
+  transition: background-color ease-in-out 0.3s;
+}
+
+.Navigation-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.Navigation-link.isDisabled {
+  cursor: pointer;
+}
+
+.Navigation-linkLabel {
+  position: absolute;
+
+  top: 0;
+  left: 8px;
+}
+
+.Navigation-linkNote {
+  position: absolute;
+
+  bottom: 8px;
+  left: 8px;
+}
+
+.Navigation-hall {
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  height: calc((10% - 8px) * 2);
+  min-height: 120px;
+
+  text-align: center;
+
+  transform: translate(-50%, calc(100% + 28px));
+}
+
+.Navigation-hallEye {
+  height: 100%;
+  width: auto;
+}
+
+.Navigation-hallOutput {
+  margin: 8px 0 0;
+}
+
+.Navigation-linkBackgroundWrapper {
+  position: absolute;
+
+  width: calc(100% - 16px);
+  height: calc(100% - 32px);
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  z-index: 0;
+
+  pointer-events: none;
+}
+
+.Navigation-linkBackground {
+  position: absolute;
+
+  bottom: 0;
+
+  width: 100%;
+  height: auto;
+
+  z-index: -1;
+
+  animation: linkBackgroundAnimation 10s linear alternate infinite;
+}
+
+.Navigation-link:nth-child(1) .Navigation-linkBackground {
+  animation-delay: 1s;
+  animation-direction: alternate-reverse;
+}
+.Navigation-link:nth-child(2) .Navigation-linkBackground {
+  animation-delay: -1s;
+}
+.Navigation-link:nth-child(3) .Navigation-linkBackground {
+  animation-delay: 2.3s;
+}
+.Navigation-link:nth-child(4) .Navigation-linkBackground {
+  animation-delay: 4s;
+}
+.Navigation-link:nth-child(5) .Navigation-linkBackground {
+  animation-delay: 2s;
+}
+
+@keyframes linkBackgroundAnimation {
+  from {
+    transform: translateY(75%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .Navigation {
+    margin: 0;
+    min-height: auto;
+  }
+
+  .Navigation-linkWrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Navigation-scrollHint,
+  .Navigation-hallOutput {
+    font-size: 16px;
+  }
+
+  .Navigation-link,
+  .Navigation-hall {
+    height: 204px;
+
+    margin: 14px;
+
+    border-radius: 4px;
+  }
+
+  .Navigation-link {
+    flex: 1;
+
+    min-width: 208px;
+    max-width: 208px;
+
+    padding: 44px 12px 12px 12px;
+
+    background: linear-gradient(
+      314.58deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .Navigation-linkLabel {
+    top: 12px;
+    left: 12px;
+  }
+
+  .Navigation-linkNote {
+    bottom: 12px;
+    left: 12px;
+
+    max-width: 100px;
+  }
+
+  .Navigation-linkBackgroundWrapper {
+    width: 183px;
+    height: 148px;
+  }
+
+  .Navigation-linkBackground {
+    top: 50%;
+    left: 50%;
+
+    min-height: 100%;
+    min-width: 100%;
+
+    animation: none;
+
+    transform: translate(-50%, -50%);
+
+    transition: transform 2.8s ease-in-out;
+  }
+
+  .Navigation-link:hover .Navigation-linkBackground {
+    transform: translate(-50%, -50%) scale(1.2);
+
+    transition: all 0.8s easeInOut;
+  }
+
+  .Navigation-hall {
+    position: static;
+
+    text-align: center;
+
+    transform: none;
+  }
+
+  .Navigation-scrollHint {
+    margin-bottom: 84px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0;
+    min-height: auto;
+  }
+
+  .Navigation-linkWrapper {
+    align-items: center;
+
+    min-height: auto;
+
+    margin-bottom: 200px;
+  }
+  .Navigation-hall {
+    position: absolute;
+
+    transform: translate(-50%, -56px);
+
+    margin: 0;
+  }
+
+  .Navigation-hallOutput {
+    margin-top: 56px;
+  }
+}

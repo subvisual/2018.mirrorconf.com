@@ -1,0 +1,148 @@
+.Tabs-navigation {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+}
+
+.Tabs-button {
+  position: relative;
+
+  flex: 1;
+
+  padding: 12px 0;
+
+  border: 3px solid #313131;
+  border-left: none;
+  border-right: none;
+
+  background: none;
+
+  font-family: 'goudy-old-style';
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: black;
+
+  opacity: 0.4;
+
+  transition: all 0.3s ease-in-out;
+
+  cursor: pointer;
+}
+
+.Tabs-button:first-child {
+  margin-right: 7px;
+}
+
+.Tabs-button:last-child {
+  margin-left: 7px;
+}
+
+.Tabs-button.is-active {
+  opacity: 1;
+
+  cursor: default;
+}
+
+.Tabs-button::before,
+.Tabs-button::after {
+  content: ' ';
+
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: #313131;
+
+  transform: translateY(0);
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.Tabs-button::before {
+  top: 5px;
+}
+
+.Tabs-button::after {
+  bottom: 5px;
+}
+
+.Tabs-button:not(.is-active):hover {
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+.Tabs-button.is-active:hover {
+  transform: scale(1);
+}
+
+.Tabs-content {
+  position: relative;
+}
+
+.Tabs-tab {
+  position: absolute;
+
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  z-index: 1;
+}
+
+.Tabs-tab.is-active {
+  position: relative;
+
+  z-index: 2;
+}
+
+.Tabs-activeTabIndicator {
+  display: none;
+}
+
+@media screen and (min-width: 667px) {
+  .Tabs-activeTabIndicator {
+    display: block;
+    position: absolute;
+
+    top: calc(50% - 8px);
+    right: 0px;
+
+    width: 36px;
+    height: 16px;
+  }
+
+  .Tabs-button.flip .Tabs-activeTabIndicator {
+    left: 0px;
+
+    transform: rotateY(180deg);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Tabs-button {
+    margin: 0 14px;
+    padding: 12px 0;
+
+    line-height: 28px;
+    font-size: 20px;
+  }
+
+  .Tabs-tab {
+    padding: 0 14px;
+  }
+
+  .Tabs-button:not(.is-active):hover::before {
+    transform: translateY(5px);
+  }
+
+  .Tabs-button:not(.is-active):hover::after {
+    transform: translateY(-5px);
+  }
+}

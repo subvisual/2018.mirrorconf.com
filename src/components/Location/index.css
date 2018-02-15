@@ -1,0 +1,416 @@
+.Location {
+  padding: 122px 20px 0;
+
+  background: linear-gradient(
+      180deg,
+      #ffd7bb 0%,
+      rgba(255, 215, 188, 0.8) 3.5%,
+      rgba(254, 217, 188, 0.6) 33.34%,
+      rgba(255, 227, 193, 0.6) 69.79%,
+      rgba(249, 223, 191, 0.8) 97.28%
+    ),
+    url('./background_overlay.png');
+
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% 100%;
+}
+
+.Location-title {
+  margin-bottom: 26px;
+
+  font-family: 'trajan-pro-3';
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 28px;
+  font-weight: normal;
+  color: #f2af36;
+  text-transform: uppercase;
+}
+
+.Location-subtitle {
+  font-family: 'trajan-pro-3';
+  font-weight: bold;
+  line-height: 28px;
+  font-size: 20px;
+  font-weight: normal;
+  color: #a35c4d;
+  text-transform: uppercase;
+
+  margin-bottom: 18px;
+}
+
+.Location-link,
+.Location-description {
+  font-family: 'alice';
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #a35c4d;
+}
+
+.Location-description + .Location-description {
+  margin-top: 16px;
+}
+
+.Location-link {
+  text-decoration: none;
+
+  border-bottom: 2px solid #f16864;
+}
+
+.Location-contacts,
+.Location-phone {
+  display: flex;
+  align-items: flex-end;
+
+  font-family: 'trajan-pro-3';
+  font-weight: bold;
+  line-height: 16px;
+  font-size: 12px;
+  color: #a35c4d;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.Location-description + .Location-contacts:not(:last-child) {
+  margin-top: 24px;
+}
+
+.Location-phone + .Location-contacts:not(:last-child) {
+  margin-top: 16px;
+}
+
+.Location-cta {
+  display: inline-block;
+
+  padding: 15px 10px;
+
+  font-family: 'alice';
+  line-height: 20px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #f25656;
+
+  border-width: 1px;
+  border-style: solid;
+  border-top: 1px solid #f25656;
+  border-bottom: 1px solid #f58f53;
+  border-image: linear-gradient(to bottom, #f25656, #f58f53) 1;
+
+  box-shadow: 0px 0px 0px #d6936c;
+
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.Location-cta:hover {
+  box-shadow: 0px 8px 20px #d6936c;
+}
+
+.Location-cta:not(:last-child) {
+  margin-right: 20px;
+}
+
+.Location-cta.alternate {
+  background: linear-gradient(180deg, #f25656 33.89%, #fa9357 98.72%);
+  box-shadow: 0px 8px 20px #d6936c;
+
+  color: #fff;
+
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.Location-cta.alternate:hover {
+  box-shadow: 0px 4px 5px #d6936c;
+}
+
+.Location-accommodation:not(:last-child) {
+  margin-bottom: 60px;
+}
+
+.Location-direction:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.Location-banner {
+  display: block;
+
+  margin: 28px auto 0;
+}
+
+.Location-stars {
+  margin-bottom: 22px;
+}
+
+.Location-tapLogo {
+  margin-bottom: 22px;
+}
+
+.Location-flightDiscount {
+  position: relative;
+
+  margin-top: 20px;
+  /* button line-height + padding + borders */
+  padding: 20px 20px 0;
+  padding-bottom: calc(20px + 15px * 2 + 1px * 2);
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 232, 216, 0.600006) 4.44%,
+    rgba(255, 255, 255, 0.0001) 97.56%
+  );
+
+  border-width: 1px;
+  border-style: solid;
+  border-top: 1px solid #923a2c;
+  border-bottom: none;
+  border-image: linear-gradient(to bottom, #923a2c, rgba(196, 108, 87, 0.0001))
+    1;
+}
+
+.Location-actions {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+
+  left: 50%;
+  bottom: 0%;
+
+  transform: translate(-50%, 50%);
+}
+
+.Location-icon {
+  position: relative;
+
+  top: 3px;
+
+  margin-right: 16px;
+}
+
+.Location-icon + .Location-icon {
+  margin-left: -10px;
+  margin-top: 16px;
+}
+
+.Location-icon.hidden {
+  visibility: hidden;
+}
+
+.Location-sectionBackground {
+  margin-bottom: 60px;
+
+  text-align: right;
+}
+
+.Location-backgroundImage {
+  position: relative;
+  margin-top: 20px;
+
+  right: -20px;
+
+  width: 50%;
+}
+
+.Location-accommodations .Location-backgroundImage {
+  width: 100%;
+}
+
+.Location-phone {
+  margin-top: 8px;
+}
+
+.Location-banner.desktop {
+  display: none;
+}
+
+.Location-mapWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.Location-map {
+  display: none;
+}
+
+.Location-mapMobile {
+  width: 100%;
+  height: 480px;
+  padding: 60px 0 60px 0;
+}
+
+.Location-romanLegion {
+  width: 100%;
+  margin-bottom: -3px;
+}
+
+.Location-transition {
+  width: calc(100% + 40px);
+  margin-left: -20px;
+}
+
+@media screen and (min-width: 760px) {
+  .Location {
+    padding: 184px 0 0;
+
+    overflow: hidden;
+  }
+
+  .Location-venueWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .Location-content {
+    max-width: 580px;
+  }
+
+  .Location-banner {
+    display: none;
+  }
+
+  .Location-venue {
+    position: relative;
+
+    padding: 0 0 0 60px;
+  }
+
+  .Location-venue,
+  .Location-accommodations,
+  .Location-directions {
+    max-width: 1440px;
+
+    margin: 0 auto 0;
+  }
+
+  .Location-banner.desktop {
+    display: block;
+
+    height: 458px;
+
+    margin: 0 52px;
+  }
+
+  .Location-title {
+    margin-bottom: 60px;
+
+    line-height: 64px;
+    font-size: 56px;
+  }
+
+  .Location-subtitle {
+    margin-bottom: 28px;
+
+    line-height: 34px;
+    font-size: 28px;
+  }
+
+  .Location-link,
+  .Location-description {
+    line-height: 28px;
+    font-size: 20px;
+  }
+
+  .Location-contacts {
+    line-height: 20px;
+    font-size: 16px;
+  }
+
+  .Location-cta {
+    padding: 15px 26px;
+
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .Location-columnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .Location-directions {
+    padding: 60px 60px 0;
+  }
+
+  .Location-direction {
+    flex: 1;
+  }
+
+  .Location-flightDiscount {
+    padding: 28px 28px 60px;
+    margin: 0 auto;
+    margin-top: 16px;
+
+    max-width: 1057px;
+  }
+
+  .Location-airlineLogo {
+    margin-right: 116px;
+  }
+
+  .Location-flightDiscountDescription {
+    max-width: 586px;
+  }
+
+  .Location-cta:not(:last-child) {
+    margin-right: 28px;
+  }
+
+  .Location-sectionBackground {
+    flex: 1;
+  }
+
+  .Location-venue .Location-backgroundImage {
+    position: static;
+
+    width: 100%;
+    margin-left: 60px;
+  }
+
+  .Location-accommodations {
+    padding: 0 0 0 60px;
+  }
+
+  .Location-accommodations .Location-sectionBackground {
+    margin-right: -20px;
+  }
+
+  .Location-mapMobile {
+    padding: 60px 60px 0 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Location-map {
+    display: inline;
+
+    width: 100%;
+    height: 480px;
+
+    margin-bottom: 60px;
+    padding: 60px 60px 0 0;
+  }
+
+  .Location-mapMobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1441px) {
+  .Location-venue .Location-backgroundImage,
+  .Location-backgroundImage {
+    position: relative;
+
+    top: 0;
+    right: calc(50vh - 720px - 60px);
+
+    margin: 0;
+
+    width: 100%;
+  }
+}

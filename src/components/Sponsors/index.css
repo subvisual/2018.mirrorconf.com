@@ -1,0 +1,93 @@
+.Sponsors {
+  position: relative;
+
+  padding: 150px 0;
+
+  background: #111514;
+}
+
+.Sponsors-cave {
+  position: absolute;
+
+  left: 50%;
+  bottom: 150px;
+
+  width: 100%;
+
+  transform: translateX(-50%);
+}
+
+.Sponsors-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+
+  background-size: cover;
+  background-position: bottom center;
+  background-image: url('./cave.svg');
+  background-repeat: no-repeat no-repeat;
+
+  overflow: hidden;
+}
+
+.Sponsors-bottomGroup {
+  margin-bottom: 0px;
+}
+
+.Sponsors-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-top: 56px;
+}
+
+.Sponsors-group:first-child {
+  margin-top: 224px;
+}
+
+.Sponsors-groupContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  margin-top: 26px;
+}
+
+.Sponsors-logo {
+  height: 28px;
+
+  margin: 28px;
+}
+
+.Sponsors-pwit {
+  height: 56px;
+
+  margin: 8px 28px;
+}
+
+.Sponsors-firePlaholder {
+  height: 300px;
+}
+
+@media screen and (min-width: 750px) {
+  .Sponsors-content {
+    background-size: contain;
+    background-position: bottom center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Sponsors {
+    padding: 150px 0px;
+  }
+
+  .Sponsors-content {
+    max-width: 800px;
+
+    margin: 0 auto;
+  }
+}

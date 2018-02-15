@@ -1,0 +1,40 @@
+<svg width="1660" height="1520" viewBox="0 0 1660 1520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient cx="5.6537476%" cy="93.2929138%" fx="5.6537476%" fy="93.2929138%" r="129.943172%" gradientTransform="matrix(.5556 -.54525 .36139 .83827 -.31202372 .18170862)" id="a">
+      <stop stop-color="#FF77F5" stop-opacity="0" offset="0%"/>
+      <stop stop-color="#F9A9BC" stop-opacity=".5" offset="100%"/>
+    </radialGradient>
+    <filter x="-7.7%" y="-11.6%" width="115.3%" height="123.2%" filterUnits="objectBoundingBox" id="b">
+      <feGaussianBlur stdDeviation="8" in="SourceGraphic"/>
+    </filter>
+    <radialGradient cx="5.6537476%" cy="93.2929138%" fx="5.6537476%" fy="93.2929138%" r="126.563147%" gradientTransform="matrix(.5556 -.54525 .36139 .83827 -.31202372 .18170862)" id="c">
+      <stop stop-color="#713D8E" stop-opacity="0" offset="0%"/>
+      <stop stop-color="#4F137F" stop-opacity=".5" offset="100%"/>
+    </radialGradient>
+    <filter x="-7.7%" y="-11.6%" width="115.3%" height="123.2%" filterUnits="objectBoundingBox" id="d">
+      <feGaussianBlur stdDeviation="8" in="SourceGraphic"/>
+    </filter>
+    <radialGradient cx="5.6537476%" cy="93.2929138%" fx="5.6537476%" fy="93.2929138%" r="140.413188%" gradientTransform="scale(.59555 1) rotate(-30.305 .07573503 .86203523)" id="e">
+      <stop stop-color="#FF77F5" stop-opacity="0" offset="0%"/>
+      <stop stop-color="#F9A9BC" stop-opacity=".5" offset="100%"/>
+    </radialGradient>
+    <filter x="-6.6%" y="-11.1%" width="113.2%" height="122.2%" filterUnits="objectBoundingBox" id="f">
+      <feGaussianBlur stdDeviation="8" in="SourceGraphic"/>
+    </filter>
+    <radialGradient cx="5.6537476%" cy="93.2929138%" fx="5.6537476%" fy="93.2929138%" r="141.457373%" gradientTransform="scale(.58967 1) rotate(-30.058 .07620803 .85966329)" id="g">
+      <stop stop-color="#FF77F5" stop-opacity="0" offset="0%"/>
+      <stop stop-color="#F9A9BC" stop-opacity=".5" offset="100%"/>
+    </radialGradient>
+    <radialGradient cx="5.6537476%" cy="93.2929138%" fx="5.6537476%" fy="93.2929138%" r="140.930491%" gradientTransform="matrix(.51228 -.50274 .29794 .86444 -.25037877 .154896)" id="h">
+      <stop stop-color="#FF77F5" stop-opacity="0" offset="0%"/>
+      <stop stop-color="#F9A9BC" stop-opacity=".5" offset="100%"/>
+    </radialGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path fill="url(#a)" filter="url(#b)" d="M34.4198026 181.221365v26.25389L347.140777 21.5289093V.20744037z" transform="translate(454 843)"/>
+    <path fill="url(#c)" filter="url(#d)" d="M25.8469871 186.725182v26.25389L338.567961 27.0327261V5.71125716z" transform="translate(454 843)"/>
+    <path fill="url(#e)" filter="url(#f)" d="M0 217.029873l28.6905389 16.883726L363 34.6141193 334.309461 17.730393z" transform="translate(454 843)"/>
+    <path fill="url(#g)" opacity=".2" d="M5.28640777 215.103275l12.95242513 7.817958L359.475728 21.8842284l-12.952425-7.8179575z" transform="translate(454 843)"/>
+    <path fill="url(#h)" d="M1.76213592 211.418541l12.97470388 7.83857L354.18932 18.2407179l-12.974704-7.8385692z" transform="translate(454 843)"/>
+  </g>
+</svg>
