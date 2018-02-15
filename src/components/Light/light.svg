@@ -1,0 +1,25 @@
+<svg width="1872" height="1872" viewBox="0 0 1872 1872" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Oval 10</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-47008 -6962)">
+<g id="Oval 10" filter="url(#filter0_f)">
+<use xlink:href="#path0_fill" transform="translate(47144 7098)" fill="url(#paint0_radial)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f" filterUnits="userSpaceOnUse" x="47008" y="6962" width="1872" height="1872" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="67.957" result="effect1_foregroundBlur"/>
+</filter>
+<radialGradient id="paint0_radial" cx="0.5" cy="0.5" r="0.5" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1256.85 1358.53 -1358.53 1256.85 862.218 -490.573)">
+<stop offset="0" stop-color="#FFFFF6"/>
+<stop offset="0.0913584" stop-color="#DCFFC8"/>
+<stop offset="0.261519" stop-color="#96FFE2" stop-opacity="0.9"/>
+<stop offset="0.582777" stop-color="#87FFFE" stop-opacity="0.6"/>
+<stop offset="0.799904" stop-color="#00FFFD" stop-opacity="0.1"/>
+<stop offset="1" stop-color="#00FFFE" stop-opacity="0.01"/>
+</radialGradient>
+<path id="path0_fill" fill-rule="evenodd" d="M 800 1600C 1241.83 1600 1600 1241.83 1600 800C 1600 358.172 1241.83 0 800 0C 358.172 0 0 358.172 0 800C 0 1241.83 358.172 1600 800 1600Z"/>
+</defs>
+</svg>

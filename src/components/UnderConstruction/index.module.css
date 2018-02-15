@@ -1,0 +1,401 @@
+.root {
+  position: relative;
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+
+.root::before {
+  content: "";
+  position: absolute;
+  background: url("./background.png"), black;
+  z-index: -2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.hero {
+  padding: 0 5vw;
+  max-width: 1320px;
+  margin: 20px auto 100px;
+}
+
+.section {
+  position: relative;
+  max-width: 1320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  margin: 0 auto;
+}
+
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.previousEditionWrapper {
+  position: relative;
+}
+
+.blackhole {
+  position: absolute;
+  left: -120px;
+  top: 30px;
+  z-index: -1;
+}
+
+.hasselmoon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transform: translateY(100px);
+
+  @media screen and (min-width: 700px) {
+    transform: none;
+  }
+}
+
+.spaceship1 {
+  position:absolute;
+  transform: translateX(-90px) scale(0.4);
+}
+
+.spaceship2 {
+  position:absolute;
+  transform: translate(-360px, 105px);
+}
+
+.spaceship3 {
+  position:absolute;
+  transform: translate(479px, 166px);
+}
+
+.moon {
+  height: 92px;
+}
+
+.hassel {
+  position: absolute;
+  height: 100%;
+  padding: 20px 0;
+}
+
+.roadblock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.constructionBanner {
+  min-width: 250px;
+  max-width: 459px;
+  width:100%;
+  margin: 20px;
+
+  @media screen and (min-width: 450px) {
+    margin: 0;
+  }
+}
+
+.sonic {
+  display: none;
+
+  @media screen and (min-width: 450px) {
+    display: block;
+    margin: 0 28px;
+    min-width: 30px;
+    max-width: 60px;
+    width: 100%
+  }
+}
+
+.sonic:first-of-type {
+  transform: scale(-1, 1);
+}
+
+@keyframes blink {
+  0% { opacity: 1.0; box-shadow: 0 0 200px #DD0048;}
+  50% { opacity: 0.2; box-shadow: 0 0 0px #DD0048;}
+  100% { opacity: 1.0; box-shadow: 0 0 200px #DD0048;}
+}
+
+.warningBannerWrapper {
+  display:none;
+
+  @media screen and (min-width: 450px) {
+    display: block;
+    animation: blink .5s linear infinite alternate;
+    height: 60px;
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+@keyframes movingBanner {
+  0% { transform: translateX(0)}
+  100% { transform: translateX(-60px)}
+}
+
+.warningBanner {
+  background: url("./warning_sign.gif");
+  height: 100%;
+  width: calc(100% + 60px);
+  animation: movingBanner .5s linear infinite normal;
+}
+
+.warningBannerWrapper:first-of-type {
+  transform: scale(-1, 1);
+}
+
+.link {
+  display: inline-block;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: left;
+  color: #0093E6;
+  text-decoration: none;
+  border-bottom: 1px solid #0093E6;
+  padding-bottom: 5px;
+}
+
+.navBarLink {
+  display: inline-block;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: left;
+  color: #0093E6;
+  text-decoration: none;
+  border-bottom: 1px solid #0093E6;
+  padding-bottom: 5px;
+
+  @media screen and (min-width: 500px) {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.title {
+  font-family: "Times New Roman";
+  line-height: 28px;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+
+  color: #FFFFFF;
+
+  @media screen and (min-width: 500px) {
+    line-height: 56px;
+    font-size: 40px;
+  }
+}
+
+.text {
+  font-family: "Times New Roman";
+  line-height: 28px;
+  font-size: 20px;
+  margin-bottom: 8px;
+
+  color: #FFFFFF;
+
+  @media screen and (min-width: 500px) {
+    line-height: 20px;
+    font-size: 16px;
+  }
+}
+
+.buyNowWrapper {
+  position: relative;
+  text-decoration: none;
+}
+
+.buyNow {
+  position: absolute;
+  max-width: 300px;
+  top: 0;
+  left: -40px;
+}
+
+.phantomLink {
+  font-family: "Times New Roman";
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: left;
+  color: #0093E6;
+  text-decoration: none;
+  border-bottom: 1px solid #0093E6;
+  padding-bottom: 5px;
+  opacity: 0;
+
+  position: absolute;
+  top: 0
+}
+
+.discount {
+  position: relative;
+  margin-top: 28px;
+}
+.note {
+  font-family: Times New Roman;
+  line-height: 20px;
+  font-size: 16px;
+  font-style: italic;
+  text-decoration: none;
+
+  color: #FFFFFF;
+}
+
+.baby {
+  margin-top: 32px;
+}
+
+.hand {
+  position: absolute;
+  right: calc(-28px - 47px);
+}
+
+.hand:first-of-type {
+  left: calc(-28px - 47px);
+  transform: scale(-1, 1);
+}
+
+.cloud {
+  width: auto;
+  max-height: 300px;
+  position: absolute;
+  right: 122px;
+  z-index: -1;
+}
+
+.cloud:nth-child(2) {
+  top: 300px;
+  left: 122px;
+}
+
+.cloud:nth-child(3) {
+  top: 600px;
+  right: 122px;
+}
+
+.boom {
+  position: absolute;
+  top: 250px;
+  left: 250px;
+  width: 50px;
+  position: absolute;
+  z-index: -1;
+}
+
+.buffalo {
+  position: absolute;
+  top: 300px;
+  left: 300px;
+  background-position: -194px -141px;
+  width: 126px;
+  height: 153px;
+  background-image: url("./sprite2.png");
+  z-index: -1;
+}
+
+.worship {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: -1;
+}
+
+.pyramid {
+  width: 100px;
+}
+
+.godMode {
+  padding: 0 20px;
+}
+
+.salvationMan:nth-of-type(3) {
+  transform: scale(-1, 1);
+}
+
+@keyframes move {
+  0% { transform: translate(-95px);}
+  100% { transform: translate(100vw) scale(-1) }
+}
+
+.runningManWrapper {
+  position: absolute;
+  width: 100%;
+}
+
+.runningMan {
+  position: absolute;
+  width: 90px;
+  height: 120px;
+  animation: move 3s linear infinite alternate;
+}
+
+.sun {
+  position: absolute;
+  top: 720px;
+  left: 300px;
+  background-position: -194px 0;
+  width: 146px;
+  height: 141px;
+  background-image: url("./sprite2.png");
+  transform: scale(.5);
+}
+
+.planet1 {
+  display: none;
+
+  @media screen and (min-width: 890px) {
+    display: block;
+    position: absolute;
+    top: 500px;
+    right: 250px;
+    background-position: 0 0;
+    width: 127px;
+    height: 127px;
+    background-image: url("./sprite1.png");
+    transform: scale(.6);
+  }
+}
+
+.planet2 {
+  position: absolute;
+  top: 550px;
+  left: 200px;
+  background-position: -84px -225px;
+  width: 84px;
+  height: 84px;
+  background-image: url("./sprite1.png");
+  transform: scale(.5);
+}
+
+.planet3 {
+  display: none;
+
+  @media screen and (min-width: 890px) {
+    display: block;
+    position: absolute;
+    top: 100px;
+    right: 200px;
+    background-position: -127px 0;
+    width: 200px;
+    height: 80px;
+    background-image: url("./sprite1.png");
+    transform: scale(.2);
+  }
+}

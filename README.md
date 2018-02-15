@@ -1,74 +1,37 @@
-[trello]: https://trello.com/b/f320dHDQ/mc-website-2018
-[build-page]: https://semaphore.com/whatever
-[production]: https://mirrorconf.com
-[zeplin]: https://zpl.io/2po19DJ
-[figma]: https://www.figma.com/file/RrEqg1RNfW5KhMQJ9LjMUStO/Mirror-Website
+MirrorConf 2018 (under construction)
+====================================
 
-MirrorConf 2018
-============
+Welcome to the MirrorConf's 2018 edition _under construction_ page. You can find
+it at [https://retro.2018.mirrorconf.com](https://retro.2018.mirrorconf.com).
 
-* [Trello][trello]
-* [Build Page][build-page]
-* [Production][production]
-* [Zeplin][zeplin]
-* [Figma][figma]
+MirrorConf is a conference that aims to blur the differences and point towards
+a collaborative future between designers and front-end developers.
 
-Landing page for MirrorConf's 2018 edition
+In 2018, our theme was _The Future of the Web_. As we planned this site, and
+figured out what we wanted to do with it, we decided it should honor a tradition
+of the early days of the Web -- the _under construction_ placeholder page.
 
-**Table of Contents**
+We made this an homage to every brilliant piece of madness we could think from
+those days. We made it simple, nonsensical, and we loved it.
 
-* [Setup](#setup)
-* [Development](#development)
-* [Deployment](#deployment)
-* [Contribution Guidelines](#contribution-guidelines)
-* [Resources](#resources)
-* [About](#about)
+This event is now part of that past, but this pearl will forever be dear to us.
+We can't see how you would possibly find a useful purpose for it, but then again
+that might just be the idea. :squirrel:
 
-Setup
------
-
-After cloning this project, simply run:
-
-First, clone & setup the repository:
-
-```
-git clone git@github.com:subvisual/2018.mirrorconf.com.git
-cd 2018.mirrorconf.com
-bin/setup
-```
-
-Development
------------
-
-To start your development environment run:
-
-```
-bin/server
-```
-
-This will start the gatsby application.
-
-Deployment
-----------
-
-TODO
-
-Contribution Guidelines
------------------------
-
-Contributions must follow [Subvisual's guides](https://github.com/subvisual/guides).
-
-Resources
----------
-
-* [Zeplin][zeplin]
-* [Figma][figma]
 
 About
 -----
 
-2018.MirrorConf.com is maintained by [Subvisual](http://subvisual.co).
+[retro.2018.mirrorconf.com][repo] is maintained by [Subvisual][subvisual].
 
-[![Subvisual](https://raw.githubusercontent.com/subvisual/guides/master/github/templates/subvisual_logo_with_name.png)](http://subvisual.co)
+[![Subvisual](https://raw.githubusercontent.com/subvisual/guides/master/github/templates/subvisual_logo_with_name.png)][subvisual]
 
-If you need to contact the maintainer, you may <a href="mailto:contact@subvisual.co">reach out to us</a> or use [this](https://trello.com/b/svB6ZSce/areas-of-responsability-dris) Trello board.
+It is published under the [Apache License 2.0](./LICENSE). You are free to fork
+this project and build upon it. We ask only that you give us some credit and
+state which changes are yours.
+
+If you build something with this project, we would love to hear about it. :heart:
+
+
+[repo]: https://github.com/subvisual/2018.mirrorconf.com/tree/retro
+[subvisual]: https://subvisual.com

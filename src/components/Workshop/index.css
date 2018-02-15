@@ -1,0 +1,95 @@
+.Workshop {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Workshop.Workshop--alternate {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.Workshop-column {
+  flex: 1;
+
+  max-width: 542px;
+}
+
+.Workshop-column:not(:last-child) {
+  margin-right: 130px;
+}
+
+.Workshop.Workshop--alternate .Workshop-column:not(:last-child) {
+  margin-right: 0;
+  margin-left: 130px;
+}
+
+.Workshop-actions {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 60px;
+}
+
+.Workshop-dateTime {
+  width: 280px;
+  margin-left: calc(100% - 280px);
+  margin-bottom: 60px;
+}
+
+.Workshop.Workshop--alternate .Workshop-dateTime {
+  margin-left: 0;
+}
+
+.Workshop-title {
+  color: #202f46;
+  font-size: 56px;
+  line-height: 64px;
+  font-family: 'freight-text-pro';
+}
+
+.Workshop-day {
+  display: inline-block;
+
+  opacity: 0.6;
+}
+
+.Workshop-speaker {
+  margin-bottom: 20px;
+}
+
+.Workshop-day,
+.Workshop-description {
+  color: #203046;
+  font-size: 20px;
+  line-height: 28px;
+  font-family: 'Prometo';
+}
+
+.Workshop-date,
+.Workshop-price {
+  color: #202f46;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: bold;
+  font-family: 'Lato';
+}
+
+.Workshop-speaker,
+.Workshop-discountPrice {
+  opacity: 0.6;
+
+  color: #203046;
+  font-size: 20px;
+  line-height: 28px;
+  font-family: 'freight-text-pro';
+}
+
+.Workshop-title,
+.Workshop-actions,
+.Workshop-speaker,
+.Workshop-dateTime,
+.Workshop-description {
+  position: relative;
+
+  z-index: 2;
+}

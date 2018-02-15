@@ -1,0 +1,48 @@
+.Button {
+  position: relative;
+
+  padding: 10px 26px;
+
+  color: #1f2d44;
+  font-size: 20px;
+  line-height: 28px;
+  font-family: 'freight-text-pro';
+
+  border: 2px solid #1f2d44;
+
+  background: none;
+
+  z-index: 1;
+}
+
+.Button::after {
+  content: '';
+
+  position: absolute;
+
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+
+  z-index: 0;
+
+  top: -2px;
+  left: -2px;
+
+  transform: translate(4px, 8px);
+
+  border: 2px solid rgba(31, 48, 70, 0.397702);
+
+  background: none;
+
+  filter: blur(2px);
+
+  transition: all 0.15s linear;
+}
+
+.Button:hover {
+  &::after {
+    transform: translate(2px, 4px);
+
+    filter: blur(1px);
+  }
+}

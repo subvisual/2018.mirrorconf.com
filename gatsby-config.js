@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: "MirrorConf 2018"
   },
-  plugins: ['gatsby-plugin-react-helmet', 'gatsby-plugin-react-css-modules'],
+  pathPrefix: "/2018.mirrorconf.com",
+  plugins: ["gatsby-plugin-react-helmet", "gatsby-plugin-react-css-modules"]
 };
