@@ -1,4 +1,4 @@
-import { pointer, styler, listen } from 'popmotion';
+import { pointer, styler } from 'popmotion';
 import React, { Component } from 'react';
 
 import './index.css';
@@ -11,9 +11,7 @@ export default class Light extends Component {
     this.state = { animationPaused: false };
   }
 
-  onLight = light => {
-    this.light = light;
-  };
+  onLight = light => (this.light = light);
 
   pauseAnimation = () => {
     if (!this.animation || !this.styler) return;
@@ -24,10 +22,14 @@ export default class Light extends Component {
   };
 
   resumeAnimation = () => {
-    if (!this.animation || !this.styler) return;
-
-    this.animation = pointer().start(this.styler.set);
+    this.startAnimation();
     this.setState({ animationPaused: false });
+  };
+
+  startAnimation = () => {
+    if (!this.styler) return;
+
+    this.animation = pointer(this.styler.get).start(this.styler.set);
   };
 
   controlAnimation = pauseAnimation => {
@@ -42,7 +44,8 @@ export default class Light extends Component {
     if (!this.light) return;
 
     this.styler = styler(this.light);
-    this.animation = pointer().start(this.styler.set);
+
+    this.startAnimation();
   }
 
   componentWillReceiveProps(nextProps) {

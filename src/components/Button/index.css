@@ -3,21 +3,27 @@
 
   padding: 10px 26px;
 
-  color: #1f2d44;
+  color: #1c3448;
   font-size: 20px;
   line-height: 28px;
   font-family: 'freight-text-pro';
 
-  border: 2px solid #1f2d44;
+  border: 2px solid #1c3448;
 
   background: none;
 
   z-index: 1;
+
+  transition: transform 0.3s ease-out;
 }
 
-.Button::after {
-  content: '';
+.Button:hover {
+  transform: scale(1.025);
 
+  cursor: pointer;
+}
+
+.Button-shadow {
   position: absolute;
 
   width: calc(100% + 4px);
@@ -28,8 +34,6 @@
   top: -2px;
   left: -2px;
 
-  transform: translate(4px, 8px);
-
   border: 2px solid rgba(31, 48, 70, 0.397702);
 
   background: none;
@@ -37,12 +41,10 @@
   filter: blur(2px);
 
   transition: all 0.15s linear;
+
+  transform-origin: center;
 }
 
-.Button:hover {
-  &::after {
-    transform: translate(2px, 4px);
-
-    filter: blur(1px);
-  }
+.Button:hover .Button-shadow {
+  filter: blur(1px);
 }

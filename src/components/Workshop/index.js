@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React, { Component } from 'react';
 
 import Button from '../Button';
+import TextShadow from '../TextShadow';
 import OverlayImage from './OverlayImage';
 
 import './index.css';
@@ -29,24 +30,24 @@ export default class Workshop extends Component {
     return (
       <div className={className}>
         <div className="Workshop-column">
-          <div className="Workshop-dateTime">
+          <TextShadow className="Workshop-dateTime">
             <p className="Workshop-day">{day}</p>
             <p className="Workshop-date">{date}</p>
-          </div>
+          </TextShadow>
           <OverlayImage alt="Mike" src={picture} overlay={overlay} />
           <div className="Workshop-actions">
-            <div>
+            <TextShadow>
               <p className="Workshop-price">400€</p>
               <p className="Workshop-discountPrice">250€ with Full Ticket</p>
-            </div>
+            </TextShadow>
             <Button>Buy your ticket</Button>
           </div>
         </div>
-        <div className="Workshop-column">
+        <TextShadow className="Workshop-column">
           <h3 className="Workshop-title">{title}</h3>
           <h4 className="Workshop-speaker">with {speakerName}</h4>
           <p className="Workshop-description">{description}</p>
-        </div>
+        </TextShadow>
       </div>
     );
   }

@@ -6,15 +6,11 @@
 
   padding: 90px;
 
-  color: #203046;
+  color: #1c3448;
 
-  background: radial-gradient(
-    4303.78px at 50% 0%,
-    #213a4e 0%,
-    #1f2c44 53.11%,
-    #214d6a 84.77%,
-    #302845 100%
-  );
+  background-color: #1c3448;
+
+  cursor: none;
 }
 
 .Workshops-wrapper {
@@ -36,10 +32,10 @@
 }
 
 .Workshops-listItem {
-  margin: 0;
+  margin: 112px 0;
   padding: 0;
 
-  &:not(:first-child) {
-    margin-top: 68px;
+  &:last-child {
+    margin-bottom: 0;
   }
 }

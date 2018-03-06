@@ -4,8 +4,8 @@ import Light from '../Light';
 import Workshop from '../Workshop';
 
 import './index.css';
-import Overlay from './overlay.png';
-import MikePicture from './mike.jpg';
+import Overlay from './mike-illustration.svg';
+import MikePicture from './mike.png';
 
 const WORKSHOPS = [
   {

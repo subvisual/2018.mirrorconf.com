@@ -15,4 +15,15 @@
 .Light-image {
   max-width: 60vw;
   transform: translate(-50%, -50%);
+
+  animation: pulse 3s linear infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
 }
