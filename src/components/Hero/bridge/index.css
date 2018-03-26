@@ -1,0 +1,27 @@
+.Bridge {
+  position: absolute;
+
+  width: 100%;
+
+  top: 50%;
+  left: 50%;
+
+  z-index: 6;
+
+  opacity: 0;
+
+  animation: 2s 11s bridgeAppear cubic-bezier(1, 1.5, 0.4, 0.79) forwards;
+
+  transform-origin: center right;
+}
+
+@keyframes bridgeAppear {
+  from {
+    transform: translate(-98.5%, -24.5%) scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-96.5%, -18%) scale(0.6);
+  }
+}
