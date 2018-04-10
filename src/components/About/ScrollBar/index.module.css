@@ -1,0 +1,28 @@
+.root {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 28px;
+  height: 100%;
+}
+
+.up,
+.down {
+  display: block;
+
+  width: 30px;
+  height: 30px;
+}
+
+.bar {
+  position: relative;
+
+  height: calc(100% - 60px);
+}
+
+.thumb {
+  position: absolute;
+  top: 0;
+}

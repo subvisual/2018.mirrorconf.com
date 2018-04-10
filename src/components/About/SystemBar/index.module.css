@@ -1,0 +1,19 @@
+.root {
+  background-color: rgba(65, 100, 168, 0.9);
+  background-image: linear-gradient(45deg, rgba(65, 100, 168, 0.9) 25%, transparent 25%, transparent 75%, rgba(65, 100, 168, 0.9) 75%, rgba(65, 100, 168, 0.9)),
+  linear-gradient(45deg, rgba(65, 100, 168, 0.9) 25%, transparent 25%, transparent 75%, rgba(65, 100, 168, 0.9) 75%, rgba(65, 100, 168, 0.9));
+  background-size:4px 4px;
+  background-position:0 0, 2px 2px;
+  border-bottom: 1px solid #000000;
+  height: 44px;
+}
+
+.title {
+  font-family: "LoRes 12 OT";
+  line-height: 28px;
+  font-size: 20px;
+  text-align: center;
+  color: #FFFFFF;
+
+  padding: 8px 0;
+}

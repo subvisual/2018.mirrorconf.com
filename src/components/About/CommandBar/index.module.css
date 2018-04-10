@@ -1,0 +1,41 @@
+.root {
+  position: relative;
+}
+
+.navigation {
+  height: 44px;
+  border-bottom: 1px solid #000000;
+}
+
+.button {
+  margin: 8px 0 8px 8px;
+}
+
+.addressBar {
+  display: flex;
+  border-bottom: 1px solid #000000;
+}
+
+.connect {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 44px;
+  width: 44px;
+  padding: 4px;
+  border-left: 1px solid #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .connectContainer {
+    position: relative;
+    height: 96px;
+    min-width: 96px;
+  }
+
+  .connect {
+    height: 96px;
+    width: 96px;
+    padding: 8px;
+  }
+}

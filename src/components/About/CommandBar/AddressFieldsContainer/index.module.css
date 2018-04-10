@@ -1,0 +1,53 @@
+.root {
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.legend {
+  font-family: "LoRes 12 OT";
+  line-height: 28px;
+  font-size: 20px;
+  color: #000000;
+  white-space: nowrap;
+
+  margin-top: 12px;
+  margin-left: 8px;
+  min-width: 147px;
+}
+
+.input {
+  font-family: "LoRes 12 OT";
+  line-height: 28px;
+  font-size: 20px;
+  color: #000000;
+  white-space: nowrap;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  width: 100%;
+  margin: 8px 8px 8px;
+  max-width: 600px;
+  min-width: 276px;
+  padding-left: 16px;
+
+  overflow: hidden;
+}
+
+@media screen and (min-width: 650px) {
+  .field {
+    flex-wrap: nowrap;
+  }
+
+  .legend {
+    margin-left: 28px;
+  }
+
+  .input {
+    margin: 8px 28px;
+  }
+}

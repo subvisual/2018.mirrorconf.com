@@ -1,0 +1,25 @@
+.root {
+  background: linear-gradient(180deg, #a10b53 0%, #622970 100%);
+  padding: 112px 14px;
+  width: 100%;
+}
+
+.window {
+  background: #c0c0c0;
+  border: 1px solid #000000;
+  color: #000000;
+  max-width: 914px;
+  margin: 0 auto;
+
+  overflow: hidden;
+}
+
+.viewport {
+  position: relative;
+}
+
+@media screen and (min-width: 1024px) {
+  .root {
+    padding: 168px 14px;
+  }
+}
