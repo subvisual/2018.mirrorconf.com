@@ -16,7 +16,7 @@ const TemplateWrapper = ({ children }) => (
     >
       <link rel="stylesheet" href="https://use.typekit.net/wfl2jor.css" />
     </Helmet>
-    <div id="Body">{children()}</div>
+    {children()}
   </div>
 );
 
