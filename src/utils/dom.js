@@ -1,13 +1,18 @@
+import { getProgressFromValue } from 'popmotion/calc';
+
 export const scrollTop = () =>
   document.documentElement.scrollTop || document.body.scrollTop;
 
 export const scrollHeight = () =>
-  document.documentElement.scrollHeight || document.body.scrollHeight;
+  Math.min(
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight,
+  );
 
 export const clientHeight = () => document.documentElement.clientHeight;
 
 export const scrollRemaining = () =>
-  scrollTop() / (scrollHeight() - clientHeight());
+  getProgressFromValue(0, scrollHeight() - clientHeight(), scrollTop());
 
 export default {
   scrollTop,

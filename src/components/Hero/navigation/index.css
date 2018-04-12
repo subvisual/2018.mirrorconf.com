@@ -1,0 +1,119 @@
+.Navigation {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 20px;
+}
+
+.Navigation-link,
+.Navigation-hall {
+  display: block;
+
+  margin: 20px 0;
+
+  font-family: 'Alice-Regular';
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  border-radius: 8px;
+
+  overflow: hidden;
+}
+
+.Navigation-link {
+  position: relative;
+
+  height: 40px;
+
+  text-align: left;
+}
+
+.Navigation-linkLabel {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+}
+
+.Navigation-linkNote {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+}
+
+.Navigation-hall {
+  position: absolute;
+
+  bottom: 0;
+  left: 50%;
+
+  height: 200px;
+
+  text-align: center;
+
+  transform: translateX(-50%);
+}
+
+.Navigation-hallEye {
+  height: 100%;
+  width: auto;
+}
+
+.Navigation-linkBackground {
+  position: absolute;
+
+  width: 100%;
+
+  z-index: -1;
+}
+
+@media screen and (min-width: 1024px) {
+  .Navigation {
+    top: 50%;
+
+    height: auto;
+
+    padding: 0 0;
+
+    transform: translateY(-50%);
+  }
+
+  .Navigation-link,
+  .Navigation-hall {
+    display: inline-block;
+
+    height: 168px;
+
+    margin: 20px;
+
+    border-radius: 4px;
+  }
+
+  .Navigation-link {
+    width: 208px;
+  }
+
+  .Navigation-linkNote {
+    max-width: 100px;
+  }
+
+  .Navigation-linkBackground {
+    height: 100%;
+  }
+
+  .Navigation-hall {
+    position: static;
+
+    width: 456px;
+
+    text-align: center;
+
+    transform: none;
+  }
+}

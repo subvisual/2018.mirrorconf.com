@@ -34,8 +34,8 @@ const EVENT_STATS = [
 export default class CommandBar extends Component {
   renderList = (bulletpoint, index) => {
     return (
-      <li key={index}>
-        <img src={Bullet} styleName="bullet" />
+      <li role="listitem" key={index}>
+        <img aria-hidden="true" src={Bullet} styleName="bullet" />
         <p styleName="bulletpoint">
           {bulletpoint.count} {bulletpoint.description}
         </p>
@@ -58,7 +58,12 @@ export default class CommandBar extends Component {
         <div styleName="division" />
         <h2 styleName="subtitle">2018 - The future of web</h2>
         <div styleName="division" />
-        <ul styleName="text">{EVENT_STATS.map(this.renderList)}</ul>
+        <h3 id="event-details" styleName="visuallyHidden">
+          Event details
+        </h3>
+        <ul aria-labelledby="event-details" styleName="text" role="list">
+          {EVENT_STATS.map(this.renderList)}
+        </ul>
         <div styleName="division" />
       </div>
     );

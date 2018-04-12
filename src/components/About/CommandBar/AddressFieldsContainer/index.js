@@ -4,9 +4,8 @@ import './index.module.css';
 
 export default class AddressFieldsContainer extends Component {
   render() {
-
     return (
-      <div styleName="root">
+      <div styleName="root" aria-hidden="true">
         <div styleName="field">
           <span styleName="legend">Document Title:</span>
           <span styleName="input">About Mirror Conf</span>

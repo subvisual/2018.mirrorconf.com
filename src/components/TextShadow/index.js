@@ -71,11 +71,7 @@ const getPointerAngleAndDistance = ({ center, styler, pointer, isVisible }) => {
   return { angle, distance, isVisible };
 };
 
-const setShadowPosition = ({ element, styler }) => ({
-  angle,
-  distance,
-  isVisible,
-}) => {
+const setShadowPosition = ({ styler }) => ({ angle, distance, isVisible }) => {
   if (!isVisible) return;
 
   const shadowPosition = calc.pointFromAngleAndDistance(

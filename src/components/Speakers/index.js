@@ -1,52 +1,153 @@
 import _ from 'lodash';
+import * as PIXI from 'pixi.js';
 import React, { Component } from 'react';
-import { listen, tween, styler } from 'popmotion';
+import { linear } from 'popmotion/easing';
+import { getProgressFromValue } from 'popmotion/calc';
+import {
+  timeline,
+  listen,
+  tween,
+  styler,
+  transform,
+  everyFrame,
+} from 'popmotion';
 
 import './index.css';
 
-import car from './car.png';
-import Background from './background.js';
+import SpeakersList from './speakers_list';
 
-import { setVariable } from '../../utils/css';
-import { scrollRemaining } from '../../utils/dom';
+import carSource from './car.svg';
+// import SpeakersSource from './speakers.svg';
+import backgroundSource from './background.svg';
+
+import { scrollTop, scrollHeight, clientHeight } from '../../utils/dom';
+
+const smooth = transform.smooth(100);
+const toPercent = transform.transformMap({
+  '--Speakers-car-translate-y': v => `${v}%`,
+});
+
+const point = (x, y = x) => ({ x, y });
+
+const resources = {
+  background: {
+    name: 'background',
+    source: backgroundSource,
+  },
+  car: {
+    name: 'car',
+    source: carSource,
+    props: { position: point(720, 5350) },
+  },
+};
+
+const addSpriteToStage = context => (sprite, name) => {
+  if (!resources || !resources[name]) return;
+
+  const { props } = resources[name];
+  const { width, height } = context.renderer;
+
+  sprite.anchor = point(0.5);
+  sprite.position = point(width / 2, height / 2);
+
+  _.forEach(props, (value, prop) => (sprite[prop] = value));
+
+  context.stage.addChild(sprite);
+};
 
 export default class Speakers extends Component {
+  constructor() {
+    super();
+    this.state = { height: 0 };
+  }
+
+  onRoot = root => (this.root = root);
+
+  onCanvasWrapper = canvasWrapper => (this.canvasWrapper = canvasWrapper);
+
+  scrollProgress = () => {
+    const { height } = this.state;
+
+    const max = scrollHeight() - clientHeight();
+    const min = scrollHeight() - height;
+
+    return getProgressFromValue(min, max, scrollTop());
+  };
+
+  buildCanvas = () => {
+    if (!this.canvasWrapper) return;
+
+    const { width, height } = this.state;
+
+    const context = new PIXI.Application(1440, 5661, {
+      antialias: true,
+      resolution: 1,
+      transparent: true,
+    });
+
+    this.canvasWrapper.appendChild(context.view);
+
+    const sprites = _.reduce(
+      resources,
+      (memo, { name, source }) => ({
+        ...memo,
+        [name]: new PIXI.Sprite.from(source),
+      }),
+      {}
+    );
+
+    _.forEach(sprites, addSpriteToStage(context));
+
+    const tline = timeline([
+      {
+        track: 'car',
+        from: { y: 5350, scale: 1 },
+        to: { y: 750, scale: 0.18 },
+        ease: linear,
+      },
+    ])
+      .start(({ car }) => {
+        sprites.car.y = car.y;
+        sprites.car.scale = point(car.scale);
+      })
+      .pause();
+
+    this.props.onScroll(() => tline.car.seek(this.scrollProgress()));
+  };
+
+  onResize() {
+    if (this.animation) this.animation.stop();
+
+    const { height } = this.root.getBoundingClientRect();
+
+    this.setState({ height });
+  }
+
   componentDidMount() {
-    const body = styler(document.querySelector('body'));
-    console.log(body.get('--bg-color'));
+    if (!this.root) return;
 
-    const carTween = tween({
-      from: { y: 0, scale: 1 },
-      to: { y: -36, scale: 0.15 },
-    })
-      .start(values => {
-        setVariable('--Speakers-car-scale', values.scale);
-        setVariable('--Speakers-car-translate-y', `${values.y}%`);
-      })
-      .pause();
+    listen(window, 'load').start(() => {
+      const { height } = this.root.getBoundingClientRect();
 
-    const backgroundTween = tween({ from: -100, to: 0 })
-      .start(value => {
-        setVariable('--Speakers-scroll-progress', `${value}%`);
-        setVariable('--Speakers-scroll-progress-vh', `${-value}vh`);
-        console.log(body.get('--Speakers-car-scale'));
-      })
-      .pause();
+      this.setState({ height });
 
-    listen(document, 'scroll')
-      .pipe(scrollRemaining)
-      .start(progress => {
-        carTween.seek(progress);
-        backgroundTween.seek(progress);
-      });
+      this.buildCanvas();
+    });
+
+    listen(window, 'resize').start(() => this.onResize());
   }
 
   render() {
     return (
-      <section className="Speakers">
-        <div className="Speakers-backgroundWrapper">
-          <Background />
-        </div>
+      <section
+        className="Speakers"
+        id="speakers"
+        ref={this.onRoot}
+        tabIndex="0"
+      >
+        <h2>Speakers</h2>
+        <div className="Speakers-canvasWrapper" ref={this.onCanvasWrapper} />
+        <SpeakersList />
       </section>
     );
   }

@@ -1,47 +1,33 @@
-:root {
-  --Speakers-car-scale: 1;
-  --Speakers-car-translate-y: 0%;
-  --Speakers-scroll-progress: -100%;
-  --Speakers-scroll-progress-vh: 100vh;
-}
-
 .Speakers {
+  position: relative;
+
   min-height: 200vh;
 }
 
-.Speakers-backgroundWrapper {
-  position: fixed;
+.Speakers-background {
+  display: block;
+}
+
+.Speakers-canvasWrapper {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
 
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+}
 
+.Speakers-canvasWrapper canvas {
+  width: 100%;
+}
+
+.Speakers-speakersList {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
   max-width: 100%;
 
-  z-index: 0;
-}
-
-.Speakers-background {
-  transform: translateY(var(--Speakers-scroll-progress-vh))
-    translateY(var(--Speakers-scroll-progress)) translateZ(0);
-}
-
-.Speakers-car {
-  animation: car 0.1s ease-in-out alternate infinite;
-  transform-origin: center;
-}
-
-@keyframes car {
-  from {
-    transform: translateX(0) translateY(0px)
-      translateY(var(--Speakers-car-translate-y))
-      scale(var(--Speakers-car-scale)) translateZ(0);
-  }
-
-  to {
-    transform: translateX(1px) translateY(1px)
-      translateY(var(--Speakers-car-translate-y))
-      scale(var(--Speakers-car-scale)) translateZ(0);
-  }
+  z-index: 1;
 }

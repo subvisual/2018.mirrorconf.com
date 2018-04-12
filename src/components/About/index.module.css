@@ -2,6 +2,7 @@
   background: linear-gradient(180deg, #a10b53 0%, #622970 100%);
   padding: 112px 14px;
   width: 100%;
+  min-height: 100vh;
 }
 
 .window {

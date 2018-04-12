@@ -9,44 +9,60 @@ import Viewport from './Viewport';
 
 import './index.module.css';
 
-const scrollableArea = element => {
-  return element.scrollHeight - element.getBoundingClientRect().height;
-};
-
 export default class About extends Component {
   constructor() {
     super();
-    this.state = { viewportScrollProgress: 0 };
+    this.state = { viewportScrollProgress: 0, viewportHeight: 0 };
   }
 
   onScroll = scrollableHeight => scrollHeight => {
     if (!this.viewport) return;
 
     const progress = scrollHeight / scrollableHeight;
-    this.viewportScroll.set('top', scrollableArea(this.viewport) * progress);
+    this.viewportScroll.set('top', this.scrollableArea() * progress);
 
     return scrollHeight;
   };
+
+  scrollableArea = () => this.viewport.scrollHeight - this.state.viewportHeight;
+
+  scrollProgress = () => this.viewportScroll.get('top') / this.scrollableArea();
 
   onViewport = viewport => {
     this.viewport = viewport;
     this.viewportScroll = scroll(viewport);
   };
 
+  startAnimation() {
+    this.animation = listen(this.viewport, 'scroll').start(() =>
+      this.setState({ viewportScrollProgress: this.scrollProgress() })
+    );
+  }
+
+  onResize() {
+    if (!this.viewport) return;
+    if (this.animation) this.animation.stop();
+
+    const { height } = this.viewport.getBoundingClientRect();
+    this.setState({ viewportHeight: height });
+
+    requestAnimationFrame(() => this.startAnimation());
+  }
+
   componentDidMount() {
     if (!this.viewport) return;
 
-    listen(this.viewport, 'scroll').start(() =>
-      this.setState({
-        viewportScrollProgress:
-          this.viewportScroll.get('top') / scrollableArea(this.viewport),
-      }),
-    );
+    const { height } = this.viewport.getBoundingClientRect();
+    this.setState({ viewportHeight: height });
+
+    listen(window, 'resize').start(() => this.onResize());
+
+    requestAnimationFrame(() => this.startAnimation());
   }
 
   render() {
     return (
-      <section styleName="root">
+      <section styleName="root" id="about" tabIndex="0">
         <div styleName="window">
           <SystemBar />
           <CommandBar />
