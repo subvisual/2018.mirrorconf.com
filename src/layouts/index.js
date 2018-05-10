@@ -32,14 +32,14 @@ const TemplateWrapper = ({ children }) => (
       <meta name="twitter:description" content={DESCRIPTION} />
       <meta name="twitter:creator" content={TWITTER_HANDLER} />
       <meta name="twitter:image" content={SITE_IMAGE} />
-      <meta name="og:type" content="website" />
-      <meta name="og:title" content={SITE_NAME} />
-      <meta name="og:url" content={SITE_URL} />
-      <meta name="og:image" content={SITE_IMAGE} />
-      <meta name="og:description" content={DESCRIPTION} />
-      <meta name="og:site_name" content={SITE_NAME} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={SITE_NAME} />
+      <meta property="og:url" content={SITE_URL} />
+      <meta property="og:image" content={SITE_IMAGE} />
+      <meta property="og:description" content={DESCRIPTION} />
+      <meta property="og:site_name" content={SITE_NAME} />
       <meta
-        name="fb:admins"
+        property="fb:admins"
         content="100000633932565,1448175923,707387762,11876227"
       />
       <meta name="msapplication-TileColor" content="#ffffff" />
