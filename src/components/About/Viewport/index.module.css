@@ -12,19 +12,19 @@
 }
 
 .title {
-  font-family: 'LoRes 21 OT';
+  font-family: 'lores-21-serif';
   line-height: 56px;
   font-size: 40px;
 }
 
 .subtitle {
-  font-family: 'LoRes 21 OT';
+  font-family: 'lores-21-serif';
   line-height: 40px;
   font-size: 29px;
 }
 
 .text {
-  font-family: 'LoRes 21 OT';
+  font-family: 'lores-21-serif';
   line-height: 28px;
   font-size: 20px;
 }
@@ -37,6 +37,19 @@
   display: inline;
 }
 
+.horizontalImage,
+.verticalImage {
+  display: block;
+  margin-bottom: 28px;
+}
+
+.horizontalImage {
+  height: 224px;
+}
+
+.verticalImage {
+  height: 320px
+}
 .visuallyHidden {
   position: absolute;
 
