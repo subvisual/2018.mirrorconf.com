@@ -2,7 +2,7 @@ const postCSSCustomProperties = require('postcss-custom-properties');
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Mirror Conf - The future of web',
   },
   pathPrefix: '/2018.mirrorconf.com',
   plugins: [
