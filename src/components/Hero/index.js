@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import * as PIXI from 'pixi.js';
 import React, { Component } from 'react';
 import { getProgressFromValue } from 'popmotion/calc';
 import { linear } from 'popmotion/easing';
@@ -7,7 +6,7 @@ import { tween, styler, transform, listen } from 'popmotion';
 
 import BackgroundScene from './background';
 
-import { scrollTop, clientHeight } from '../../utils/dom';
+import { scrollHeight, scrollTop, clientHeight } from '../../utils/dom';
 import Planets from './planets';
 import Navigation from './navigation';
 
@@ -32,17 +31,19 @@ export default class Hero extends Component {
     const elapsed = this.scrollProgress();
 
     const navigationTween = tween({
-      elapsed,
+      elapsed: elapsed,
       duration: 1,
       ease: linear,
-      from: { opacity: 0, scale: 0.5, x: -50, y: -50 },
+      from: { opacity: 1, scale: 1, x: -50, y: -50 },
       to: { opacity: 1, scale: 1, x: -50, y: -50 },
     })
       .pipe(transform.transformMap(toPercent))
       .start(this.navigationStyler.set)
       .pause();
 
-    this.props.onScroll(() => navigationTween.seek(this.scrollProgress()));
+    this.props.onScroll(() => {
+      navigationTween.seek(this.scrollProgress());
+    });
   };
 
   onResize() {
@@ -51,19 +52,15 @@ export default class Hero extends Component {
     const { width, height } = this.root.getBoundingClientRect();
 
     this.setState({ width, height });
-    requestAnimationFrame(() => this.startAnimation());
+    this.startAnimation();
   }
 
   componentDidMount() {
     if (!this.root || !this.navigationStyler) return;
+    const { width, height } = this.root.getBoundingClientRect();
 
-    listen(window, 'load').start(() => {
-      const { width, height } = this.root.getBoundingClientRect();
-
-      this.setState({ width, height });
-
-      requestAnimationFrame(() => this.startAnimation());
-    });
+    this.setState({ width, height });
+    this.startAnimation();
 
     listen(window, 'resize').start(() => this.onResize());
   }

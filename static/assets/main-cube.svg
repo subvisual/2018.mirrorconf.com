@@ -1,0 +1,21 @@
+<svg width="1660" height="1520" viewBox="0 0 1660 1520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient cx="9.22815889%" cy=".98420007%" fx="9.22815889%" fy=".98420007%" r="143.747604%" gradientTransform="matrix(.9551 .25555 -.29629 .82377 .00705965 -.02184808)" id="a">
+      <stop stop-color="#FF3BF1" stop-opacity="0" offset="0%"/>
+      <stop stop-color="#FFC053" stop-opacity=".5" offset="100%"/>
+    </radialGradient>
+    <radialGradient cx="18.1868717%" cy="79.7294551%" fx="18.1868717%" fy="79.7294551%" r="63.3852497%" gradientTransform="scale(.86956 1) rotate(-66.336 .1955092 .77642498)" id="b">
+      <stop stop-color="#A5409E" stop-opacity="0" offset="0%"/>
+      <stop stop-color="#FFBA76" stop-opacity=".20264379" offset="100%"/>
+    </radialGradient>
+    <radialGradient cx="9.22815889%" cy=".98420007%" fx="9.22815889%" fy=".98420007%" r="153.520022%" gradientTransform="matrix(.90427 .24195 -.42696 .51242 .01303644 -.01752862)" id="c">
+      <stop stop-color="#A5409E" stop-opacity="0" offset="0%"/>
+      <stop stop-color="#FF7697" stop-opacity=".5" offset="100%"/>
+    </radialGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path fill="url(#a)" d="M105.565352 0L207 60v120l-101.434648 60L0 180V60z" transform="translate(727 669)"/>
+    <path fill="url(#b)" d="M105.565352 120L207 60v120l-101.434648 60L0 180V60z" transform="translate(727 669)"/>
+    <path fill="url(#c)" d="M105 120l102-60v120l-102 60z" transform="translate(727 669)"/>
+  </g>
+</svg>

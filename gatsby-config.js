@@ -9,6 +9,12 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-css-modules',
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        include: /speakers_list/,
+      },
+    },
+    {
       resolve: `gatsby-plugin-postcss-sass`,
       options: {
         postCssPlugins: [postCSSCustomProperties()],

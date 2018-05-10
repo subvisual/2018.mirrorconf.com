@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import * as PIXI from 'pixi.js';
 import React, { Component } from 'react';
 import { linear } from 'popmotion/easing';
 import { getProgressFromValue } from 'popmotion/calc';
@@ -14,56 +13,100 @@ import {
 
 import './index.css';
 
-import SpeakersList from './speakers_list';
-
 import carSource from './car.svg';
-// import SpeakersSource from './speakers.svg';
+import SpeakersList from './speakers_list.svg';
+import SpeakersListMobile from './speakers_list_mobile.svg';
 import backgroundSource from './background.svg';
 
-import { scrollTop, scrollHeight, clientHeight } from '../../utils/dom';
+import {
+  scrollTop,
+  scrollHeight,
+  clientHeight,
+  clientWidth,
+} from '../../utils/dom';
 
 const smooth = transform.smooth(100);
 const toPercent = transform.transformMap({
   '--Speakers-car-translate-y': v => `${v}%`,
 });
 
-const point = (x, y = x) => ({ x, y });
+const point = (x, y = x) => ({ x: x, y: y });
 
-const resources = {
+const SETTINGS = {
+  width: 1440,
+  height: 5661,
+  options: {
+    antialias: false,
+    resolution: 1,
+    transparent: true,
+    autoStart: false,
+  },
+};
+
+const RESOURCES = {
   background: {
     name: 'background',
     source: backgroundSource,
+    props: {
+      width: SETTINGS.width,
+      height: SETTINGS.height,
+      anchor: point(0),
+      position: point(0),
+    },
   },
   car: {
     name: 'car',
     source: carSource,
-    props: { position: point(720, 5350) },
+    props: { anchor: point(0.5, 1), position: point(720, 0) },
   },
 };
 
-const addSpriteToStage = context => (sprite, name) => {
-  if (!resources || !resources[name]) return;
+const initializeSprites = (memo, { name, source }) => ({
+  ...memo,
+  [name]: new PIXI.Sprite.from(source),
+});
 
-  const { props } = resources[name];
-  const { width, height } = context.renderer;
+const addSpriteToStage = stage => (sprite, name) => {
+  if (!RESOURCES || !RESOURCES[name]) return;
+
+  const { props } = RESOURCES[name];
+  const { width, height } = SETTINGS;
 
   sprite.anchor = point(0.5);
   sprite.position = point(width / 2, height / 2);
 
   _.forEach(props, (value, prop) => (sprite[prop] = value));
 
-  context.stage.addChild(sprite);
+  stage.addChild(sprite);
 };
+
+const fixPosition = (...stylers) =>
+  stylers.forEach(styler => {
+    if (styler.get('position') === 'fixed') return;
+
+    styler.set('position', 'fixed');
+  });
+
+const unfixPosition = (...stylers) =>
+  stylers.forEach(styler => {
+    if (styler.get('position') !== 'fixed') return;
+
+    styler.set('position', 'absolute');
+  });
 
 export default class Speakers extends Component {
   constructor() {
     super();
-    this.state = { height: 0 };
+    this.state = { width: 0, eight: 0 };
   }
 
   onRoot = root => (this.root = root);
 
+  onListWrapper = listWrapper => (this.listWrapper = listWrapper);
+
   onCanvasWrapper = canvasWrapper => (this.canvasWrapper = canvasWrapper);
+
+  onContentWrapper = contentWrapper => (this.contentWrapper = contentWrapper);
 
   scrollProgress = () => {
     const { height } = this.state;
@@ -74,67 +117,183 @@ export default class Speakers extends Component {
     return getProgressFromValue(min, max, scrollTop());
   };
 
-  buildCanvas = () => {
-    if (!this.canvasWrapper) return;
+  buildAlternateCanvas() {
+    const height = this.listWrapperStyler.get('height');
+    this.rootStyler.set({ height });
 
-    const { width, height } = this.state;
+    this.context.renderer.resize(this.state.width, height);
+    const scale = height * this.ratio / SETTINGS.width;
+    this.container.scale = point(scale);
+    this.container.position = point(-this.state.width / 4, 0);
 
-    const context = new PIXI.Application(1440, 5661, {
-      antialias: true,
-      resolution: 1,
-      transparent: true,
-    });
-
-    this.canvasWrapper.appendChild(context.view);
-
-    const sprites = _.reduce(
-      resources,
-      (memo, { name, source }) => ({
-        ...memo,
-        [name]: new PIXI.Sprite.from(source),
-      }),
-      {}
-    );
-
-    _.forEach(sprites, addSpriteToStage(context));
-
-    const tline = timeline([
-      {
-        track: 'car',
-        from: { y: 5350, scale: 1 },
-        to: { y: 750, scale: 0.18 },
-        ease: linear,
+    const carTween = tween({
+      to: {
+        y: 5300,
+        scale: 1,
       },
-    ])
-      .start(({ car }) => {
-        sprites.car.y = car.y;
-        sprites.car.scale = point(car.scale);
+      from: { y: 800, scale: 0.18 },
+      ease: linear,
+    })
+      .start(({ y, scale }) => {
+        this.sprites.car.y = y;
+        this.sprites.car.scale = point(scale);
       })
       .pause();
 
-    this.props.onScroll(() => tline.car.seek(this.scrollProgress()));
-  };
+    const unsubscribe = this.props.onScroll(() => {
+      // carTween.seek(this.scrollProgress());
+      this.context.render();
+    });
+
+    this.unsubscribe = () => {
+      unsubscribe();
+      carTween.stop();
+    };
+  }
+
+  loadContext() {
+    this.ratio = SETTINGS.width / SETTINGS.height;
+    this.rootStyler = styler(this.root);
+    this.canvasStyler = styler(this.canvasWrapper);
+    this.listWrapperStyler = styler(this.listWrapper);
+    this.contentWrapperStyler = styler(this.contentWrapper);
+    this.listStyler = document.getElementById('Speakers-list');
+
+    this.context = new PIXI.Application(
+      this.state.width,
+      clientHeight(),
+      SETTINGS.options,
+    );
+
+    const scale = this.state.height * this.ratio / SETTINGS.width;
+
+    this.container = new PIXI.Container();
+    this.container.width = SETTINGS.width;
+    this.container.height = SETTINGS.height;
+    this.container.scale = point(scale);
+
+    this.context.stage.addChild(this.container);
+
+    this.canvasWrapper.appendChild(this.context.view);
+
+    this.sprites = _.reduce(RESOURCES, initializeSprites, {});
+    _.forEach(this.sprites, addSpriteToStage(this.container));
+
+    this.rootStyler.set({ height: this.state.height });
+
+    this.startAnimation();
+  }
+
+  buildCanvas() {
+    const { width, height, options } = SETTINGS;
+    const scale = this.state.height * this.ratio / width;
+    const viewportHeight = clientHeight();
+
+    this.container.scale = point(scale);
+    this.container.position = point(0, 0);
+
+    const backgroundTween = tween({
+      from: -height + viewportHeight / scale,
+      to: 0,
+      ease: linear,
+    })
+      .start(y => (this.sprites.background.position.y = y))
+      .pause();
+
+    const listTween = tween({
+      from: 0,
+      to: this.state.height - clientHeight(),
+      ease: linear,
+    })
+      .start(this.listWrapperStyler.set('y'))
+      .pause();
+
+    const carTween = tween({
+      from: {
+        y: viewportHeight,
+        scale: 1,
+      },
+      to: { y: viewportHeight - 100, scale: 0.18 },
+      ease: linear,
+    })
+      .start(({ y, scale }) => {
+        this.sprites.car.y = y;
+        this.sprites.car.scale = point(scale);
+      })
+      .pause();
+
+    this.listWrapperStyler.set({ position: 'absolute' });
+
+    const unsubscribe = this.props.onScroll(() => {
+      const progress = this.scrollProgress();
+
+      if (progress < -0.2)
+        return unfixPosition(this.canvasStyler, this.contentWrapperStyler);
+      else if (progress >= -0.2)
+        fixPosition(this.canvasStyler, this.contentWrapperStyler);
+
+      carTween.seek(progress);
+      listTween.seek(progress);
+      backgroundTween.seek(progress);
+      this.context.render();
+    });
+
+    this.unsubscribe = () => {
+      unsubscribe();
+      carTween.stop();
+      listTween.stop();
+      backgroundTween.stop();
+    };
+  }
 
   onResize() {
-    if (this.animation) this.animation.stop();
+    if (this.unsubscribe) this.unsubscribe();
 
-    const { height } = this.root.getBoundingClientRect();
+    const { width } = this.root.getBoundingClientRect();
 
-    this.setState({ height });
+    if (width === this.state.width) return;
+
+    const height = width * SETTINGS.height / SETTINGS.width;
+    const scale = height * this.ratio / SETTINGS.width;
+
+    this.rootStyler.set({ height });
+    this.context.renderer.resize(width, height);
+    setTimeout(() => this.context.renderer.resize(width - 1, height), 1);
+    this.container.scale = point(scale);
+
+    this.setState({ width, height });
+    this.startAnimation();
+  }
+
+  startAnimation() {
+    if (this.state.width < 700)
+      return requestAnimationFrame(() => this.buildAlternateCanvas());
+
+    return requestAnimationFrame(() => this.buildCanvas());
   }
 
   componentDidMount() {
-    if (!this.root) return;
+    if (!this.root || !this.canvasWrapper || !this.contentWrapper) return;
 
     listen(window, 'load').start(() => {
-      const { height } = this.root.getBoundingClientRect();
+      const { width, height } = this.root.getBoundingClientRect();
 
-      this.setState({ height });
+      this.setState({ width, height: height });
 
-      this.buildCanvas();
+      requestAnimationFrame(() => this.loadContext());
     });
 
     listen(window, 'resize').start(() => this.onResize());
+  }
+
+  renderSpeakersList() {
+    if (!this.state || !this.state.width)
+      return <svg viewBox="0 0 1440 5661" />;
+
+    if (this.state.width < 700)
+      return <SpeakersListMobile className="Speakers-listMobile" />;
+
+    return <SpeakersList id="Speakers-list" className="Speakers-list" />;
   }
 
   render() {
@@ -145,9 +304,12 @@ export default class Speakers extends Component {
         ref={this.onRoot}
         tabIndex="0"
       >
-        <h2>Speakers</h2>
-        <div className="Speakers-canvasWrapper" ref={this.onCanvasWrapper} />
-        <SpeakersList />
+        <div className="Speakers-background" ref={this.onCanvasWrapper} />
+        <div className="Speakers-content" ref={this.onContentWrapper}>
+          <div className="Speakers-listWrapper" ref={this.onListWrapper}>
+            {this.renderSpeakersList()}
+          </div>
+        </div>
       </section>
     );
   }

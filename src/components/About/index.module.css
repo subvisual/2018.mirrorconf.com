@@ -1,7 +1,7 @@
 .root {
-  background: linear-gradient(180deg, #a10b53 0%, #622970 100%);
+  background: linear-gradient(180deg, #622970 0%, #a10b53 100%);
   padding: 112px 14px;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
 }
 

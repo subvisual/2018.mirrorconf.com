@@ -7,7 +7,7 @@ import Thumb from './bar.svg';
 
 import './index.module.css';
 
-const pointerY = y => pointer({ y }).pipe(values => values.y);
+const pointerY = y => pointer({ y: y }).pipe(values => values.y);
 
 const heightOf = element => element.getBoundingClientRect().height;
 
@@ -46,7 +46,10 @@ export default class ScrollBar extends Component {
     const scrollbarHeight = heightOf(this.scrollbar);
     const scrollbarContainerHeight = heightOf(this.scrollbarContainer);
 
-    this.setState({ scrollbarHeight, scrollbarContainerHeight });
+    this.setState({
+      scrollbarHeight: scrollbarHeight,
+      scrollbarContainerHeight: scrollbarContainerHeight,
+    });
   };
 
   componentDidMount() {
@@ -55,7 +58,10 @@ export default class ScrollBar extends Component {
     const scrollbarHeight = heightOf(this.scrollbar);
     const scrollbarContainerHeight = heightOf(this.scrollbarContainer);
 
-    this.setState({ scrollbarHeight, scrollbarContainerHeight });
+    this.setState({
+      scrollbarHeight: scrollbarHeight,
+      scrollbarContainerHeight: scrollbarContainerHeight,
+    });
 
     listen(window, 'resize').start(() => this.onResize());
     listen(document, 'mouseup touchend').start(this.stopScrollbar);

@@ -14,7 +14,7 @@ import WorkshopsPreview from './workshops_preview.jpg';
 
 import { clientHeight } from '../../../utils/dom';
 
-const findElementById = href => {
+const findElementByHref = href => {
   const elementId = href
     .substr(href.indexOf('#'), href.length)
     .replace('#', '');
@@ -44,11 +44,10 @@ export default class Navigation extends Component {
 
   onClick = event => {
     if (!this.scroll) return;
+    if (!event.target.href) return;
 
     event.preventDefault();
-
-    const { href } = event.target;
-    const element = findElementById(href);
+    const element = findElementByHref(event.target.href);
 
     if (!element) return;
 
@@ -57,10 +56,10 @@ export default class Navigation extends Component {
 
   scrollToElement = element => {
     const from = this.scroll.get('top');
-    const { bottom } = element.getBoundingClientRect();
-    const to = from - bottom + clientHeight();
+    const { top } = element.getBoundingClientRect();
+    const to = top + clientHeight();
 
-    animateScrollTo(this.scroll, { to, from });
+    animateScrollTo(this.scroll, { to: to, from: from });
   };
 
   render() {

@@ -14,14 +14,28 @@
 .Planets-planet.first {
   right: 0;
   bottom: 0;
+
+  width: 50%;
 }
 
 .Planets-planet.second {
   top: 5%;
   left: 5%;
+
+  width: 35%;
 }
 
 .Planets-planet.third {
   right: 5%;
   top: 5%;
+
+  width: 10%;
+}
+
+@media screen and (min-width: 700px) {
+  .Planets-planet.first,
+  .Planets-planet.second,
+  .Planets-planet.third {
+    width: auto;
+  }
 }

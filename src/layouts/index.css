@@ -5,23 +5,17 @@
 }
 
 .Layout-contentWrapper {
-  position: fixed;
+  /* position: fixed; */
 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .Layout-content {
-  position: absolute;
-
   display: flex;
-  flex-direction: column-reverse;
-
-  top: 0;
-
-  transform: translateY(calc(-100% + 100vh));
+  flex-direction: column;
 }

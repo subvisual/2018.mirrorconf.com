@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Viewport from 'pixi-viewport';
 import { getProgressFromValue } from 'popmotion/calc';
 import { listen, styler, tween, timeline, transform } from 'popmotion';
 import { linear, easeOut, cubicBezier, easeInOut } from 'popmotion/easing';
@@ -49,7 +48,12 @@ const resources = {
 const settings = {
   width: 1660,
   height: 1520,
-  options: { antialias: false, resolution: 1, transparent: true },
+  options: {
+    antialias: false,
+    resolution: 1,
+    transparent: true,
+    autoStart: false,
+  },
 };
 
 const toPercent = { x: x => `${x}%` };
@@ -68,13 +72,13 @@ const centerSprite = ({ width, height }, sprite) => {
 
 const assignPropToSprite = sprite => (value, prop) => (sprite[prop] = value);
 
-const addSpriteToStage = viewport => (sprite, name) => {
+const addSpriteToStage = stage => (sprite, name) => {
   if (!resources || !resources[name]) return;
 
   centerSprite(settings, sprite);
   _.forEach(resources[name].props, assignPropToSprite(sprite));
 
-  viewport.addChild(sprite);
+  stage.addChild(sprite);
 };
 
 export default class Background extends Component {
@@ -88,37 +92,14 @@ export default class Background extends Component {
 
   buildCanvas() {
     const { width, height, options } = settings;
-    const context = new PIXI.Application(
-      this.state.width,
-      this.state.height,
-      options,
-    );
+    const context = new PIXI.Application(width, height, options);
 
     this.root.appendChild(context.view);
 
-    this.viewport = new Viewport({
-      worldWidth: width,
-      worldHeight: height,
-      screenWidth: this.state.width,
-      screenHeight: this.state.height,
-    });
-
-    context.stage.addChild(this.viewport);
-
     const sprites = _.reduce(resources, initializeSprites, {});
+    _.forEach(sprites, addSpriteToStage(context.stage));
 
-    _.forEach(sprites, addSpriteToStage(this.viewport));
-
-    const centerX = context.renderer.width / 2;
-    const centerY = context.renderer.height / 2;
-
-    this.viewport.follow(sprites.mainCube);
-
-    if (this.state.width > this.state.height) {
-      this.viewport.snapZoom({ time: 1, height: height * 0.7 });
-    } else {
-      this.viewport.snapZoom({ time: 1, width: width * 0.7 });
-    }
+    // context.renderer.view.style['transform'] = 'translatez(0)';
 
     this.tline = timeline([
       {
@@ -239,20 +220,22 @@ export default class Background extends Component {
           scale: point(values.elevator.scale),
         },
       }))
-      .start(values =>
-        requestAnimationFrame(() =>
-          _.forEach(sprites, (sprite, name) =>
-            this.updateSprite(sprite, values[name]),
-          ),
-        ),
-      );
+      .start(values => {
+        _.forEach(sprites, (sprite, name) =>
+          this.updateSprite(sprite, values[name]),
+        );
+        requestAnimationFrame(() => context.render());
+      });
 
     this.characterTween = tween({
       elapsed: this.scrollProgress(),
       from: { x: width / 2, y: height / 2 },
       to: { x: width / 2 + 170, y: height / 2 - 105 },
     })
-      .start(values => this.updateSprite(sprites.character, values))
+      .start(values => {
+        requestAnimationFrame(() => context.render());
+        this.updateSprite(sprites.character, values);
+      })
       .pause();
   }
 
@@ -266,25 +249,15 @@ export default class Background extends Component {
       elapsed,
       duration: 1,
       from: { opacity: 1, x: -50, y: -this.state.height / 2 },
-      to: { opacity: 0, x: -50, y: -this.state.height * 1.5 },
+      to: { opacity: 0, x: -50, y: 0 },
     })
       .pipe(transform.transformMap(toPercent))
       .start(this.rootStyler.set)
       .pause();
 
-    // const viewportTween = tween({
-    //   elapsed,
-    //   duration: 1,
-    //   from: settings.height * 0.7,
-    //   to: settings.height * 0.2,
-    // })
-    //   .start(height => this.viewport.snapZoom({ time: 1, height }))
-    //   .pause();
-
     this.props.onScroll(() => {
       const progress = this.scrollProgress();
 
-      // viewportTween.seek(progress);
       backgroundTween.seek(progress);
       this.characterTween.seek(progress);
 
@@ -302,7 +275,7 @@ export default class Background extends Component {
     const { width, height } = this.root.getBoundingClientRect();
     this.setState({ width, height });
 
-    requestAnimationFrame(() => {
+    listen(window, 'load').start(() => {
       this.buildCanvas();
       this.startAnimation();
     });

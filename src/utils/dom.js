@@ -11,12 +11,15 @@ export const scrollHeight = () =>
 
 export const clientHeight = () => document.documentElement.clientHeight;
 
+export const clientWidth = () => document.documentElement.clientWidth;
+
 export const scrollRemaining = () =>
   getProgressFromValue(0, scrollHeight() - clientHeight(), scrollTop());
 
 export default {
-  scrollTop,
-  scrollHeight,
-  clientHeight,
-  scrollRemaining,
+  scrollTop: scrollTop,
+  clientWidth: clientWidth,
+  scrollHeight: scrollHeight,
+  clientHeight: clientHeight,
+  scrollRemaining: scrollRemaining,
 };
