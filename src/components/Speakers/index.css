@@ -2,6 +2,10 @@
   position: relative;
 
   overflow: hidden;
+
+  background: #a10b53;
+
+  z-index: 0;
 }
 
 .Speakers-background {
@@ -12,7 +16,7 @@
   right: 0;
   bottom: 0;
 
-  z-index: -1;
+  z-index: 0;
 }
 
 .Speakers-background canvas {
@@ -30,6 +34,8 @@
   width: 100%;
 
   overflow: hidden;
+
+  z-index: 1;
 }
 
 .Speakers-listWrapper {
@@ -46,8 +52,12 @@
 }
 
 .Speakers-listMobile {
+  position: relative;
+
   width: 100%;
   max-width: 100%;
+
+  z-index: 1;
 }
 
 @media screen and (min-width: 700px) {

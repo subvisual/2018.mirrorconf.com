@@ -117,6 +117,24 @@ export default class Speakers extends Component {
     return getProgressFromValue(min, max, scrollTop());
   };
 
+  scrollProgressToStart = () => {
+    const { height } = this.state;
+
+    const max = scrollHeight() - height;
+    const min = scrollHeight() - height - clientHeight() * 2;
+
+    return getProgressFromValue(min, max, scrollTop());
+  };
+
+  scrollProgressToFade = () => {
+    const { height } = this.state;
+
+    const max = scrollHeight() - height + clientHeight();
+    const min = scrollHeight() - height;
+
+    return getProgressFromValue(min, max, scrollTop());
+  };
+
   buildAlternateCanvas() {
     const height = this.listWrapperStyler.get('height');
     this.rootStyler.set({ height });
@@ -222,17 +240,34 @@ export default class Speakers extends Component {
       })
       .pause();
 
+    const scaleClamper = transform.clamp(0, 1);
+    this.container.anchor = point(0.5);
+
+    const carEntryTween = tween({
+      ease: linear,
+      from: { alpha: 0, scale: 0 },
+      to: { alpha: 1, scale: 1 },
+    })
+      .start(({ alpha, scale }) => {
+        const clampedScale = scaleClamper(scale);
+        this.container.alpha = alpha;
+        // this.container.scale = point(clampedScale);
+        // this.container.position = point(width / 2 - width * clampedScale, 0);
+      })
+      .pause();
+
     this.listWrapperStyler.set({ position: 'absolute' });
 
     const unsubscribe = this.props.onScroll(() => {
       const progress = this.scrollProgress();
 
-      if (progress < -0.2)
+      if (this.scrollProgressToStart() <= 0)
         return unfixPosition(this.canvasStyler, this.contentWrapperStyler);
-      else if (progress >= -0.2)
+      else if (this.scrollProgressToStart() > 0)
         fixPosition(this.canvasStyler, this.contentWrapperStyler);
 
       carTween.seek(progress);
+      carEntryTween.seek(this.scrollProgressToFade());
       listTween.seek(progress);
       backgroundTween.seek(progress);
       this.context.render();

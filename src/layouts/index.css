@@ -1,18 +1,10 @@
 .Layout {
   position: relative;
 
-  min-height: 200vh;
-}
+  overflow: hidden;
 
-.Layout-contentWrapper {
-  /* position: fixed; */
-
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  /* overflow: hidden; */
+  width: 100%;
+  max-width: 100%;
 }
 
 .Layout-content {

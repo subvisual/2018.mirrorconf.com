@@ -20,7 +20,7 @@ const SOCIAL_LINKS = [
   {
     name: 'youtube',
     link: 'https://www.youtube.com/channel/UCDez53TT1_v3jr3lGv-QhKw',
-  }
+  },
 ];
 
 const EVENT_STATS = [
@@ -64,10 +64,11 @@ export default class CommandBar extends Component {
 
   renderSocialLinks = (socialNetwork, index) => {
     return (
-      <li role="listitem" key={index}>
+      <li role="listitem" styleName="listitem" key={index}>
         <img aria-hidden="true" src={Bullet} styleName="bullet" />
         <p styleName="bulletpoint">
-          {socialNetwork.name} - <a href={socialNetwork.link}>{socialNetwork.link}</a>
+          {socialNetwork.name} -{' '}
+          <a href={socialNetwork.link}>{socialNetwork.link}</a>
         </p>
       </li>
     );
@@ -106,7 +107,6 @@ export default class CommandBar extends Component {
         <img aria-hidden="true" src={Speaker} styleName="horizontalImage" />
         <img aria-hidden="true" src={Quizz} styleName="horizontalImage" />
         <img aria-hidden="true" src={Venue} styleName="verticalImage" />
-
       </div>
     );
   }

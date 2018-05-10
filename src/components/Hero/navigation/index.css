@@ -2,9 +2,17 @@
   position: relative;
 
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
 
   padding: 0 20px;
+}
+
+.Navigation-linkWrapper {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 80vh;
 }
 
 .Navigation-link,
@@ -27,19 +35,27 @@
 }
 
 .Navigation-link {
+  flex: 1;
+
   position: relative;
 
-  height: 60px;
+  min-height: 60px;
 
   text-align: left;
 
   padding: 24px 8px 8px 8px;
 
-  background: linear-gradient(281.61deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    281.61deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  overflow: hidden;
 }
 
 .Navigation-link:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .Navigation-linkLabel {
@@ -62,7 +78,7 @@
   bottom: 0;
   left: 50%;
 
-  height: 200px;
+  height: 90px;
 
   text-align: center;
 
@@ -77,29 +93,53 @@
 .Navigation-linkBackground {
   position: absolute;
 
+  bottom: 0;
+
   width: calc(100% - 16px);
-  height: 28px;
+
+  border-radius: 3%;
 
   z-index: -1;
 
-  border-radius: 4px;
+  animation: linkBackgroundAnimation 10s linear alternate infinite;
 }
 
-@media screen and (min-width: 700px) {
-  .Navigation {
-    top: 50%;
+.Navigation-link:nth-child(1) .Navigation-linkBackground {
+  animation-delay: 1s;
+  animation-direction: alternate-reverse;
+}
+.Navigation-link:nth-child(2) .Navigation-linkBackground {
+  animation-delay: -1s;
+}
+.Navigation-link:nth-child(3) .Navigation-linkBackground {
+  animation-delay: 2.3s;
+}
+.Navigation-link:nth-child(4) .Navigation-linkBackground {
+  animation-delay: 4s;
+}
+.Navigation-link:nth-child(5) .Navigation-linkBackground {
+  animation-delay: 2s;
+}
 
-    height: auto;
+@keyframes linkBackgroundAnimation {
+  from {
+    transform: translateY(75%);
+  }
 
-    padding: 0 0;
+  to {
+    transform: translateY(0%);
+  }
+}
 
-    transform: translateY(-50%);
+@media screen and (min-width: 760px) {
+  .Navigation-linkWrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .Navigation-link,
   .Navigation-hall {
-    display: inline-block;
-
     height: 204px;
 
     margin: 12px;
@@ -108,11 +148,18 @@
   }
 
   .Navigation-link {
-    width: 208px;
+    flex: 1;
+
+    min-width: 208px;
+    max-width: 208px;
 
     padding: 44px 12px 12px 12px;
 
-    background: linear-gradient(314.58deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(
+      314.58deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 
   .Navigation-linkLabel {
@@ -130,15 +177,35 @@
   .Navigation-linkBackground {
     width: 183px;
     height: 148px;
+
+    animation: none;
   }
 
   .Navigation-hall {
     position: static;
 
-    width: 442px;
-
     text-align: center;
 
     transform: none;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .Navigation {
+    display: flex;
+    align-items: center;
+  }
+
+  .Navigation-linkWrapper {
+    align-items: center;
+
+    min-height: auto;
+
+    margin-bottom: 200px;
+  }
+  .Navigation-hall {
+    position: absolute;
+
+    transform: translate(-50%);
   }
 }

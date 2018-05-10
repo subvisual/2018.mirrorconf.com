@@ -1,8 +1,10 @@
 .root {
   background: linear-gradient(180deg, #622970 0%, #a10b53 100%);
   padding: 112px 14px;
-  width: 100vw;
+
   min-height: 100vh;
+
+  z-index: 1;
 }
 
 .window {
@@ -22,5 +24,11 @@
 @media screen and (min-width: 1024px) {
   .root {
     padding: 168px 14px;
+
+    min-height: 200vh;
+  }
+
+  .window {
+    max-height: auto;
   }
 }

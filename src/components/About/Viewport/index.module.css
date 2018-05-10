@@ -1,8 +1,6 @@
 .root {
   width: calc(100% + 20px);
-  padding: 8px 36px 8px 8px;
-  height: 472px;
-  overflow: scroll;
+  padding: 8px 56px 8px 8px;
 }
 
 .division {
@@ -37,6 +35,11 @@
   display: inline;
 }
 
+.listitem {
+  max-width: 100%;
+  overflow: hidden;
+}
+
 .horizontalImage,
 .verticalImage {
   display: block;
@@ -44,11 +47,13 @@
 }
 
 .horizontalImage {
-  height: 224px;
+  max-height: 224px;
+  max-width: 100%;
 }
 
 .verticalImage {
-  height: 320px
+  max-height: 320px;
+  max-width: 100%;
 }
 .visuallyHidden {
   position: absolute;
@@ -65,6 +70,9 @@
 
 @media screen and (min-width: 650px) {
   .root {
-    padding: 28px 56px 28px 28px;
+    height: 472px;
+    overflow: scroll;
+
+    padding: 28px 76px 28px 28px;
   }
 }

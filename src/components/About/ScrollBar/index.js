@@ -34,17 +34,32 @@ export default class ScrollBar extends Component {
       .start(this.scrollbarY);
   };
 
+  moveScrollbarBy = amount => event => {
+    event.preventDefault();
+
+    if (!this.scrollbarY) return;
+
+    const scrollClamp = transform.clamp(0, this.scrollHeight);
+    const scrollAmount = scrollClamp(this.scrollbarY.get() + amount);
+
+    this.scrollbarY.update(scrollAmount);
+    this.props.onScroll(this.scrollHeight)(scrollAmount);
+  };
+
   get scrollHeight() {
     return this.state.scrollbarContainerHeight - this.state.scrollbarHeight;
   }
 
   stopScrollbar = () => this.scrollbarY.stop();
 
-  onResize = () => {
+  getDimensions = () => {
     if (!this.scrollbar || !this.scrollbarContainer) return;
 
     const scrollbarHeight = heightOf(this.scrollbar);
     const scrollbarContainerHeight = heightOf(this.scrollbarContainer);
+
+    if (!scrollbarHeight || !scrollbarContainerHeight)
+      setTimeout(() => this.getDimensions(), 100);
 
     this.setState({
       scrollbarHeight: scrollbarHeight,
@@ -53,17 +68,8 @@ export default class ScrollBar extends Component {
   };
 
   componentDidMount() {
-    if (!this.scrollbar || !this.scrollbarContainer) return;
-
-    const scrollbarHeight = heightOf(this.scrollbar);
-    const scrollbarContainerHeight = heightOf(this.scrollbarContainer);
-
-    this.setState({
-      scrollbarHeight: scrollbarHeight,
-      scrollbarContainerHeight: scrollbarContainerHeight,
-    });
-
-    listen(window, 'resize').start(() => this.onResize());
+    listen(window, 'load').start(() => this.getDimensions());
+    listen(window, 'resize').start(() => this.getDimensions());
     listen(document, 'mouseup touchend').start(this.stopScrollbar);
     listen(this.scrollbar, 'mousedown touchstart').start(this.moveScrollbar);
   }
@@ -79,11 +85,11 @@ export default class ScrollBar extends Component {
     this.updateScrollBarPosition();
     return (
       <div styleName="root" aria-hidden="true">
-        <img styleName="up" src={Up} />
+        <img styleName="up" onClick={this.moveScrollbarBy(-50)} src={Up} />
         <div styleName="bar" ref={this.onScrollbarContainer}>
           <img styleName="thumb" ref={this.onScrollbar} src={Thumb} />
         </div>
-        <img styleName="down" src={Down} />
+        <img styleName="down" onClick={this.moveScrollbarBy(50)} src={Down} />
       </div>
     );
   }

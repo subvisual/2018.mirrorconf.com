@@ -48,6 +48,7 @@ const TemplateWrapper = ({ children }) => (
       <meta itemProp="name" content={SITE_NAME} />
       <meta itemProp="description" content={DESCRIPTION} />
       <meta itemProp="image" content={SITE_IMAGE} />
+
       <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
       <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
       <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
@@ -102,10 +103,12 @@ const TemplateWrapper = ({ children }) => (
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/manifest.json" />
+
       <link rel="stylesheet" href="https://use.typekit.net/wfl2jor.css" />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.3/pixi.min.js" />
     </Helmet>
-    {children()}
+
+    <div className="Layout">{children()}</div>
   </div>
 );
 

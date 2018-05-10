@@ -65,46 +65,68 @@ export default class Navigation extends Component {
   render() {
     return (
       <nav className="Navigation">
-        <a onClick={this.onClick} className="Navigation-link" href="#speakers">
-          <p className="Navigation-linkLabel">80's - Speakers</p>
-          <img className="Navigation-linkBackground" src={SpeakersPreview} />
-        </a>
-        <a onClick={this.onClick} className="Navigation-link" href="/workshops">
-          <p className="Navigation-linkLabel">Light - Workshops</p>
-          <img className="Navigation-linkBackground" src={WorkshopsPreview} />
-        </a>
-        <a onClick={this.onClick} className="Navigation-link" href="/schedule">
-          <p className="Navigation-linkLabel">Press - Schedule</p>
+        <div className="Navigation-linkWrapper">
+          <a
+            onClick={this.onClick}
+            className="Navigation-link"
+            href="#speakers"
+          >
+            <p className="Navigation-linkLabel">80's - Speakers</p>
+            <img className="Navigation-linkBackground" src={SpeakersPreview} />
+          </a>
+          <a
+            onClick={this.onClick}
+            className="Navigation-link"
+            href="/workshops"
+          >
+            <p className="Navigation-linkLabel">Light - Workshops</p>
+            <img className="Navigation-linkBackground" src={WorkshopsPreview} />
+          </a>
+          <a
+            onClick={this.onClick}
+            className="Navigation-link"
+            href="/schedule"
+          >
+            <p className="Navigation-linkLabel">Press - Schedule</p>
 
-          <img
-            className="Navigation-linkBackground"
-            src={this.state.noise[0]}
-          />
-          <p className="Navigation-linkNote">System malfunction</p>
-        </a>
-        <a onClick={this.onClick} className="Navigation-link" href="/location">
-          <p className="Navigation-linkLabel">Rome - location</p>
-          <img
-            className="Navigation-linkBackground"
-            src={this.state.noise[1]}
-          />
-          <p className="Navigation-linkNote">System malfunction</p>
-        </a>
-        <a onClick={this.onClick} className="Navigation-link" href="#about">
-          <p className="Navigation-linkLabel">90's - About</p>
-          <img className="Navigation-linkBackground" src={AboutPreview} />
-        </a>
-        <div className="Navigation-hall">
-          <img className="Navigation-hallEye" src={Hall} />
+            <img
+              className="Navigation-linkBackground"
+              src={this.state.noise[0]}
+            />
+            <p className="Navigation-linkNote">System malfunction</p>
+          </a>
+          <a
+            onClick={this.onClick}
+            className="Navigation-link"
+            href="/location"
+          >
+            <p className="Navigation-linkLabel">Rome - location</p>
+            <img
+              className="Navigation-linkBackground"
+              src={this.state.noise[1]}
+            />
+            <p className="Navigation-linkNote">System malfunction</p>
+          </a>
+          <a onClick={this.onClick} className="Navigation-link" href="#about">
+            <p className="Navigation-linkLabel">90's - About</p>
+            <img className="Navigation-linkBackground" src={AboutPreview} />
+          </a>
+          <div className="Navigation-hall">
+            <img className="Navigation-hallEye" src={Hall} />
+          </div>
+          <a
+            onClick={this.onClick}
+            className="Navigation-link"
+            href="/sponsors"
+          >
+            <p className="Navigation-linkLabel">Stone - Sponsors</p>
+            <img
+              className="Navigation-linkBackground"
+              src={this.state.noise[2]}
+            />
+            <p className="Navigation-linkNote">System malfunction</p>
+          </a>
         </div>
-        <a onClick={this.onClick} className="Navigation-link" href="/sponsors">
-          <p className="Navigation-linkLabel">Stone - Sponsors</p>
-          <img
-            className="Navigation-linkBackground"
-            src={this.state.noise[2]}
-          />
-          <p className="Navigation-linkNote">System malfunction</p>
-        </a>
       </nav>
     );
   }

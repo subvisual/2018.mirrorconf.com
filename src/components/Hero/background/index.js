@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { getProgressFromValue } from 'popmotion/calc';
 import { listen, styler, tween, timeline, transform } from 'popmotion';
@@ -91,17 +92,22 @@ export default class Background extends Component {
     _.forEach(values, (value, name) => (sprite[name] = value));
 
   buildCanvas() {
+    if (!this.root) return;
+
     const { width, height, options } = settings;
     const context = new PIXI.Application(width, height, options);
 
     this.root.appendChild(context.view);
 
+    const container = new PIXI.Container();
+    container.width = width;
+    container.height = height;
+    context.stage.addChild(container);
+
     const sprites = _.reduce(resources, initializeSprites, {});
-    _.forEach(sprites, addSpriteToStage(context.stage));
+    _.forEach(sprites, addSpriteToStage(container));
 
-    // context.renderer.view.style['transform'] = 'translatez(0)';
-
-    this.tline = timeline([
+    const animation = timeline([
       {
         track: 'circle',
         to: { rotation: 0, alpha: 1 },
@@ -224,61 +230,73 @@ export default class Background extends Component {
         _.forEach(sprites, (sprite, name) =>
           this.updateSprite(sprite, values[name]),
         );
-        requestAnimationFrame(() => context.render());
+        context.render();
       });
 
-    this.characterTween = tween({
+    const characterTween = tween({
       elapsed: this.scrollProgress(),
       from: { x: width / 2, y: height / 2 },
       to: { x: width / 2 + 170, y: height / 2 - 105 },
+      ease: linear,
     })
-      .start(values => {
-        requestAnimationFrame(() => context.render());
-        this.updateSprite(sprites.character, values);
-      })
+      .start(values => this.updateSprite(sprites.character, values))
       .pause();
-  }
-
-  scrollProgress = () =>
-    getProgressFromValue(0, this.state.height, scrollTop());
-
-  startAnimation = () => {
-    const elapsed = this.scrollProgress();
 
     const backgroundTween = tween({
-      elapsed,
-      duration: 1,
-      from: { opacity: 1, x: -50, y: -this.state.height / 2 },
-      to: { opacity: 0, x: -50, y: 0 },
+      elapsed: this.scrollProgress(),
+      from: { y: 0, alpha: 1 },
+      to: { y: height / 2, alpha: 0 },
+      ease: linear,
     })
-      .pipe(transform.transformMap(toPercent))
-      .start(this.rootStyler.set)
+      .start(values => this.updateSprite(container, values))
       .pause();
+
+    const active = () => _.some(animation.isActive());
 
     this.props.onScroll(() => {
       const progress = this.scrollProgress();
 
+      characterTween.seek(progress);
       backgroundTween.seek(progress);
-      this.characterTween.seek(progress);
 
-      if (this.tline && progress > 0) {
-        this.tline.pause();
-      } else if (this.tline && progress === 0) {
-        this.tline.resume();
-      }
+      if (active() && progress > 0)
+        requestAnimationFrame(() => animation.pause());
+      else if (!active() && progress === 0)
+        requestAnimationFrame(() => animation.resume());
+
+      context.render();
     });
+
+    context.render();
+  }
+
+  scrollProgress = () => {
+    if (!this.state.height) return 0;
+
+    return getProgressFromValue(0, this.state.height, scrollTop());
   };
+
+  onResize() {
+    const { height } = this.root.getBoundingClientRect();
+
+    if (!height) setTimeout(() => this.onResize(), 100);
+
+    if (height === this.state.height) return;
+
+    this.setState({ height });
+  }
 
   componentDidMount() {
     if (!this.root) return;
 
-    const { width, height } = this.root.getBoundingClientRect();
-    this.setState({ width, height });
+    const { height } = this.root.getBoundingClientRect();
 
-    listen(window, 'load').start(() => {
-      this.buildCanvas();
-      this.startAnimation();
-    });
+    if (!height) setTimeout(() => this.onResize(), 100);
+
+    this.setState({ height });
+
+    listen(window, 'load').start(() => this.buildCanvas());
+    listen(window, 'resize').start(() => this.onResize());
   }
 
   render() {
