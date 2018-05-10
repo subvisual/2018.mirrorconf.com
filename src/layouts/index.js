@@ -24,27 +24,27 @@ const TemplateWrapper = ({ children }) => (
           name: 'description',
           content: DESCRIPTION,
         },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: TWITTER_HANDLER },
-        { name: 'twitter:title', content: SITE_NAME },
-        { name: 'twitter:description', content: DESCRIPTION },
-        { name: 'twitter:creator', content: TWITTER_HANDLER },
-        { name: 'twitter:image', content: SITE_IMAGE },
-        { name: 'og:type', content: 'website' },
-        { name: 'og:title', content: SITE_NAME },
-        { name: 'og:url', content: SITE_URL },
-        { name: 'og:image', content: SITE_IMAGE },
-        { name: 'og:description', content: DESCRIPTION },
-        { name: 'og:site_name', content: SITE_NAME },
-        {
-          name: 'fb:admins',
-          content: '100000633932565,1448175923,707387762,1187622729',
-        },
-        { name: 'msapplication-TileColor', content: '#ffffff' },
-        { name: 'msapplication-TileImage', content: '/ms-icon-144x144.png' },
-        { name: 'theme-color', content: '#ffffff' },
       ]}
     >
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={TWITTER_HANDLER} />
+      <meta name="twitter:title" content={SITE_NAME} />
+      <meta name="twitter:description" content={DESCRIPTION} />
+      <meta name="twitter:creator" content={TWITTER_HANDLER} />
+      <meta name="twitter:image" content={SITE_IMAGE} />
+      <meta name="og:type" content="website" />
+      <meta name="og:title" content={SITE_NAME} />
+      <meta name="og:url" content={SITE_URL} />
+      <meta name="og:image" content={SITE_IMAGE} />
+      <meta name="og:description" content={DESCRIPTION} />
+      <meta name="og:site_name" content={SITE_NAME} />
+      <meta
+        name="fb:admins"
+        content="100000633932565,1448175923,707387762,11876227"
+      />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+      <meta name="theme-color" content="#ffffff" />
       <meta itemProp="name" content={SITE_NAME} />
       <meta itemProp="description" content={DESCRIPTION} />
       <meta itemProp="image" content={SITE_IMAGE} />
