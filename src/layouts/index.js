@@ -15,7 +15,7 @@ const TemplateWrapper = ({ children }) => (
         { name: 'keywords', content: 'sample, something' },
       ]}
     >
-      {/* <link rel="stylesheet" href="https://use.typekit.net/wfl2jor.css" /> */}
+      <link rel="stylesheet" href="https://use.typekit.net/wfl2jor.css" />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.3/pixi.min.js" />
     </Helmet>
     {children()}
