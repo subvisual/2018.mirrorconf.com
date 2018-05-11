@@ -44,7 +44,7 @@ export default class About extends Component {
     if (this.animation) this.animation.stop();
 
     const { height } = this.viewport.getBoundingClientRect();
-    console.log(height);
+
     if (!height) setTimeout(() => this.onResize(), 100);
 
     this.setState({ viewportHeight: height });

@@ -14,7 +14,7 @@ export default class Hero extends Component {
     return (
       <section className="Hero" id="hero" tabIndex="0">
         <div className="Hero-background">
-          <BackgroundScene onScroll={this.props.onScroll} />
+          <BackgroundScene addTickListener={this.props.addTickListener} />
           <div className="Hero-planets">
             <Planets />
           </div>

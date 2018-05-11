@@ -81,18 +81,22 @@ const addSpriteToStage = stage => (sprite, name) => {
 };
 
 const fixPosition = (...stylers) =>
-  stylers.forEach(styler => {
-    if (styler.get('position') === 'fixed') return;
+  requestAnimationFrame(() =>
+    stylers.forEach(styler => {
+      if (styler.get('position') === 'fixed') return;
 
-    styler.set('position', 'fixed');
-  });
+      styler.set('position', 'fixed');
+    }),
+  );
 
 const unfixPosition = (...stylers) =>
-  stylers.forEach(styler => {
-    if (styler.get('position') !== 'fixed') return;
+  requestAnimationFrame(() =>
+    stylers.forEach(styler => {
+      if (styler.get('position') !== 'fixed') return;
 
-    styler.set('position', 'absolute');
-  });
+      styler.set('position', 'absolute');
+    }),
+  );
 
 export default class Speakers extends Component {
   constructor() {
@@ -158,7 +162,7 @@ export default class Speakers extends Component {
       })
       .pause();
 
-    const unsubscribe = this.props.onScroll(() => {
+    const unsubscribe = this.props.addTickListener(() => {
       // carTween.seek(this.scrollProgress());
       this.context.render();
     });
@@ -258,8 +262,9 @@ export default class Speakers extends Component {
 
     this.listWrapperStyler.set({ position: 'absolute' });
 
-    const unsubscribe = this.props.onScroll(() => {
+    const unsubscribe = this.props.addTickListener(() => {
       const progress = this.scrollProgress();
+      listen(window, 'scroll').start(this.resumeAnimation);
 
       if (this.scrollProgressToStart() <= 0)
         return unfixPosition(this.canvasStyler, this.contentWrapperStyler);
@@ -282,6 +287,7 @@ export default class Speakers extends Component {
   }
 
   onResize() {
+    if (!this.rootStyler || !this.context || !this.container) return;
     if (this.unsubscribe) this.unsubscribe();
 
     const { width } = this.root.getBoundingClientRect();

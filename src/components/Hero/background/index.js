@@ -253,7 +253,7 @@ export default class Background extends Component {
 
     const active = () => _.some(animation.isActive());
 
-    this.props.onScroll(() => {
+    this.props.addTickListener(() => {
       const progress = this.scrollProgress();
 
       characterTween.seek(progress);
@@ -263,6 +263,8 @@ export default class Background extends Component {
         requestAnimationFrame(() => animation.pause());
       else if (!active() && progress === 0)
         requestAnimationFrame(() => animation.resume());
+
+      if (progress >= 0) return;
 
       context.render();
     });
@@ -277,6 +279,7 @@ export default class Background extends Component {
   };
 
   onResize() {
+    if (!this.root) return;
     const { height } = this.root.getBoundingClientRect();
 
     if (!height) setTimeout(() => this.onResize(), 100);
