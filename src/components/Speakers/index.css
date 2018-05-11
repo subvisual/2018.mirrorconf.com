@@ -57,6 +57,8 @@
   width: 100%;
   max-width: 100%;
 
+  transform: translateX(-20px);
+
   z-index: 1;
 }
 

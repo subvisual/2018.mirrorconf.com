@@ -17,6 +17,7 @@ import carSource from './car.svg';
 import SpeakersList from './speakers_list.svg';
 import SpeakersListMobile from './speakers_list_mobile.svg';
 import backgroundSource from './background.svg';
+import backgroundMobileSource from './background_mobile.jpg';
 
 import {
   scrollTop,
@@ -133,8 +134,8 @@ export default class Speakers extends Component {
   scrollProgressToFade = () => {
     const { height } = this.state;
 
-    const max = scrollHeight() - height + clientHeight();
-    const min = scrollHeight() - height;
+    const max = scrollHeight() - height + clientHeight() / 2;
+    const min = scrollHeight() - height - clientHeight() / 4;
 
     return getProgressFromValue(min, max, scrollTop());
   };
@@ -143,10 +144,22 @@ export default class Speakers extends Component {
     const height = this.listWrapperStyler.get('height');
     this.rootStyler.set({ height });
 
+    if (this.sprites.background)
+      this.sprites.background.destroy({
+        children: true,
+        texture: true,
+        baseTexture: true,
+      });
+
+    const backgroundRatio = 1024 / 4026;
+
+    this.sprites.background = new PIXI.Sprite.from(backgroundMobileSource);
+    this.sprites.background.width = this.state.height * backgroundRatio;
+    this.sprites.background.height = this.state.height;
+    this.context.stage.addChild(this.sprites.background);
+
     this.context.renderer.resize(this.state.width, height);
-    const scale = height * this.ratio / SETTINGS.width;
-    this.container.scale = point(scale);
-    this.container.position = point(-this.state.width / 4, 0);
+    const scale = (this.container.scale = point(scale));
 
     const carTween = tween({
       to: {
@@ -163,7 +176,6 @@ export default class Speakers extends Component {
       .pause();
 
     const unsubscribe = this.props.addTickListener(() => {
-      // carTween.seek(this.scrollProgress());
       this.context.render();
     });
 
@@ -215,7 +227,7 @@ export default class Speakers extends Component {
     this.container.position = point(0, 0);
 
     const backgroundTween = tween({
-      from: -height + viewportHeight / scale,
+      from: -height + viewportHeight / scale - clientHeight(),
       to: 0,
       ease: linear,
     })
@@ -249,15 +261,10 @@ export default class Speakers extends Component {
 
     const carEntryTween = tween({
       ease: linear,
-      from: { alpha: 0, scale: 0 },
-      to: { alpha: 1, scale: 1 },
+      from: 0,
+      to: 1,
     })
-      .start(({ alpha, scale }) => {
-        const clampedScale = scaleClamper(scale);
-        this.container.alpha = alpha;
-        // this.container.scale = point(clampedScale);
-        // this.container.position = point(width / 2 - width * clampedScale, 0);
-      })
+      .start(alpha => (this.container.alpha = alpha))
       .pause();
 
     this.listWrapperStyler.set({ position: 'absolute' });
