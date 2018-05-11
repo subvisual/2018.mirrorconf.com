@@ -303,6 +303,21 @@ export default class Background extends Component {
   }
 
   render() {
-    return <div className="Background" ref={this.onRoot} />;
+    return (
+      <div className="Background" ref={this.onRoot}>
+        <div className="Background-content">
+          <h1 className="visuallyHidden">Mirror Conf 2018</h1>
+          <h2 className="visuallyHidden">The future of the web</h2>
+          <p className="Background-visibleTitle">The future of the web</p>
+          <p className="Background-date">October 15-19</p>
+          <p className="Background-location">Braga, Portugal</p>
+          <a className="Background-cta" href="https://ti.to/subvisual/mirror-conf-2018/with/krxd0s3-khw">
+            <div className="Background-ctaGlow" />
+            <div className="Background-ctaTextBackground" />
+            <p className="Background-ctaText">Buy your tickets</p>
+          </a>
+        </div>
+      </div>
+    );
   }
 }

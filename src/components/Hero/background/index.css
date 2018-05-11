@@ -1,5 +1,19 @@
+.visuallyHidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
 .Background {
   text-align: center;
+  position: relative;
 }
 
 .Background canvas {
@@ -10,4 +24,171 @@
   max-height: 1000px;
 
   transform: translateZ(0px);
+}
+
+.Background-content {
+  position: absolute;
+
+  top: 50%;
+  right: 0;
+
+  width: 100%;
+
+  z-index: 1;
+
+  animation: baderos 15s cubic-bezier(1,0,1,0);
+}
+
+@keyframes baderos {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.Background-visibleTitle,
+.Background-date,
+.Background-location
+ {
+  font-family: "alice";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-size: 16px;
+  mix-blend-mode: normal;
+  opacity: 0.6;
+  background-image: linear-gradient( #FFFFFF 0%, rgba(255, 255, 255, 0.0001) 100%);
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.Background-visibleTitle {
+  text-align: left;
+  transform: translate(4%, -190%);
+}
+
+.Background-date {
+  text-align: right;
+  transform: translate(-4%, 30px);
+}
+.Background-location {
+  text-align: right;
+  transform: translate(-4%, 46px);
+}
+.Background-cta {
+  display: block;
+  position: relative;
+  transform: translate(4%, 96px);
+}
+
+.Background-ctaGlow {
+  position: absolute;
+  left: 0;
+  width: 177px;
+  height: 49px;
+
+  border-radius: 4px;
+
+  background: rgba(158, 26, 255, 0.71023);
+
+  opacity: 0;
+
+  z-index: 2;
+
+  filter: blur(20px);
+
+  transform: scale(0.1);
+
+  transition: ease-in 2s *;
+
+  will-change: filter;
+}
+
+.Background-ctaTextBackground {
+  position: absolute;
+  left: 0;
+  width: 177px;
+  height: 49px;
+  background: linear-gradient(96.66deg, #3E00D3 -10.4%, #C440FF 84.6%);
+  filter: blur(20px);
+  border-radius: 4px;
+  transition: ease-in-out 1s;
+}
+
+.Background-cta:hover .Background-ctaGlow {
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+.Background-cta:hover .Background-ctaTextBackground {
+  filter: none;
+}
+
+.Background-ctaText {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-family: "alice";
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 16px;
+  z-index: 3;
+  width: 137px;
+
+  color: #FFFFFF;
+}
+
+@media screen and (min-width: 700px) {
+  .Background-cta {
+    transform: translate(-4%, 96px);
+  }
+
+  .Background-visibleTitle,
+  .Background-date,
+  .Background-location {
+    line-height: 40px;
+    font-size: 28px;
+  }
+
+  .Background-ctaText {
+    font-size: 20px;
+  }
+
+  .Background-ctaTextBackground,
+  .Background-ctaGlow {
+    position: absolute;
+    right: 0;
+    left: auto;
+  }
+
+  .Background-ctaText {
+    position: absolute;
+    right: 20px;
+    left: auto;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .Background canvas {
+    max-width: 1200px;
+    max-height: none;
+  }
+
+  .Background-visibleTitle {
+    transform: translate(7%, -190%);
+  }
+
+  .Background-date {
+    transform: translate(-7%, 30px);
+  }
+  .Background-location {
+    transform: translate(-7%, 46px);
+  }
+  .Background-cta {
+    transform: translate(-7%, 96px);
+  }
 }
