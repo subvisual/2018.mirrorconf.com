@@ -49,3 +49,9 @@
 
   z-index: 9999;
 }
+
+@media screen and (min-width: 700px) {
+  .Hero-navigation {
+    min-height: auto;
+  }
+}

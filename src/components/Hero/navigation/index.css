@@ -5,6 +5,7 @@
   min-height: 100vh;
 
   padding: 0 20px;
+  margin-bottom: 20%;
 }
 
 .Navigation-linkWrapper {
@@ -12,7 +13,7 @@
   flex-direction: column;
 
   width: 100%;
-  min-height: 80vh;
+  min-height: 85vh;
 }
 
 .Navigation-link,
@@ -28,8 +29,6 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-
-  border-radius: 8px;
 
   overflow: hidden;
 }
@@ -52,10 +51,16 @@
   );
 
   overflow: hidden;
+
+  transition: background-color ease-in-out 0.3s;
 }
 
 .Navigation-link:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.Navigation-link.isDisabled {
+  pointer-events: none;
 }
 
 .Navigation-linkLabel {
@@ -75,14 +80,15 @@
 .Navigation-hall {
   position: absolute;
 
-  bottom: 0;
+  bottom: calc(-8px);
   left: 50%;
 
-  height: 90px;
+  height: calc((10% - 8px) * 2);
+  min-height: 120px;
 
   text-align: center;
 
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(50%);
 }
 
 .Navigation-hallEye {
@@ -90,14 +96,26 @@
   width: auto;
 }
 
+.Navigation-linkBackgroundWrapper {
+  position: absolute;
+
+  width: calc(100% - 16px);
+  height: calc(100% - 32px);
+
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  z-index: 0;
+}
+
 .Navigation-linkBackground {
   position: absolute;
 
   bottom: 0;
 
-  width: calc(100% - 16px);
-
-  border-radius: 3%;
+  width: 100%;
+  height: auto;
 
   z-index: -1;
 
@@ -132,6 +150,10 @@
 }
 
 @media screen and (min-width: 760px) {
+  .Navigation {
+    min-height: 100vh;
+  }
+
   .Navigation-linkWrapper {
     flex-direction: row;
     flex-wrap: wrap;
@@ -174,11 +196,17 @@
     max-width: 100px;
   }
 
-  .Navigation-linkBackground {
+  .Navigation-linkBackgroundWrapper {
     width: 183px;
     height: 148px;
+  }
+
+  .Navigation-linkBackground {
+    height: 100%;
 
     animation: none;
+
+    transform: scale(1.2);
   }
 
   .Navigation-hall {
