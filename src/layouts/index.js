@@ -102,6 +102,8 @@ const TemplateWrapper = ({ children }) => (
         sizes="16x16"
         href="/favicon-16x16.png"
       />
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="favicon.ico" />
       <link rel="manifest" href="/manifest.json" />
 
       <link rel="stylesheet" href="https://use.typekit.net/wfl2jor.css" />
