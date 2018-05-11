@@ -151,12 +151,14 @@
 
 @media screen and (min-width: 760px) {
   .Navigation {
-    min-height: 100vh;
+    margin: 0;
+    min-height: auto;
   }
 
   .Navigation-linkWrapper {
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
   }
 
@@ -222,6 +224,9 @@
   .Navigation {
     display: flex;
     align-items: center;
+
+    margin: 0;
+    min-height: auto;
   }
 
   .Navigation-linkWrapper {
@@ -234,6 +239,6 @@
   .Navigation-hall {
     position: absolute;
 
-    transform: translate(-50%);
+    transform: translate(-50%, 50%);
   }
 }
