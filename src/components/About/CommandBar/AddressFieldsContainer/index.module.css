@@ -1,5 +1,7 @@
 .root {
   width: 100%;
+
+  display: none;
 }
 
 .field {
@@ -9,7 +11,7 @@
 }
 
 .legend {
-  font-family: "lores-12";
+  font-family: 'lores-12';
   line-height: 28px;
   font-size: 20px;
   color: #000000;
@@ -21,16 +23,16 @@
 }
 
 .input {
-  font-family: "lores-12";
+  font-family: 'lores-12';
   line-height: 28px;
   font-size: 20px;
   color: #000000;
   white-space: nowrap;
 
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #000000;
   width: 100%;
-  margin: 8px 8px 8px;
+  margin: 8px 28px;
   max-width: 600px;
   min-width: 276px;
   padding-left: 16px;
@@ -38,16 +40,8 @@
   overflow: hidden;
 }
 
-@media screen and (min-width: 650px) {
-  .field {
-    flex-wrap: nowrap;
-  }
-
-  .legend {
-    margin-left: 28px;
-  }
-
-  .input {
-    margin: 8px 28px;
+@media screen and (min-width: 760px) {
+  .root {
+    display: block;
   }
 }
