@@ -23,9 +23,7 @@
 
 @media screen and (min-width: 1024px) {
   .root {
-    padding: 168px 14px;
-
-    min-height: 200vh;
+    padding: 300px 14px;
   }
 
   .window {

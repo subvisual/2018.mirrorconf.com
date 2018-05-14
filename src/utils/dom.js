@@ -1,17 +1,27 @@
 import { getProgressFromValue } from 'popmotion/calc';
 
-export const scrollTop = () =>
-  document.documentElement.scrollTop || document.body.scrollTop;
+export const scrollTop = () => {
+  if (!document || !document.documentElement) return 0;
+  return document.documentElement.scrollTop || document.body.scrollTop;
+};
 
-export const scrollHeight = () =>
-  Math.min(
+export const scrollHeight = () => {
+  if (!document || !document.documentElement) return 0;
+  return Math.min(
     document.documentElement.scrollHeight,
     document.documentElement.offsetHeight,
   );
+};
 
-export const clientHeight = () => document.documentElement.clientHeight;
+export const clientHeight = () => {
+  if (!document || !document.documentElement) return 0;
+  return document.documentElement.clientHeight;
+};
 
-export const clientWidth = () => document.documentElement.clientWidth;
+export const clientWidth = () => {
+  if (!document || !document.documentElement) return 0;
+  return document.documentElement.clientWidth;
+};
 
 export const scrollRemaining = () =>
   getProgressFromValue(0, scrollHeight() - clientHeight(), scrollTop());

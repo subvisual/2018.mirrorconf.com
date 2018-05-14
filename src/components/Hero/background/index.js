@@ -235,7 +235,7 @@ export default class Background extends Component {
 
     const characterTween = tween({
       elapsed: this.scrollProgress(),
-      from: { x: width / 2, y: height / 2 },
+      from: { x: width / 2, y: height / 2, alpha: 1 },
       to: { x: width / 2 + 170, y: height / 2 - 105 },
       ease: linear,
     })
@@ -264,7 +264,7 @@ export default class Background extends Component {
       else if (!active() && progress === 0)
         requestAnimationFrame(() => animation.resume());
 
-      if (progress >= 0) return;
+      if (progress < 0 || progress > 1) return;
 
       context.render();
     });

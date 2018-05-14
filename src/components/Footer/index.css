@@ -1,0 +1,179 @@
+.Footer {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  min-height: 100vh;
+
+  text-align: center;
+}
+
+.Footer-main {
+  display: inline-block;
+
+  padding: 80px 16px;
+
+  text-align: left;
+}
+
+.Footer-social {
+  display: inline-block;
+
+  width: 100%;
+
+  margin-top: 118px;
+
+  text-align: left;
+}
+
+.Footer-links {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 28px;
+}
+
+.Footer-title {
+  font-family: 'lores-12';
+  line-height: 45px;
+  font-size: 22px;
+  color: white;
+  text-shadow: 2px 3px 0px #676767;
+}
+
+.Footer-link {
+  position: relative;
+
+  font-family: 'lores-12';
+  line-height: normal;
+  font-size: 16px;
+  color: white;
+}
+
+.Footer-link:hover {
+  color: #48e100;
+}
+
+.Footer-link:hover::before {
+  content: '';
+
+  position: absolute;
+
+  top: 50%;
+  left: -52px;
+
+  width: 32px;
+  height: 100%;
+
+  background-image: url('./arrow.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  transform: translateY(-50%);
+}
+
+.Footer-joystick,
+.Footer-arcadeFrame,
+.Footer-arcadeReflection {
+  display: none;
+}
+
+@media screen and (min-width: 700px) {
+  .Footer {
+    padding: 0;
+
+    background-size: contain;
+
+    z-index: 1;
+  }
+
+  .Footer-main {
+    position: absolute;
+
+    bottom: 0%;
+    left: 50%;
+
+    width: 200%;
+    height: 100%;
+
+    padding: 100px 140px 0px;
+
+    background: black;
+
+    transform: translate(-50%, 30%) scale(0.8);
+
+    text-align: center;
+  }
+
+  .Footer-contentWrapper {
+    position: relative;
+    display: inline-block;
+
+    max-width: 1200px;
+
+    text-align: left;
+  }
+
+  .Footer-links {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .Footer-title {
+    line-height: 90px;
+    font-size: 64px;
+    text-shadow: 4px 6px 0px #676767;
+  }
+
+  .Footer-link {
+    font-size: 40px;
+  }
+
+  .Footer-arcadeFrame {
+    display: block;
+    position: absolute;
+
+    top: 0;
+    left: 0%;
+
+    width: 100%;
+
+    z-index: 0;
+
+    transform: translateY(-10%);
+
+    pointer-events: none;
+  }
+
+  .Footer-arcadeReflection {
+    display: block;
+    position: absolute;
+
+    top: 0%;
+    left: 50%;
+    bottom: 0;
+
+    max-width: 50%;
+
+    pointer-events: none;
+
+    transform: translate(-50%, 5%);
+  }
+
+  .Footer-joystick {
+    display: block;
+    position: absolute;
+
+    bottom: 5%;
+  }
+
+  .Footer-joystick.left {
+    left: 40px;
+  }
+
+  .Footer-joystick.right {
+    right: 40px;
+  }
+}

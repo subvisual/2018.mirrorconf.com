@@ -57,7 +57,7 @@ export default class Navigation extends Component {
   scrollToElement = element => {
     const from = this.scroll.get('top');
     const { top } = element.getBoundingClientRect();
-    const to = top + clientHeight();
+    const to = top + clientHeight() + 100;
 
     animateScrollTo(this.scroll, { to: to, from: from });
   };
