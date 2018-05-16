@@ -36,7 +36,10 @@ const TemplateWrapper = ({ children }) => (
       <meta property="og:type" content="website" />
       <meta property="og:title" content={SITE_NAME} />
       <meta property="og:url" content={SITE_URL} />
-      <meta property="og:image" content={SITE_IMAGE} />
+      <meta
+        property="og:image"
+        content={`https://mirrorconf.com${SITE_IMAGE}`}
+      />
       <meta property="og:description" content={DESCRIPTION} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta
