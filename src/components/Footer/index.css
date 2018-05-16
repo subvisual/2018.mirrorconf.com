@@ -7,6 +7,8 @@
   min-height: 100vh;
 
   text-align: center;
+
+  pointer-events: none;
 }
 
 .Footer-main {
@@ -32,6 +34,8 @@
   flex-direction: column;
 
   margin-top: 28px;
+
+  pointer-events: all;
 }
 
 .Footer-title {
