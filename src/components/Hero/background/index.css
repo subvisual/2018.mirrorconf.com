@@ -35,6 +35,10 @@
   width: 100%;
 
   z-index: 1;
+
+  padding: 0 20px;
+
+  transform: translateY(-50%);
 }
 
 .Background-visibleTitle,
@@ -45,8 +49,7 @@
   font-weight: normal;
   line-height: 20px;
   font-size: 16px;
-  mix-blend-mode: normal;
-  opacity: 0.6;
+
   background-image: linear-gradient(
     #ffffff 0%,
     rgba(255, 255, 255, 0.0001) 100%
@@ -58,21 +61,23 @@
 
 .Background-visibleTitle {
   text-align: left;
-  transform: translate(4%, -190%);
 }
 
 .Background-date {
   text-align: right;
-  transform: translate(-4%, 30px);
+
+  padding-top: 120px;
 }
 .Background-location {
   text-align: right;
-  transform: translate(-4%, 46px);
+
+  padding-top: 20px;
 }
+
 .Background-cta {
   display: block;
   position: relative;
-  transform: translate(4%, 96px);
+  transform: translate(0%, 60px);
 }
 
 .Background-ctaGlow {
@@ -93,9 +98,9 @@
 
   transform: scale(0.1);
 
-  transition: ease-in 2s *;
+  transition: ease-in 2s;
 
-  will-change: filter;
+  will-change: filter opacity;
 }
 
 .Background-ctaTextBackground {
@@ -135,7 +140,7 @@
 
 @media screen and (min-width: 700px) {
   .Background-cta {
-    transform: translate(-4%, 96px);
+    transform: translate(0%, 96px);
   }
 
   .Background-visibleTitle,
@@ -169,16 +174,12 @@
     max-height: none;
   }
 
-  .Background-visibleTitle {
-    transform: translate(7%, -190%);
+  .Background-visibleTitle,
+  .Background-date,
+  .Background-location {
+    position: relative;
   }
 
-  .Background-date {
-    transform: translate(-7%, 30px);
-  }
-  .Background-location {
-    transform: translate(-7%, 46px);
-  }
   .Background-cta {
     transform: translate(-7%, 96px);
   }
