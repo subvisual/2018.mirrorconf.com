@@ -41,18 +41,16 @@
   transform: translateY(-50%);
 }
 
-.Background-visibleTitle,
-.Background-date,
-.Background-location {
+.Background-text {
   font-family: 'alice';
   font-style: normal;
   font-weight: normal;
   line-height: 20px;
   font-size: 16px;
-
+  opacity: 1;
   background-image: linear-gradient(
     #ffffff 0%,
-    rgba(255, 255, 255, 0.0001) 100%
+    rgba(255, 255, 255, 0.00001) 100%
   );
   color: transparent;
   -webkit-background-clip: text;
@@ -133,7 +131,9 @@
   line-height: normal;
   font-size: 16px;
   z-index: 3;
-  width: 137px;
+  width: 150px;
+
+  text-align: center;
 
   color: #ffffff;
 }
@@ -143,9 +143,7 @@
     transform: translate(0%, 96px);
   }
 
-  .Background-visibleTitle,
-  .Background-date,
-  .Background-location {
+  .Background-text {
     line-height: 40px;
     font-size: 28px;
   }

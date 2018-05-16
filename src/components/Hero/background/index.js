@@ -324,9 +324,15 @@ export default class Background extends Component {
         <div className="Background-content" ref={this.onContent}>
           <h1 className="visuallyHidden">Mirror Conf 2018</h1>
           <h2 className="visuallyHidden">The future of the web</h2>
-          <p className="Background-visibleTitle">The future of the web</p>
-          <p className="Background-date">October 15-19</p>
-          <p className="Background-location">Braga, Portugal</p>
+          <div className="Background-visibleTitle">
+            <p className="Background-text">The future of the web</p>
+          </div>
+          <div className="Background-date">
+            <p className="Background-text">October 15-19</p>
+          </div>
+          <div className="Background-location">
+            <p className="Background-text">Braga, Portugal</p>
+          </div>
           <a
             className="Background-cta"
             href="https://ti.to/subvisual/mirror-conf-2018/with/krxd0s3-khw"

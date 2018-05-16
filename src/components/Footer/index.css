@@ -9,12 +9,17 @@
   text-align: center;
 
   pointer-events: none;
+
+  background-image: url('./mario-bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
 }
 
 .Footer-main {
   display: inline-block;
 
-  padding: 80px 16px;
+  padding: 20% 16px;
 
   text-align: left;
 }
@@ -24,7 +29,7 @@
 
   width: 100%;
 
-  margin-top: 118px;
+  margin-top: 60px;
 
   text-align: left;
 }
@@ -55,6 +60,10 @@
   color: white;
 }
 
+.Footer-link:not(:first-child) {
+  margin-top: 28px;
+}
+
 .Footer-link:hover {
   color: #48e100;
 }
@@ -71,9 +80,9 @@
   height: 100%;
 
   background-image: url('./arrow.png');
-  background-position: center;
-  background-repeat: no-repeat;
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 
   transform: translateY(-50%);
 }
@@ -91,6 +100,8 @@
     background-size: contain;
 
     z-index: 1;
+
+    background: none;
   }
 
   .Footer-main {
@@ -105,6 +116,7 @@
     padding: calc(6.5% + 40px) 140px 0px;
 
     background: black;
+    background-image: none;
 
     transform: translate(-50%, 30%) scale(0.8);
 
@@ -123,6 +135,8 @@
   .Footer-links {
     flex-direction: row;
     justify-content: space-between;
+
+    margin-top: 80px;
   }
 
   .Footer-title {
@@ -133,6 +147,10 @@
 
   .Footer-link {
     font-size: 40px;
+  }
+
+  .Footer-link:not(:first-child) {
+    margin-top: 0;
   }
 
   .Footer-arcadeFrame {

@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import './index.css';
 import './reset.css';
 import './normalize.css';
+import './fonts.css';
+import './index.css';
 
 const TITLE =
   'Mirror Conf 2018 - a design and front-end development conference';
