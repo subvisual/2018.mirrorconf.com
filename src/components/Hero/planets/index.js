@@ -97,16 +97,19 @@ export default class Planets extends Component {
           className="Planets-planet first"
           ref={this.onPlanet1}
           src={planet1}
+          role="presentation"
         />
         <img
           className="Planets-planet second"
           ref={this.onPlanet2}
           src={planet2}
+          role="presentation"
         />
         <img
           className="Planets-planet third"
           ref={this.onPlanet3}
           src={planet3}
+          role="presentation"
         />
       </div>
     );

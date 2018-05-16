@@ -62,15 +62,33 @@ export default class Navigation extends Component {
     animateScrollTo(this.scroll, { to: to, from: from });
   };
 
+  renderMalfunctionNote() {
+    return (
+      <p aria-hidden className="Navigation-linkNote">
+        System malfunction
+      </p>
+    );
+  }
+
+  renderLinkBackground(src) {
+    return (
+      <div className="Navigation-linkBackgroundWrapper">
+        <img
+          className="Navigation-linkBackground"
+          src={src}
+          role="presentation"
+        />
+      </div>
+    );
+  }
+
   render() {
     return (
       <nav className="Navigation">
         <div className="Navigation-linkWrapper">
           <a onClick={this.onClick} className="Navigation-link" href="#about">
             <p className="Navigation-linkLabel">About</p>
-            <div className="Navigation-linkBackgroundWrapper">
-              <img className="Navigation-linkBackground" src={AboutPreview} />
-            </div>
+            {this.renderLinkBackground(AboutPreview)}
           </a>
           <a
             onClick={this.onClick}
@@ -78,71 +96,30 @@ export default class Navigation extends Component {
             href="#speakers"
           >
             <p className="Navigation-linkLabel">Speakers</p>
-            <div className="Navigation-linkBackgroundWrapper">
-              <img
-                className="Navigation-linkBackground"
-                src={SpeakersPreview}
-              />
-            </div>
+            {this.renderLinkBackground(SpeakersPreview)}
           </a>
-          <a
-            onClick={this.onClick}
-            className="Navigation-link isDisabled"
-            href="/workshops"
-          >
+          <a onClick={this.onClick} className="Navigation-link isDisabled">
             <p className="Navigation-linkLabel">Workshops</p>
-            <div className="Navigation-linkBackgroundWrapper">
-              <img
-                className="Navigation-linkBackground"
-                src={WorkshopsPreview}
-              />
-            </div>
-            <p className="Navigation-linkNote">System malfunction</p>
+            {this.renderLinkBackground(WorkshopsPreview)}
+            {this.renderMalfunctionNote()}
           </a>
-          <a
-            onClick={this.onClick}
-            className="Navigation-link isDisabled"
-            href="/schedule"
-          >
+          <a onClick={this.onClick} className="Navigation-link isDisabled">
             <p className="Navigation-linkLabel">Schedule</p>
-            <div className="Navigation-linkBackgroundWrapper">
-              <img
-                className="Navigation-linkBackground"
-                src={this.state.noise[0]}
-              />
-            </div>
-            <p className="Navigation-linkNote">System malfunction</p>
+            {this.renderLinkBackground(this.state.noise[0])}
+            {this.renderMalfunctionNote()}
           </a>
-          <a
-            onClick={this.onClick}
-            className="Navigation-link isDisabled"
-            href="/location"
-          >
+          <a onClick={this.onClick} className="Navigation-link isDisabled">
             <p className="Navigation-linkLabel">Location</p>
-            <div className="Navigation-linkBackgroundWrapper">
-              <img
-                className="Navigation-linkBackground"
-                src={this.state.noise[1]}
-              />
-            </div>
-            <p className="Navigation-linkNote">System malfunction</p>
+            {this.renderLinkBackground(this.state.noise[1])}
+            {this.renderMalfunctionNote()}
           </a>
           <div className="Navigation-hall">
             <img className="Navigation-hallEye" src={Hall} />
           </div>
-          <a
-            onClick={this.onClick}
-            className="Navigation-link isDisabled"
-            href="/sponsors"
-          >
+          <a onClick={this.onClick} className="Navigation-link isDisabled">
             <p className="Navigation-linkLabel">Sponsors</p>
-            <div className="Navigation-linkBackgroundWrapper">
-              <img
-                className="Navigation-linkBackground"
-                src={this.state.noise[2]}
-              />
-            </div>
-            <p className="Navigation-linkNote">System malfunction</p>
+            {this.renderLinkBackground(this.state.noise[2])}
+            {this.renderMalfunctionNote()}
           </a>
         </div>
       </nav>

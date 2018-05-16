@@ -104,13 +104,13 @@ export default class Footer extends Component {
           y: y => `${y}%`,
           x: x => `${x}%`,
           opacity: transform.interpolate([0, 0.6, 1], [0, 0, 1]),
-        }),
+        })
       )
       .start(this.rootStyler.set)
       .pause();
 
     const unsubscribe = this.props.addTickListener(
-      _.throttle(this.update.bind(this), 20),
+      _.throttle(this.update.bind(this), 20)
     );
   }
 
@@ -146,17 +146,22 @@ export default class Footer extends Component {
               But the site isn't over yet!
             </h2>
 
-            <div className="Footer-links">
+            <nav className="Footer-links">
               <a className="Footer-link primary" href="/#">
                 Buy your ticket
               </a>
               <a className="Footer-link" href="/#">
                 Call for Proposals
               </a>
-            </div>
+            </nav>
 
-            <div className="Footer-social">
-              <h2 className="Footer-title">Follow us</h2>
+            <nav
+              className="Footer-social"
+              aria-labelledby="footer-social-links"
+            >
+              <h2 className="Footer-title" id="footer-social-links">
+                Follow us
+              </h2>
               <div className="Footer-links">
                 <a
                   target="_blank"
@@ -180,14 +185,19 @@ export default class Footer extends Component {
                   Youtube
                 </a>
               </div>
-            </div>
+            </nav>
           </div>
-          <img className="Footer-arcadeReflection" src={arcadeReflection} />
+          <img
+            className="Footer-arcadeReflection"
+            src={arcadeReflection}
+            role="presentation"
+          />
         </div>
         <img
           className="Footer-arcadeFrame"
           src={arcadeFrame}
           ref={this.onFrame}
+          role="presentation"
         />
       </footer>
     );
