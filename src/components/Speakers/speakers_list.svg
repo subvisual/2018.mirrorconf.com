@@ -77,7 +77,7 @@
         <a xlink:href="#speaker-5-link"
         role="img"
         aria-labelledby="speaker-5-name speaker-5-description"
-        tabindex="0"
+        tabIndex="0"
         id="speaker-5-link">
           <text id="speaker-5-name">Lea Verou</text>
           <text id="speaker-5-description">
@@ -110,7 +110,7 @@
         <a xlink:href="#speaker-2-link"
         role="img"
         aria-labelledby="speaker-2-name speaker-2-description"
-        tabindex="0"
+        tabIndex="0"
         id="speaker-2-link">
         <text id="speaker-2-name">Jared Spool</text>
         <text id="speaker-2-description">Founder at UIE</text>
@@ -141,7 +141,7 @@
         <a xlink:href="#speaker-1-link"
         role="img"
         aria-labelledby="speaker-1-name speaker-1-description"
-        tabindex="0"
+        tabIndex="0"
         id="speaker-1-link">
           <text id="speaker-1-name">Mike Monteiro</text>
           <text id="speaker-1-description">
@@ -180,7 +180,7 @@
         <a xlink:href="#speaker-3-link"
         role="img"
         aria-labelledby="speaker-3-name speaker-3-description"
-        tabindex="0"
+        tabIndex="0"
         id="speaker-3-link">
           <text id="speaker-3-name">Vitaly Friedman</text>
           <text id="speaker-3-description">

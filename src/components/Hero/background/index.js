@@ -336,6 +336,7 @@ export default class Background extends Component {
           <a
             className="Background-cta"
             href="https://ti.to/subvisual/mirror-conf-2018/with/krxd0s3-khw"
+            target="_blank"
           >
             <div className="Background-ctaGlow" />
             <div className="Background-ctaTextBackground" />

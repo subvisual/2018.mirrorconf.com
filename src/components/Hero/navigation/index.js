@@ -47,8 +47,8 @@ export default class Navigation extends Component {
     if (!event.target.href) return;
 
     event.preventDefault();
-    const element = findElementByHref(event.target.href);
 
+    const element = findElementByHref(event.target.href);
     if (!element) return;
 
     this.scrollToElement(element);

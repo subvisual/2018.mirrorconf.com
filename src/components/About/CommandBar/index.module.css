@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.root:active {
+  outline: none;
+}
+
 .navigation {
   height: 44px;
 }

@@ -104,13 +104,13 @@ export default class Footer extends Component {
           y: y => `${y}%`,
           x: x => `${x}%`,
           opacity: transform.interpolate([0, 0.6, 1], [0, 0, 1]),
-        })
+        }),
       )
       .start(this.rootStyler.set)
       .pause();
 
     const unsubscribe = this.props.addTickListener(
-      _.throttle(this.update.bind(this), 20)
+      _.throttle(this.update.bind(this), 20),
     );
   }
 
@@ -147,10 +147,18 @@ export default class Footer extends Component {
             </h2>
 
             <nav className="Footer-links">
-              <a className="Footer-link primary" href="/#">
+              <a
+                className="Footer-link primary"
+                target="_blank"
+                href="https://ti.to/subvisual/mirror-conf-2018/with/krxd0s3-khw"
+              >
                 Buy your ticket
               </a>
-              <a className="Footer-link" href="/#">
+              <a
+                className="Footer-link"
+                href="https://www.papercall.io/mirrorconf2018"
+                target="_blank"
+              >
                 Call for Proposals
               </a>
             </nav>
