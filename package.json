@@ -8,6 +8,7 @@
     "classnames": "^2.2.5",
     "gatsby": "^1.9.178",
     "gatsby-link": "^1.6.34",
+    "gatsby-plugin-google-analytics": "^1.0.31",
     "gatsby-plugin-postcss-sass": "^1.0.19",
     "gatsby-plugin-react-css-modules": "^1.0.11",
     "gatsby-plugin-react-helmet": "^2.0.3",
@@ -19,15 +20,15 @@
     "style-value-types": "^1.0.4",
     "webpack": "^1.15.0"
   },
-  "keywords": ["mirroconf"],
+  "keywords": [
+    "mirroconf"
+  ],
   "license": "UNLICENSED",
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "develop":
-      "concurrently -k -n \"GATSBY,STORYBOOK\" \"gatsby develop -H 0.0.0.0\" \"start-storybook -p 9001 -c .storybook\"",
-    "format":
-      "prettier --trailing-comma es5 --single-quote --write \"src/**/*.js\"",
+    "develop": "concurrently -k -n \"GATSBY,STORYBOOK\" \"gatsby develop -H 0.0.0.0\" \"start-storybook -p 9001 -c .storybook\"",
+    "format": "prettier --trailing-comma es5 --single-quote --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"

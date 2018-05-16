@@ -20,5 +20,14 @@ module.exports = {
         postCssPlugins: [postCSSCustomProperties()],
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'YUA-116337195-1',
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+      },
+    },
   ],
 };
