@@ -72,16 +72,6 @@ export default class Footer extends Component {
     return getProgressFromValue(min, max, scrollTop());
   };
 
-  scrollProgressToFade = () => {
-    const height = scrollHeight();
-    const viewportHeight = clientHeight();
-
-    const min = height - viewportHeight * 1.4;
-    const max = height - viewportHeight;
-
-    return getProgressFromValue(min, max, scrollTop());
-  };
-
   update() {
     const progress = this.scrollProgressToEnd();
 
@@ -90,8 +80,8 @@ export default class Footer extends Component {
     if (this.progressToEnter() < 0)
       unfixPosition(this.frameStyler, this.rootStyler);
 
-    this.frameTween.seek(this.scrollProgressToEnd());
-    this.screenTween.seek(this.scrollProgressToFade());
+    this.frameTween.seek(progress);
+    this.screenTween.seek(progress);
   }
 
   startAnimation() {
@@ -106,27 +96,25 @@ export default class Footer extends Component {
 
     this.screenTween = tween({
       ease: linear,
-      from: { opacity: 0, y: 5, x: -50, scale: 0.9 },
-      to: { opacity: 1, y: 18, x: -50, scale: 0.9 },
+      from: { opacity: 0, y: -1, x: -50, scale: 1.33 },
+      to: { opacity: 1, y: 18, x: -50, scale: 1 },
     })
-      .pipe(transform.transformMap({ y: y => `${y}%`, x: x => `${x}%` }))
+      .pipe(
+        transform.transformMap({
+          y: y => `${y}%`,
+          x: x => `${x}%`,
+          opacity: transform.interpolate([0, 0.6, 1], [0, 0, 1]),
+        }),
+      )
       .start(this.rootStyler.set)
       .pause();
 
     const unsubscribe = this.props.addTickListener(
       _.throttle(this.update.bind(this), 20),
     );
-
-    this.unsubscribe = () => {
-      unsubscribe();
-      this.frameTween.stop();
-      this.screenTween.stop();
-    };
   }
 
   calculateBounds() {
-    if (this.unsubscribe) this.unsubscribe();
-
     const { height, top, bottom } = this.root.getBoundingClientRect();
 
     const min = top + scrollTop();
@@ -194,8 +182,6 @@ export default class Footer extends Component {
               </div>
             </div>
           </div>
-          <img className="Footer-joystick left" src={redJoystick} />
-          <img className="Footer-joystick right" src={blueJoystick} />
           <img className="Footer-arcadeReflection" src={arcadeReflection} />
         </div>
         <img

@@ -1,8 +1,15 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { getProgressFromValue } from 'popmotion/calc';
-import { listen, styler, tween, timeline, transform } from 'popmotion';
-import { linear, easeOut, cubicBezier, easeInOut } from 'popmotion/easing';
+import { listen, styler, tween, timeline, transform, chain } from 'popmotion';
+import {
+  linear,
+  easeOut,
+  cubicBezier,
+  easeInOut,
+  circIn,
+  circOut,
+} from 'popmotion/easing';
 
 import { scrollTop, clientHeight } from '../../../utils/dom';
 
@@ -88,7 +95,12 @@ export default class Background extends Component {
     this.rootStyler = styler(root);
   };
 
-  updateSprite = (sprite, values) =>
+  onContent = content => {
+    this.content = content;
+    this.contentStyler = styler(content);
+  };
+
+  updateSprite = sprite => values =>
     _.forEach(values, (value, name) => (sprite[name] = value));
 
   buildCanvas() {
@@ -107,15 +119,7 @@ export default class Background extends Component {
     const sprites = _.reduce(resources, initializeSprites, {});
     _.forEach(sprites, addSpriteToStage(container));
 
-    const animation = timeline([
-      {
-        track: 'circle',
-        to: { rotation: 0, alpha: 1 },
-        from: { rotation: 60, alpha: 0 },
-        duration: 11700,
-        ease: cubicBezier(0.15, 1.38, 0.14, 0.97),
-      },
-      3000,
+    let animation = timeline([
       {
         track: 'elevator',
         from: { y: height * 0.25, alpha: 0, scale: 0.8 },
@@ -130,15 +134,16 @@ export default class Background extends Component {
         duration: 1100,
         ease: easeInOut,
       },
-      '-300',
+      '+700',
       [
         {
           track: 'timemachineBlur',
-          from: { alpha: 0 },
-          to: { alpha: 1 },
-          duration: 1000,
-          ease: linear,
+          from: { alpha: 0, scale: 0 },
+          to: { alpha: 1, scale: 1 },
+          duration: 1500,
+          ease: circOut,
         },
+        '-500',
         {
           track: 'lowCube',
           from: { y: height * 0.5 + 5, alpha: 0 },
@@ -146,7 +151,7 @@ export default class Background extends Component {
           duration: 800,
           ease: linear,
         },
-        '+500',
+        '+150',
         {
           track: 'topCube',
           from: { y: height * 0.5 + 5, alpha: 0 },
@@ -160,57 +165,65 @@ export default class Background extends Component {
         track: 'hexagon1',
         to: { alpha: 1 },
         from: { alpha: 0 },
-        duration: 500,
+        duration: 300,
         ease: cubicBezier(0, 0.49, 0.1, 1),
       },
-      '+500',
+      '+150',
       {
         track: 'hexagon2',
         to: { alpha: 1 },
         from: { alpha: 0 },
-        duration: 500,
+        duration: 300,
         ease: cubicBezier(0, 0.49, 0.1, 1),
       },
-      '+500',
+      '+150',
       {
         track: 'hexagon3',
         to: { alpha: 1 },
         from: { alpha: 0 },
-        duration: 500,
+        duration: 300,
         ease: cubicBezier(0, 0.49, 0.1, 1),
       },
-      '+500',
+      '+150',
       {
         track: 'hexagon4',
         to: { alpha: 1 },
         from: { alpha: 0 },
-        duration: 500,
+        duration: 300,
         ease: cubicBezier(0, 0.49, 0.1, 1),
       },
-      '+500',
+      '+150',
       {
         track: 'hexagon5',
         to: { alpha: 1 },
         from: { alpha: 0 },
-        duration: 500,
+        duration: 300,
         ease: cubicBezier(0, 0.49, 0.1, 1),
       },
+      {
+        track: 'circle',
+        to: { rotation: 0, alpha: 1 },
+        from: { rotation: 0.5, alpha: 0 },
+        duration: 2500,
+        ease: cubicBezier(0.15, 1.38, 0.14, 0.97),
+      },
+      '-1500',
       {
         track: 'path',
         from: { alpha: 0 },
         to: { alpha: 1 },
-        duration: 2000,
+        duration: 1000,
         ease: cubicBezier(1, 1.5, 0.4, 0.79),
       },
-      '-800',
+      '-1000',
       {
         track: 'character',
-        from: { x: width / 2 + 170, y: height / 2 - 105, alpha: 0 },
-        to: { x: width / 2, y: height / 2, alpha: 1 },
-        duration: 1000,
+        from: { x: width / 2 + 50, y: height / 2, alpha: 0 },
+        to: { x: width / 2 - 150, y: height / 2 + 130, alpha: 1 },
+        duration: 2000,
         ease: easeInOut,
       },
-      '-500',
+      '-1500',
       {
         track: 'logo',
         from: { alpha: 0, y: height / 2 - 10 },
@@ -218,46 +231,48 @@ export default class Background extends Component {
         duration: 3000,
         ease: easeInOut,
       },
+      '-1500',
+      {
+        track: 'content',
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        duration: 1000,
+        ease: easeInOut,
+      },
     ])
-      .pipe(values => ({
-        ...values,
-        elevator: {
-          ...values.elevator,
-          scale: point(values.elevator.scale),
-        },
-      }))
+      .pipe(
+        transform.transformMap({
+          elevator: transform.transformMap({ scale: point }),
+          timemachineBlur: transform.transformMap({
+            scale: transform.interpolate([0, 0.75, 1], [0, 1.2, 1]),
+          }),
+        }),
+      )
+      .pipe(
+        transform.transformMap({
+          timemachineBlur: transform.transformMap({ scale: point }),
+        }),
+      )
       .start(values => {
         _.forEach(sprites, (sprite, name) =>
-          this.updateSprite(sprite, values[name]),
+          this.updateSprite(sprite)(values[name]),
         );
-        context.render();
+        this.contentStyler.set(values.content);
       });
-
-    const characterTween = tween({
-      elapsed: this.scrollProgress(),
-      from: { x: width / 2, y: height / 2, alpha: 1 },
-      to: { x: width / 2 + 170, y: height / 2 - 105 },
-      ease: linear,
-    })
-      .start(values => this.updateSprite(sprites.character, values))
-      .pause();
 
     const backgroundTween = tween({
       elapsed: this.scrollProgress(),
       from: { y: 0, alpha: 1 },
-      to: { y: height / 2, alpha: 0 },
+      to: { y: height / 8, alpha: 0 },
       ease: linear,
     })
-      .start(values => this.updateSprite(container, values))
+      .start(this.updateSprite(container))
       .pause();
 
     const active = () => _.some(animation.isActive());
 
     this.props.addTickListener(() => {
       const progress = this.scrollProgress();
-
-      characterTween.seek(progress);
-      backgroundTween.seek(progress);
 
       if (active() && progress > 0)
         requestAnimationFrame(() => animation.pause());
@@ -266,6 +281,7 @@ export default class Background extends Component {
 
       if (progress < 0 || progress > 1) return;
 
+      backgroundTween.seek(progress);
       context.render();
     });
 
@@ -305,13 +321,16 @@ export default class Background extends Component {
   render() {
     return (
       <div className="Background" ref={this.onRoot}>
-        <div className="Background-content">
+        <div className="Background-content" ref={this.onContent}>
           <h1 className="visuallyHidden">Mirror Conf 2018</h1>
           <h2 className="visuallyHidden">The future of the web</h2>
           <p className="Background-visibleTitle">The future of the web</p>
           <p className="Background-date">October 15-19</p>
           <p className="Background-location">Braga, Portugal</p>
-          <a className="Background-cta" href="https://ti.to/subvisual/mirror-conf-2018/with/krxd0s3-khw">
+          <a
+            className="Background-cta"
+            href="https://ti.to/subvisual/mirror-conf-2018/with/krxd0s3-khw"
+          >
             <div className="Background-ctaGlow" />
             <div className="Background-ctaTextBackground" />
             <p className="Background-ctaText">Buy your tickets</p>

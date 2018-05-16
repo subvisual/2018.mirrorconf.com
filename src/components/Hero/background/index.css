@@ -35,32 +35,23 @@
   width: 100%;
 
   z-index: 1;
-
-  animation: baderos 15s cubic-bezier(1,0,1,0);
-}
-
-@keyframes baderos {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .Background-visibleTitle,
 .Background-date,
-.Background-location
- {
-  font-family: "alice";
+.Background-location {
+  font-family: 'alice';
   font-style: normal;
   font-weight: normal;
   line-height: 20px;
   font-size: 16px;
   mix-blend-mode: normal;
   opacity: 0.6;
-  background-image: linear-gradient( #FFFFFF 0%, rgba(255, 255, 255, 0.0001) 100%);
-  color:transparent;
+  background-image: linear-gradient(
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.0001) 100%
+  );
+  color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -112,7 +103,7 @@
   left: 0;
   width: 177px;
   height: 49px;
-  background: linear-gradient(96.66deg, #3E00D3 -10.4%, #C440FF 84.6%);
+  background: linear-gradient(96.66deg, #3e00d3 -10.4%, #c440ff 84.6%);
   filter: blur(20px);
   border-radius: 4px;
   transition: ease-in-out 1s;
@@ -131,7 +122,7 @@
   position: absolute;
   top: 14px;
   left: 20px;
-  font-family: "alice";
+  font-family: 'alice';
   font-style: normal;
   font-weight: normal;
   line-height: normal;
@@ -139,7 +130,7 @@
   z-index: 3;
   width: 137px;
 
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 @media screen and (min-width: 700px) {

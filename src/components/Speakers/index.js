@@ -67,7 +67,7 @@ export default class Speakers extends Component {
 
     return getProgressFromValue(
       min + viewportHeight,
-      max - clientHeight() / 5,
+      max - clientHeight() / 3,
       scrollTop(),
     );
   };
@@ -91,8 +91,8 @@ export default class Speakers extends Component {
     const { min, max } = this.state.bounds;
 
     return getProgressFromValue(
-      min - clientHeight() / 2,
       min + clientHeight() / 2,
+      min + clientHeight(),
       scrollTop(),
     );
   };
@@ -124,10 +124,15 @@ export default class Speakers extends Component {
 
     const fadeOutTween = tween({
       ease: linear,
-      from: { y: 0, scale: 1 },
-      to: { y: 10, scale: 0.85 },
+      from: { y: 0, scale: 1, contrast: 100 },
+      to: { y: 10, scale: 0.85, contrast: 0 },
     })
-      .pipe(transform.transformMap({ y: y => `${y}%` }))
+      .pipe(
+        transform.transformMap({
+          y: y => `${y}%`,
+          contrast: transform.interpolate([100, 40, 0], [100, 100, 0]),
+        }),
+      )
       .start(values => {
         this.canvasStyler.set(values);
         this.contentStyler.set(values);
