@@ -100,13 +100,11 @@
 
     padding: calc(6.5% + 40px) 140px 0px;
 
-    background: transparent;
+    background: black;
 
     transform: translate(-50%, 30%) scale(0.8);
 
     text-align: center;
-
-    background: black;
   }
 
   .Footer-contentWrapper {

@@ -132,7 +132,7 @@ export default class Footer extends Component {
   componentDidMount() {
     if (!this.root || !this.frame) return;
 
-    listen(this.frame, 'load').start(() => this.calculateBounds());
+    listen(window, 'load').start(() => this.calculateBounds());
     listen(window, 'resize').start(() => this.calculateBounds());
   }
 
