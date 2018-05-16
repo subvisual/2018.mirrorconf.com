@@ -32,7 +32,10 @@ const TemplateWrapper = ({ children }) => (
       <meta name="twitter:title" content={SITE_NAME} />
       <meta name="twitter:description" content={DESCRIPTION} />
       <meta name="twitter:creator" content={TWITTER_HANDLER} />
-      <meta name="twitter:image" content={SITE_IMAGE} />
+      <meta
+        name="twitter:image"
+        content={`https://mirrorconf.com${SITE_IMAGE}`}
+      />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={SITE_NAME} />
       <meta property="og:url" content={SITE_URL} />
