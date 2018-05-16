@@ -45,8 +45,8 @@ const EVENT_STATS = [
     description: 'Quizz',
   },
   {
-    count: '800+',
-    description: 'Speakers',
+    count: '700+',
+    description: 'Attendees',
   },
 ];
 
