@@ -1,17 +1,49 @@
 #!/bin/sh
 
-deploy_to() {
-  env=${1:-staging}
+environment=staging
 
-  echo "#"
-  echo "# Deploying to ${env}"
-  echo "#"
+usage () {
+  cat <<EOS
+Usage: $0 [environment]
 
-  yarn install && yarn build && bundle install && bundle exec s3_website push --config-dir deploy/${env}
+Deploys the site to the target environment (staging by default).
+
+Options:
+
+  -e [environment]
+    Sets the target environment.
+
+    Accepted values:
+    * staging: Deploys the website to GitHub Pages (default).
+    * production: Deploys to AWS S3.
+
+  -h
+    Shows this message and exits.
+EOS
 }
 
-case $1 in
-  all             ) deploy_to "staging" && deploy_to "production";;
-  prod            ) deploy_to "production";;
-  *               ) deploy_to $1;;
+while getopts ':e:h' opt; do
+  case $opt in
+    e)
+      environment=$OPTARG
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+  esac
+done
+
+case $environment in
+  stag|staging)
+    yarn run deploy-staging
+    ;;
+  prod|production)
+    yarn run deploy-production
+    ;;
+  *)
+    echo "Unknown environment '$environment'" >&2
+    usage >&2
+    exit 1
+    ;;
 esac
