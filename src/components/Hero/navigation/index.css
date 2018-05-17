@@ -2,10 +2,9 @@
   position: relative;
 
   width: 100%;
-  min-height: 100vh;
 
   padding: 0 20px;
-  margin-bottom: 20%;
+  margin: 60px 0 200px;
 }
 
 .Navigation-linkWrapper {
@@ -13,7 +12,6 @@
   flex-direction: column;
 
   width: 100%;
-  min-height: 85vh;
 }
 
 .Navigation-link,
@@ -31,6 +29,24 @@
   letter-spacing: 0.15em;
 
   overflow: hidden;
+}
+
+.Navigation-scrollHint,
+.Navigation-hallOutput {
+  font-family: 'mr-eaves-xl-modern';
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+
+  text-align: center;
+}
+
+.Navigation-scrollHint {
+  margin-bottom: 60px;
 }
 
 .Navigation-link {
@@ -60,7 +76,7 @@
 }
 
 .Navigation-link.isDisabled {
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .Navigation-linkLabel {
@@ -80,20 +96,24 @@
 .Navigation-hall {
   position: absolute;
 
-  bottom: calc(-8px);
   left: 50%;
+  bottom: 0;
 
   height: calc((10% - 8px) * 2);
   min-height: 120px;
 
   text-align: center;
 
-  transform: translateX(-50%) translateY(50%);
+  transform: translate(-50%, calc(100% + 28px));
 }
 
 .Navigation-hallEye {
   height: 100%;
   width: auto;
+}
+
+.Navigation-hallOutput {
+  margin: 8px 0 0;
 }
 
 .Navigation-linkBackgroundWrapper {
@@ -164,11 +184,16 @@
     justify-content: space-between;
   }
 
+  .Navigation-scrollHint,
+  .Navigation-hallOutput {
+    font-size: 16px;
+  }
+
   .Navigation-link,
   .Navigation-hall {
     height: 204px;
 
-    margin: 12px;
+    margin: 14px;
 
     border-radius: 4px;
   }
@@ -220,11 +245,16 @@
 
     transform: none;
   }
+
+  .Navigation-scrollHint {
+    margin-bottom: 84px;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .Navigation {
     display: flex;
+    flex-direction: column;
     align-items: center;
 
     margin: 0;
@@ -241,6 +271,12 @@
   .Navigation-hall {
     position: absolute;
 
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, -56px);
+
+    margin: 0;
+  }
+
+  .Navigation-hallOutput {
+    margin-top: 56px;
   }
 }

@@ -32,24 +32,35 @@ const animateScrollTo = (scroll, options) => {
   requestAnimationFrame(() => animation.start(scroll.set('top')));
 };
 
+const HALL = {
+  initial: 'to when do you want to go?',
+  negative: [`I'm afraid I can't do that.`, `I'm sorry, Dave. I can't do that`],
+};
+
 export default class Navigation extends Component {
   constructor() {
     super();
-    this.state = { noise: _.sampleSize([Noise1, Noise2, Noise3], 3) };
+    this.state = {
+      noise: _.sampleSize([Noise1, Noise2, Noise3], 3),
+      hall: HALL.initial,
+    };
   }
 
   componentDidMount() {
     this.scroll = scroll();
   }
 
+  invalidLink() {
+    this.setState({ hall: _.sample(HALL.negative) });
+  }
+
   onClick = event => {
-    if (!this.scroll) return;
-    if (!event.target.href) return;
+    if (!this.scroll || !event.target.href) return this.invalidLink();
 
     event.preventDefault();
 
     const element = findElementByHref(event.target.href);
-    if (!element) return;
+    if (!element) return this.invalidLink();
 
     this.scrollToElement(element);
   };
@@ -85,6 +96,9 @@ export default class Navigation extends Component {
   render() {
     return (
       <nav className="Navigation">
+        <p className="Navigation-scrollHint">
+          Scroll to navigate chronologically
+        </p>
         <div className="Navigation-linkWrapper">
           <a onClick={this.onClick} className="Navigation-link" href="#about">
             <p className="Navigation-linkLabel">About</p>
@@ -98,11 +112,11 @@ export default class Navigation extends Component {
             <p className="Navigation-linkLabel">Speakers</p>
             {this.renderLinkBackground(SpeakersPreview)}
           </a>
-          <a onClick={this.onClick} className="Navigation-link isDisabled">
+          <div onClick={this.onClick} className="Navigation-link isDisabled">
             <p className="Navigation-linkLabel">Workshops</p>
             {this.renderLinkBackground(WorkshopsPreview)}
             {this.renderMalfunctionNote()}
-          </a>
+          </div>
           <a onClick={this.onClick} className="Navigation-link isDisabled">
             <p className="Navigation-linkLabel">Schedule</p>
             {this.renderLinkBackground(this.state.noise[0])}
@@ -122,6 +136,7 @@ export default class Navigation extends Component {
             {this.renderMalfunctionNote()}
           </a>
         </div>
+        <p className="Navigation-hallOutput">{this.state.hall}</p>
       </nav>
     );
   }
