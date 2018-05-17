@@ -113,7 +113,7 @@
     width: 100%;
     height: 100%;
 
-    padding: calc(6.5% + 40px) 140px 0px;
+    padding: 12% 140px 0px;
 
     background: black;
     background-image: none;
@@ -136,17 +136,19 @@
     flex-direction: row;
     justify-content: space-between;
 
-    margin-top: 80px;
+    margin-top: 50px;
   }
 
   .Footer-title {
-    line-height: 90px;
-    font-size: 64px;
+    line-height: 60px;
+    font-size: 34px;
     text-shadow: 4px 6px 0px #676767;
   }
 
   .Footer-link {
-    font-size: 40px;
+    font-size: 28px;
+
+    margin-right: 28px;
   }
 
   .Footer-link:not(:first-child) {
@@ -157,14 +159,14 @@
     display: block;
     position: absolute;
 
-    top: 0;
-    left: 0%;
+    bottom: 0;
+    left: 50%;
 
-    width: 100%;
+    height: 100%;
 
     z-index: 0;
 
-    transform: translateY(-10%);
+    transform: translate(-50%, -10%);
 
     pointer-events: none;
   }
@@ -178,24 +180,45 @@
     bottom: 0;
 
     width: 100%;
+    height: 100%;
 
     pointer-events: none;
 
     transform: translate(-50%, 5%);
   }
+}
 
-  .Footer-joystick {
+@media screen and (min-width: 1440px) {
+  .Footer-main {
+    padding: calc(6.5% + 40px) 140px 0px;
+  }
+
+  .Footer-title {
+    line-height: 90px;
+    font-size: 64px;
+  }
+
+  .Footer-links {
+    margin-top: 80px;
+  }
+
+  .Footer-link {
+    font-size: 40px;
+  }
+
+  .Footer-arcadeFrame {
     display: block;
     position: absolute;
 
-    bottom: 5%;
-  }
+    top: 0;
 
-  .Footer-joystick.left {
-    left: 40px;
-  }
+    width: 100%;
+    height: auto;
 
-  .Footer-joystick.right {
-    right: 40px;
+    z-index: 0;
+
+    transform: translateY(-10%);
+
+    pointer-events: none;
   }
 }

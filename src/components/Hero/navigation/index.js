@@ -34,7 +34,11 @@ const animateScrollTo = (scroll, options) => {
 
 const HALL = {
   initial: 'to when do you want to go?',
-  negative: [`I'm afraid I can't do that.`, `I'm sorry, Dave. I can't do that`],
+  negative: [
+    `I'm sorry, Dave. I'm afraid I can't do that.`,
+    `This mission is too important for me to allow you to jeopardize it.`,
+    `I think you know what the problem is just as well as I do.`,
+  ],
 };
 
 export default class Navigation extends Component {
@@ -54,6 +58,10 @@ export default class Navigation extends Component {
     this.setState({ hall: _.sample(HALL.negative) });
   }
 
+  validLink() {
+    this.setState({ hall: `Affirmative, Dave. I read you.` });
+  }
+
   onClick = event => {
     if (!this.scroll || !event.target.href) return this.invalidLink();
 
@@ -63,6 +71,7 @@ export default class Navigation extends Component {
     if (!element) return this.invalidLink();
 
     this.scrollToElement(element);
+    return this.validLink();
   };
 
   scrollToElement = element => {

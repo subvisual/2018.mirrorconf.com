@@ -86,11 +86,11 @@ export default class Footer extends Component {
 
   startAnimation() {
     this.frameTween = tween({
-      from: { y: -19, scale: 1.33 },
-      to: { y: 0, scale: 1 },
+      from: { x: -50, y: -19, scale: 1.33 },
+      to: { x: -50, y: 0, scale: 1 },
       ease: linear,
     })
-      .pipe(transform.transformMap({ y: y => `${y}%` }))
+      .pipe(transform.transformMap({ y: y => `${y}%`, x: x => `${x}%` }))
       .start(this.frameStyler.set)
       .pause();
 
