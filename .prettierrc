@@ -1,0 +1,6 @@
+#
+# vim: set syntax=json
+{
+  singleQuote: true,
+  trailingComma: "es5"
+}

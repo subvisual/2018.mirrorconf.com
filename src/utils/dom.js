@@ -9,7 +9,7 @@ export const scrollHeight = () => {
   if (!document || !document.documentElement) return 0;
   return Math.min(
     document.documentElement.scrollHeight,
-    document.documentElement.offsetHeight,
+    document.documentElement.offsetHeight
   );
 };
 
@@ -27,9 +27,9 @@ export const scrollRemaining = () =>
   getProgressFromValue(0, scrollHeight() - clientHeight(), scrollTop());
 
 export default {
-  scrollTop: scrollTop,
-  clientWidth: clientWidth,
-  scrollHeight: scrollHeight,
-  clientHeight: clientHeight,
-  scrollRemaining: scrollRemaining,
+  scrollTop,
+  clientWidth,
+  scrollHeight,
+  clientHeight,
+  scrollRemaining,
 };

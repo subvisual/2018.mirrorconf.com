@@ -1,11 +1,13 @@
 [trello]: https://trello.com/b/f320dHDQ/mc-website-2018
-[build-page]: https://semaphore.com/whatever
+[build-page]: https://semaphore.com/subvisual-user/2018-mirrorconf-com
 [production]: https://mirrorconf.com
 [zeplin]: https://zpl.io/2po19DJ
 [figma]: https://www.figma.com/file/RrEqg1RNfW5KhMQJ9LjMUStO/Mirror-Website
 
 MirrorConf 2018
 ============
+
+[![Build Status](https://semaphoreci.com/api/v1/projects/434de6da-7944-4151-851f-2642a406ea3a/1979077/badge.svg)](https://semaphoreci.com/subvisual-user/2018-mirrorconf-com)
 
 * [Trello][trello]
 * [Build Page][build-page]

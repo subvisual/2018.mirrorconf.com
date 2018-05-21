@@ -125,4 +125,8 @@ TemplateWrapper.propTypes = {
   children: PropTypes.func,
 };
 
+TemplateWrapper.defaultProps = {
+  children: [],
+};
+
 export default TemplateWrapper;

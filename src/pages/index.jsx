@@ -1,8 +1,5 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { listen, everyFrame } from 'popmotion';
-
-import { scrollTop } from '../utils/dom';
 
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -16,14 +13,12 @@ export default class IndexPage extends Component {
     this.listeners = [];
   }
 
-  startAnimation() {
-    this.animation = everyFrame().start(this.callListeners);
-  }
-
-  callListeners = () => this.listeners.forEach(listener => listener());
-
   componentDidMount() {
     listen(window, 'load').start(() => this.startAnimation());
+  }
+
+  shouldComponentUpdate() {
+    return false;
   }
 
   addTickListener = listener => {
@@ -31,8 +26,10 @@ export default class IndexPage extends Component {
     return () => this.listeners.splice(index, 1);
   };
 
-  shouldComponentUpdate() {
-    return false;
+  callListeners = () => this.listeners.forEach(listener => listener());
+
+  startAnimation() {
+    this.animation = everyFrame().start(this.callListeners);
   }
 
   render() {
