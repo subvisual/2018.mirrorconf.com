@@ -9,10 +9,6 @@ body,
   text-rendering: optimizeLegibility;
 }
 
-body {
-  background-color: black;
-}
-
 [data-reactroot] {
   display: flex;
 }
