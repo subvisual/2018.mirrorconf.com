@@ -1,0 +1,43 @@
+.ArcadeFrame {
+  display: none;
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.ArcadeFrame-image {
+  position: absolute;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+@media screen and (min-width: 700px) {
+  .ArcadeFrame {
+    display: block;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .ArcadeFrame-image {
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .ArcadeFrame-image {
+    width: 100%;
+    height: auto;
+  }
+}

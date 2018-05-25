@@ -4,8 +4,8 @@ import { listen, everyFrame } from 'popmotion';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Speakers from '../components/Speakers';
+import Location from '../components/Location';
 // import Workshops from '../components/Workshops';
-import Footer from '../components/Footer';
 
 export default class IndexPage extends Component {
   constructor() {
@@ -38,7 +38,7 @@ export default class IndexPage extends Component {
         <Hero addTickListener={this.addTickListener} />
         <About />
         <Speakers addTickListener={this.addTickListener} />
-        <Footer addTickListener={this.addTickListener} />
+        <Location />
       </div>
     );
   }

@@ -1,12 +1,12 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
-import { linear, circOut } from 'popmotion/easing';
+import { linear, cubicBezier } from 'popmotion/easing';
 import { getProgressFromValue } from 'popmotion/calc';
 import { listen, tween, styler, transform } from 'popmotion';
 
 import './index.css';
 
-import Background, { RATIO, MOBILE_RATIO } from './background';
+import ArcadeFrame from './ArcadeFrame';
+import Background, { RATIO, MOBILE_RATIO } from './Background';
 
 import SpeakersList from './speakers_list.svg';
 import SpeakersListMobile from './speakers_list_mobile.svg';
@@ -18,19 +18,13 @@ import {
   clientWidth,
 } from '../../utils/dom';
 
-const fixPosition = (...stylers) =>
-  stylers.forEach(styler => {
-    if (styler.get('position') === 'fixed') return;
+const ratio = () => {
+  if (clientWidth() <= 700) return MOBILE_RATIO;
 
-    styler.set('position', 'fixed');
-  });
+  return RATIO;
+};
 
-const unfixPosition = (...stylers) =>
-  stylers.forEach(styler => {
-    if (styler.get('position') !== 'fixed') return;
-
-    styler.set('position', 'absolute');
-  });
+const quicklyEnter = cubicBezier(0, 1, 0, 1);
 
 export default class Speakers extends Component {
   constructor() {
@@ -38,13 +32,10 @@ export default class Speakers extends Component {
     this.state = { bounds: { width: 0, height: 0 } };
   }
 
-  onRoot = root => (this.root = root);
-
-  ratio() {
-    if (clientWidth() <= 700) return MOBILE_RATIO;
-
-    return RATIO;
-  }
+  onRoot = root => {
+    this.root = root;
+    this.rootStyler = styler(root);
+  };
 
   onListWrapper = listWrapper => {
     this.listWrapper = listWrapper;
@@ -61,40 +52,19 @@ export default class Speakers extends Component {
     this.contentStyler = styler(contentWrapper);
   };
 
-  scrollProgress = () => {
+  progress = () => {
     const { max, min } = this.state.bounds;
     const viewportHeight = clientHeight();
 
-    return getProgressFromValue(
-      min + viewportHeight,
-      max - clientHeight() / 3,
-      scrollTop(),
-    );
+    return getProgressFromValue(min, max - viewportHeight * 2, scrollTop());
   };
 
-  scrollProgressToStart = () => {
-    const { min } = this.state.bounds;
-
-    return getProgressFromValue(min - clientHeight(), min, scrollTop());
-  };
-
-  scrollProgressToEnd = () => {
-    const height = scrollHeight();
+  progressToFadeOut = () => {
     const viewportHeight = clientHeight();
-    const min = height - viewportHeight * 1.6;
-    const max = height - viewportHeight;
+    const min = this.state.bounds.max - viewportHeight * 2;
+    const max = this.state.bounds.max - viewportHeight;
 
     return getProgressFromValue(min, max, scrollTop());
-  };
-
-  scrollProgressToFade = () => {
-    const { min, max } = this.state.bounds;
-
-    return getProgressFromValue(
-      min + clientHeight() / 2,
-      min + clientHeight(),
-      scrollTop(),
-    );
   };
 
   renderSpeakersList() {
@@ -107,32 +77,21 @@ export default class Speakers extends Component {
     return <SpeakersList id="Speakers-list" className="Speakers-list" />;
   }
 
-  updateStickiness(progress) {
-    const { bounds } = this.state;
-
-    if (progress < 0 || bounds.width <= 700)
-      unfixPosition(this.contentStyler, this.canvasStyler);
-    else if (progress >= 0 && bounds.width > 700)
-      fixPosition(this.contentStyler, this.canvasStyler);
-  }
-
   startAnimation() {
-    const to = this.state.bounds.height - clientHeight();
-    const listTween = tween({ to, from: 0, ease: linear })
+    const listTween = tween({
+      to: 0,
+      from: -this.state.bounds.height,
+      ease: linear,
+    })
       .start(this.listStyler.set('y'))
       .pause();
 
     const fadeOutTween = tween({
       ease: linear,
-      from: { y: 0, scale: 1, contrast: 100 },
-      to: { y: 10, scale: 0.85, contrast: 0 },
+      from: { y: 0, scale: 1 },
+      to: { y: 10, scale: 0.8 },
     })
-      .pipe(
-        transform.transformMap({
-          y: y => `${y}%`,
-          contrast: transform.interpolate([100, 40, 0], [100, 100, 0]),
-        }),
-      )
+      .pipe(transform.transformMap({ y: y => `${y}%` }))
       .start(values => {
         this.canvasStyler.set(values);
         this.contentStyler.set(values);
@@ -140,11 +99,8 @@ export default class Speakers extends Component {
       .pause();
 
     const unsubscribe = this.props.addTickListener(() => {
-      const { bounds } = this.state;
-
-      this.updateStickiness(this.scrollProgressToStart());
-      listTween.seek(this.scrollProgress());
-      fadeOutTween.seek(this.scrollProgressToEnd());
+      listTween.seek(this.progress());
+      fadeOutTween.seek(this.progressToFadeOut());
     });
 
     this.unsubscribe = () => {
@@ -159,11 +115,10 @@ export default class Speakers extends Component {
     if (!width) setTimeout(() => this.onResize(), 100);
     if (width === this.state.width) return;
 
-    const height = clientWidth() / this.ratio();
-    const scale = height * this.ratio();
+    const height = clientWidth() / ratio();
+    const scale = height * ratio();
     const min = top + scrollTop();
     const max = top + height + scrollTop();
-
     this.setState({ bounds: { width, height, min, max, scale } });
   }
 
@@ -179,44 +134,49 @@ export default class Speakers extends Component {
   componentDidMount() {
     if (!this.root) return setTimeout(() => this.onResize(), 100);
 
-    this.calculateBounds();
-    if (clientWidth() > 700) requestAnimationFrame(() => this.startAnimation());
+    listen(window, 'load').start(() => {
+      this.calculateBounds();
+      if (clientWidth() > 700)
+        requestAnimationFrame(() => this.startAnimation());
+    });
 
     listen(window, 'resize').start(() => this.onResize());
   }
 
   get height() {
-    const { bounds } = this.state;
-
-    if (!this.bounds) return 0;
+    if (!this.state.bounds) return 0;
 
     return this.state.bounds.height;
   }
 
   render() {
-    const { bounds } = this.state;
-
     return (
       <section
         className="Speakers"
         id="speakers"
         ref={this.onRoot}
-        tabIndex="0"
-        style={{ height: bounds.height }}
+        style={{ height: this.height }}
       >
         <div className="Speakers-background" ref={this.onCanvasWrapper}>
           <Background
-            bounds={bounds}
-            scrollProgress={this.scrollProgress}
+            bounds={this.state.bounds}
+            progress={this.progress}
             addTickListener={this.props.addTickListener}
-            scrollProgressToFade={this.scrollProgressToFade}
           />
         </div>
         <div className="Speakers-content" ref={this.onContentWrapper}>
-          <div className="Speakers-listWrapper" ref={this.onListWrapper}>
+          <div
+            tabIndex="0"
+            className="Speakers-listWrapper"
+            ref={this.onListWrapper}
+          >
             {this.renderSpeakersList()}
           </div>
         </div>
+        <ArcadeFrame
+          bounds={this.state.bounds}
+          addTickListener={this.props.addTickListener}
+        />
       </section>
     );
   }

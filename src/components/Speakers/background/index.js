@@ -1,40 +1,15 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { linear } from 'popmotion/easing';
-import { getProgressFromValue } from 'popmotion/calc';
 import { listen, tween, styler, transform } from 'popmotion';
 
 import carSource from './car.svg';
 import backgroundSource from './background.svg';
 import backgroundMobileSource from './background_mobile.jpg';
 
-import {
-  scrollTop,
-  scrollHeight,
-  clientHeight,
-  clientWidth,
-} from '../../../utils/dom';
+import { clientHeight, clientWidth } from '../../../utils/dom';
 
-const point = (x, y = x) => ({ x: x, y: y });
-
-const initializeSprites = (memo, { name, source }) => ({
-  ...memo,
-  [name]: new PIXI.Sprite.from(source),
-});
-
-const addSpriteToStage = stage => (sprite, name) => {
-  if (!RESOURCES || !RESOURCES[name]) return;
-
-  const { props } = RESOURCES[name];
-  const { width, height } = SETTINGS;
-
-  sprite.anchor = point(0.5);
-  sprite.position = point(width / 2, height / 2);
-
-  _.forEach(props, (value, prop) => (sprite[prop] = value));
-
-  stage.addChild(sprite);
-};
+const point = (x, y = x) => ({ x, y });
 
 export const SETTINGS = {
   width: 1440,
@@ -66,8 +41,27 @@ const RESOURCES = {
   car: {
     name: 'car',
     source: carSource,
-    props: { anchor: point(0.5, 1), position: point(720, 0) },
+    props: { anchor: point(0.5, 1), position: point(720, 800) },
   },
+};
+
+const initializeSprites = (memo, { name, source }) => ({
+  ...memo,
+  [name]: new PIXI.Sprite.from(source),
+});
+
+const addSpriteToStage = stage => (sprite, name) => {
+  if (!RESOURCES || !RESOURCES[name]) return;
+
+  const { props } = RESOURCES[name];
+  const { width, height } = SETTINGS;
+
+  sprite.anchor = point(0.5);
+  sprite.position = point(width / 2, height / 2);
+
+  _.forEach(props, (value, prop) => (sprite[prop] = value));
+
+  stage.addChild(sprite);
 };
 
 export default class Background extends Component {
@@ -99,7 +93,10 @@ export default class Background extends Component {
   }
 
   scale() {
-    return this.props.bounds.height * this.ratio() / this.worldWidth();
+    const ratio = this.ratio();
+    const height = clientWidth() / ratio;
+
+    return height * ratio / this.worldWidth();
   }
 
   resizeRender(width, height) {
@@ -108,54 +105,34 @@ export default class Background extends Component {
   }
 
   update() {
-    const progress = this.props.scrollProgress();
-    const scrollProgressToFade = this.props.scrollProgressToFade();
+    const progress = this.props.progress();
+
+    if (progress < 0 && progress > 1) return;
 
     this.carTween.seek(progress);
-    this.carEntryTween.seek(scrollProgressToFade);
     this.backgroundTween.seek(progress);
+
     this.context.render();
   }
 
   buildCanvas() {
     const scale = this.scale();
-    const { width, height, options } = SETTINGS;
+    const { height } = SETTINGS;
 
     this.container.scale = point(scale);
 
-    this.backgroundTween = tween({
-      to: 0,
-      ease: linear,
-      from: -height + clientHeight() / scale - clientHeight(),
-    })
+    this.backgroundTween = tween({ to: 0, from: -height * scale, ease: linear })
       .start(y => (this.sprites.background.position.y = y))
       .pause();
 
-    this.carTween = tween({
-      from: { y: 800, scale: 1 },
-      to: { y: 800, scale: 0.18 },
-      ease: linear,
-    })
-      .start(({ y, scale }) => {
-        this.sprites.car.y = y;
-        this.sprites.car.scale = point(scale);
+    this.carTween = tween({ from: 1, to: 0.18, ease: linear })
+      .pipe(value => point(value))
+      .start(value => {
+        this.sprites.car.scale = value;
       })
       .pause();
 
-    this.carEntryTween = tween({
-      ease: linear,
-      from: { alpha: 0 },
-      to: { alpha: 1 },
-    })
-      .pipe(transform.transformMap({ alpha: transform.clamp(0, 1) }))
-      .start(({ alpha }) => {
-        this.sprites.car.alpha = alpha;
-      })
-      .pause();
-
-    const unsubscribe = this.props.addTickListener(
-      _.throttle(this.update.bind(this), 20),
-    );
+    const unsubscribe = this.props.addTickListener(this.update.bind(this));
 
     this.unsubscribe = () => {
       unsubscribe();
@@ -186,14 +163,13 @@ export default class Background extends Component {
     this.sprites.background.position = point(width / 2, height / 2);
 
     this.container.addChild(this.sprites.background);
+    this.resizeRender(clientWidth(), this.props.bounds.height);
 
-    this.context.render();
-    this.resizeRender(this.props.bounds.width, this.props.bounds.height);
     setTimeout(() => this.context.render(), 1000);
   }
 
   startAnimation() {
-    if (this.props.bounds.width < 700)
+    if (clientWidth() < 700)
       return requestAnimationFrame(() => this.buildAlternateCanvas());
 
     return requestAnimationFrame(() => this.buildCanvas());
@@ -208,9 +184,9 @@ export default class Background extends Component {
     this.container.height = SETTINGS.height;
 
     this.context = new PIXI.Application(
-      this.props.bounds.width,
+      clientWidth(),
       clientHeight(),
-      SETTINGS.options,
+      SETTINGS.options
     );
 
     this.context.stage.addChild(this.container);
@@ -222,6 +198,8 @@ export default class Background extends Component {
   }
 
   onResize() {
+    if (clientWidth() < 700) return;
+
     if (this.unsubscribe) this.unsubscribe();
 
     this.resizeRender(clientWidth(), clientHeight());

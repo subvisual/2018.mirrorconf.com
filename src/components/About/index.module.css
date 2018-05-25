@@ -5,6 +5,8 @@
   min-height: 100vh;
 
   z-index: 1;
+
+  outline: none;
 }
 
 .window {
