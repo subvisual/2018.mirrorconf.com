@@ -79,7 +79,7 @@ export default class Navigation extends Component {
     const { top } = element.getBoundingClientRect();
     const to = top + clientHeight() + 100;
 
-    animateScrollTo(this.scroll, { to: to, from: from });
+    animateScrollTo(this.scroll, { to, from });
   };
 
   renderMalfunctionNote() {
@@ -121,20 +121,26 @@ export default class Navigation extends Component {
             <p className="Navigation-linkLabel">Speakers</p>
             {this.renderLinkBackground(SpeakersPreview)}
           </a>
-          <div onClick={this.onClick} className="Navigation-link isDisabled">
+          <a
+            onClick={this.onClick}
+            className="Navigation-link"
+            href="#workshops"
+          >
             <p className="Navigation-linkLabel">Workshops</p>
             {this.renderLinkBackground(WorkshopsPreview)}
-            {this.renderMalfunctionNote()}
-          </div>
+          </a>
           <a onClick={this.onClick} className="Navigation-link isDisabled">
             <p className="Navigation-linkLabel">Schedule</p>
             {this.renderLinkBackground(this.state.noise[0])}
             {this.renderMalfunctionNote()}
           </a>
-          <a onClick={this.onClick} className="Navigation-link isDisabled">
+          <a
+            onClick={this.onClick}
+            className="Navigation-link"
+            href="#location"
+          >
             <p className="Navigation-linkLabel">Location</p>
             {this.renderLinkBackground(this.state.noise[1])}
-            {this.renderMalfunctionNote()}
           </a>
           <div className="Navigation-hall">
             <img className="Navigation-hallEye" src={Hall} />

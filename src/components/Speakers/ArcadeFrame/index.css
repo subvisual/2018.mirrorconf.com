@@ -1,6 +1,10 @@
 .ArcadeFrame {
   display: none;
   position: sticky;
+  position: -o-sticky;
+  position: -ms-sticky;
+  position: -moz-sticky;
+  position: -webkit-sticky;
 
   top: 0;
 

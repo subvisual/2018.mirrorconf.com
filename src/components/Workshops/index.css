@@ -1,9 +1,8 @@
 .Workshops {
+  display: flex;
   position: relative;
 
   width: 100%;
-
-  padding: 90px;
 
   color: #1c3448;
 
@@ -13,9 +12,7 @@
 }
 
 .Workshops-wrapper {
-  max-width: 1440px;
-
-  margin: 0 auto;
+  padding: 120px 20px 0;
 }
 
 .Workshops-list {
@@ -30,11 +27,36 @@
   list-style: none;
 }
 
-.Workshops-listItem {
-  margin: 112px 0;
+.Workshops-listItem:not(:first-child) {
+  margin-top: 112px;
   padding: 0;
+}
 
-  &:last-child {
-    margin-bottom: 0;
+@media screen and (min-width: 769px) {
+  .Workshops-wrapper {
+    max-width: 1440px;
+
+    margin: 0 auto;
+  }
+
+  .Workshops-list {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  .Workshops-listItem {
+    margin: 0;
+    padding: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }

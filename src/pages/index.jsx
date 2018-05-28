@@ -5,7 +5,7 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Speakers from '../components/Speakers';
 import Location from '../components/Location';
-// import Workshops from '../components/Workshops';
+import Workshops from '../components/Workshops';
 
 export default class IndexPage extends Component {
   constructor() {
@@ -38,6 +38,7 @@ export default class IndexPage extends Component {
         <Hero addTickListener={this.addTickListener} />
         <About />
         <Speakers addTickListener={this.addTickListener} />
+        <Workshops />
         <Location />
       </div>
     );

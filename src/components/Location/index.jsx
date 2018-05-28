@@ -13,7 +13,7 @@ import accommodationBackground from './accommodation_background.svg';
 export default class Location extends Component {
   render() {
     return (
-      <section className="Location">
+      <section className="Location" id="location">
         <div className="Location-wrapper">
           <div className="Location-venue">
             <h2 className="Location-title">Location</h2>

@@ -1,49 +1,39 @@
 .Workshop {
-  display: flex;
-  flex-wrap: wrap;
-}
+  position: relative;
 
-.Workshop.Workshop--alternate {
-  flex-direction: row-reverse;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+
+  padding-bottom: calc(108px + 48px + 28px); /* actions height + spacing */
 }
 
 .Workshop-column {
   flex: 1;
-
-  max-width: 542px;
 }
 
-.Workshop-column:not(:last-child) {
-  margin-right: 130px;
-}
-
-.Workshop.Workshop--alternate .Workshop-column:not(:last-child) {
-  margin-right: 0;
-  margin-left: 130px;
+.Workshop-column:not(:first-child) {
+  margin-top: 20px;
 }
 
 .Workshop-actions {
-  display: flex;
-  justify-content: space-between;
+  position: absolute;
 
-  margin-top: 60px;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 2;
 }
 
 .Workshop-dateTime {
-  width: 280px;
-  margin-left: calc(100% - 280px);
   margin-bottom: 60px;
-}
-
-.Workshop.Workshop--alternate .Workshop-dateTime {
-  margin-left: 0;
 }
 
 .Workshop-title {
   color: #1c3448;
-  font-size: 56px;
-  line-height: 64px;
+  font-size: 40px;
+  line-height: 52px;
   font-weight: bold;
   font-family: 'freight-text-pro';
 }
@@ -55,7 +45,7 @@
 }
 
 .Workshop-speaker {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 
 .Workshop-day,
@@ -65,6 +55,11 @@
   line-height: 28px;
   font-family: 'lato';
   text-shadow: 2px 2px 1px rgba(31, 48, 70, 0.397702);
+}
+
+.Workshop-description {
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .Workshop-date,
@@ -86,12 +81,97 @@
   font-family: 'freight-text-pro';
 }
 
+.Workshop-discountPrice {
+  margin-bottom: 28px;
+}
+
 .Workshop-title,
-.Workshop-actions,
 .Workshop-speaker,
 .Workshop-dateTime,
 .Workshop-description {
   position: relative;
 
   z-index: 2;
+}
+
+@media screen and (min-width: 769px) {
+  .Workshop {
+    flex-direction: row;
+  }
+
+  .Workshop.Workshop--alternate {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .Workshop-column {
+    flex: 1;
+
+    max-width: 542px;
+  }
+
+  .Workshop-column:not(:last-child) {
+    margin-right: 130px;
+  }
+
+  .Workshop-column:not(:first-child) {
+    margin-top: 0px;
+  }
+
+  .Workshop.Workshop--alternate .Workshop-column:not(:last-child) {
+    margin-right: 0;
+    margin-left: 130px;
+  }
+
+  .Workshop-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top: 60px;
+  }
+
+  .Workshop-dateTime {
+    width: 280px;
+    margin-left: calc(100% - 280px);
+    margin-bottom: 60px;
+  }
+
+  .Workshop.Workshop--alternate .Workshop-dateTime {
+    margin-left: 0;
+  }
+
+  .Workshop-title {
+    font-size: 56px;
+    line-height: 64px;
+  }
+
+  .Workshop-description {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .Workshop-speaker,
+  .Workshop-discountPrice {
+    opacity: 0.6;
+
+    color: #1c3448;
+    font-size: 20px;
+    line-height: 28px;
+    font-family: 'freight-text-pro';
+  }
+
+  .Workshop-discountPrice {
+    margin-bottom: 0px;
+  }
+
+  .Workshop-title,
+  .Workshop-actions,
+  .Workshop-speaker,
+  .Workshop-dateTime,
+  .Workshop-description {
+    position: relative;
+
+    z-index: 2;
+  }
 }

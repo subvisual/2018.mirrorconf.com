@@ -51,13 +51,11 @@ const WORKSHOPS = [
 ];
 
 export default class Workshops extends Component {
-  renderWorkshop = (workshop, index) => {
-    return (
-      <li key={index} className="Workshops-listItem">
-        <Workshop index={index} {...workshop} />
-      </li>
-    );
-  };
+  renderWorkshop = (workshop, index) => (
+    <li key={index} className="Workshops-listItem">
+      <Workshop index={index} {...workshop} />
+    </li>
+  );
 
   renderWorkshops() {
     return (
@@ -67,7 +65,7 @@ export default class Workshops extends Component {
 
   render() {
     return (
-      <section className="Workshops">
+      <section className="Workshops" id="workshops">
         <Light />
         <div className="Workshops-wrapper">{this.renderWorkshops()}</div>
       </section>
