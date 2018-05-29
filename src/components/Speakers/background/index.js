@@ -1,12 +1,13 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { linear } from 'popmotion/easing';
-import { listen, tween, styler, transform } from 'popmotion';
+import { listen, tween, styler } from 'popmotion';
 
 import carSource from './car.svg';
 import backgroundSource from './background.svg';
 import backgroundMobileSource from './background_mobile.jpg';
 
+import PIXI from '../../../utils/pixi';
 import { clientHeight, clientWidth } from '../../../utils/dom';
 
 const point = (x, y = x) => ({ x, y });
@@ -111,7 +112,6 @@ export default class Background extends Component {
 
     this.carTween.seek(progress);
     this.backgroundTween.seek(progress);
-
     this.context.render();
   }
 
@@ -210,7 +210,7 @@ export default class Background extends Component {
   componentDidMount() {
     if (!this.canvasWrapper) return;
 
-    listen(window, 'load').start(() => this.loadContext());
+    this.loadContext();
     listen(window, 'resize').start(() => this.onResize());
   }
 

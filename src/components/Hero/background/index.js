@@ -4,6 +4,7 @@ import { getProgressFromValue } from 'popmotion/calc';
 import { listen, styler, tween, timeline, transform } from 'popmotion';
 import { linear, cubicBezier, easeInOut, circOut } from 'popmotion/easing';
 
+import PIXI from '../../../utils/pixi';
 import { scrollTop } from '../../../utils/dom';
 
 import './index.css';
@@ -311,8 +312,8 @@ export default class Background extends Component {
     if (!height) setTimeout(() => this.onResize(), 100);
 
     this.setState({ height });
+    requestAnimationFrame(() => this.buildCanvas());
 
-    listen(window, 'load').start(() => this.buildCanvas());
     listen(window, 'resize').start(() => this.onResize());
   }
 

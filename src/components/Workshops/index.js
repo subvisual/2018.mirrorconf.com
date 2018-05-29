@@ -1,56 +1,50 @@
 import React, { Component } from 'react';
+import { listen } from 'popmotion';
+import { getProgressFromValue } from 'popmotion/calc';
 
 import Light from '../Light';
 import Workshop from '../Workshop';
+import Towers from './Towers';
+import { clientHeight, scrollTop } from '../../utils/dom';
 
 import './index.css';
-import Overlay from './mike-illustration.svg';
-import MikePicture from './mike.png';
 
-const WORKSHOPS = [
-  {
-    picture: MikePicture,
-    overlay: Overlay,
-    title: 'Design is a Job',
-    speakerName: 'Mike Monteiro',
-    day: 'Day 1',
-    date: 'October 15th - 10AM',
-    description: `
-      Ask 10 people what a product roadmap is and you will get 10
-      different answers! This artifact is an often misunderstood
-      component of product development, but an incredibly important
-      one to get right. Creating a great one is part art and part
-      science. In this session we will talk through the real purpose
-      of a roadmap and how it can be used to get the most out of your
-      project and team. We'll unpack the key steps in the process such
-      as product visioning, themes, prioritization and stakeholder
-      buy-in and alignment as well as and shed some light on the tools
-      and frameworks that can be used to ensure a successful
-      roadmapping effort.`,
-  },
-  {
-    picture: MikePicture,
-    overlay: Overlay,
-    title: 'Design is a Job',
-    speakerName: 'Mike Monteiro',
-    day: 'Day 1',
-    date: 'October 15th - 10AM',
-    description: `
-      Ask 10 people what a product roadmap is and you will get 10
-      different answers! This artifact is an often misunderstood
-      component of product development, but an incredibly important
-      one to get right. Creating a great one is part art and part
-      science. In this session we will talk through the real purpose
-      of a roadmap and how it can be used to get the most out of your
-      project and team. We'll unpack the key steps in the process such
-      as product visioning, themes, prioritization and stakeholder
-      buy-in and alignment as well as and shed some light on the tools
-      and frameworks that can be used to ensure a successful
-      roadmapping effort.`,
-  },
-];
+import WORKSHOPS from './workshops';
 
 export default class Workshops extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { bounds: { top: 0, height: 0, min: 0, max: 0 } };
+  }
+
+  componentDidMount() {
+    if (!this.root) return;
+
+    listen(window, 'load').start(this.calculateBounds);
+    listen(window, 'resize').start(this.calculateBounds);
+  }
+
+  onRoot = root => {
+    this.root = root;
+  };
+
+  progress = () => {
+    const { max, min } = this.state.bounds;
+
+    return getProgressFromValue(min, max - clientHeight(), scrollTop());
+  };
+
+  calculateBounds = () => {
+    const { top, height } = this.root.getBoundingClientRect();
+
+    if (!height) setTimeout(this.calculateBounds, 100);
+    if (height === this.state.height) return;
+
+    const min = top + scrollTop();
+    const max = top + height + scrollTop();
+    this.setState({ bounds: { top, height, min, max } });
+  };
+
   renderWorkshop = (workshop, index) => (
     <li key={index} className="Workshops-listItem">
       <Workshop index={index} {...workshop} />
@@ -65,8 +59,12 @@ export default class Workshops extends Component {
 
   render() {
     return (
-      <section className="Workshops" id="workshops">
-        <Light />
+      <section className="Workshops" id="workshops" ref={this.onRoot}>
+        <Towers
+          progress={this.progress}
+          addTickListener={this.props.addTickListener}
+        />
+        <Light progress={this.progress} />
         <div className="Workshops-wrapper">{this.renderWorkshops()}</div>
       </section>
     );

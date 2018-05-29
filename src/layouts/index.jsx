@@ -114,7 +114,6 @@ const TemplateWrapper = ({ children }) => (
       <link rel="manifest" href="/manifest.json" />
 
       <link rel="stylesheet" href="https://use.typekit.net/wfl2jor.css" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.3/pixi.min.js" />
     </Helmet>
 
     <div className="Layout">{children()}</div>

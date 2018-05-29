@@ -10,16 +10,14 @@
 
 .Speakers-background {
   z-index: 2;
+
+  overflow: hidden;
 }
 
 .Speakers-background canvas {
   width: 100%;
 
   transform: translateZ(0px);
-}
-
-.Speakers-content {
-  z-index: 3;
 }
 
 .Speakers-listWrapper {

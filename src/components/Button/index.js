@@ -1,15 +1,16 @@
 import { calc, pointer, styler, listen, transform } from 'popmotion';
-const { pipe, conditional, linearSpring } = transform;
 import React, { Component } from 'react';
 
 import './index.css';
+
+const { pipe, conditional, linearSpring } = transform;
 
 const LIGHT_SIZE = () => window.innerWidth * 0.25;
 
 const springRange = (from, to, strength) =>
   pipe(
     conditional(v => v < from, linearSpring(strength, from)),
-    conditional(v => v > to, linearSpring(strength, to)),
+    conditional(v => v > to, linearSpring(strength, to))
   );
 
 const spring = springRange(-4, 4, 0.025);
@@ -78,15 +79,15 @@ export default class Button extends Component {
       const textShadowPosition = calc.pointFromAngleAndDistance(
         { x: 0, y: 0 },
         pointerAngle,
-        harderSpring(distance),
+        harderSpring(distance)
       );
 
       this.shadowStyler.set(
         calc.pointFromAngleAndDistance(
           { x: 0, y: 0 },
           pointerAngle,
-          spring(distance),
-        ),
+          spring(distance)
+        )
       );
 
       this.buttonStyler.set({
@@ -105,10 +106,6 @@ export default class Button extends Component {
     this.buttonStyler = styler(this.button);
     this.shadowStyler = styler(this.shadow);
     this.startAnimation();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.controllAnimation(nextProps.pauseAnimation);
   }
 
   componentWillUnmount() {

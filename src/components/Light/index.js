@@ -1,61 +1,62 @@
-import { pointer, styler } from 'popmotion';
+import { pointer, styler, listen, tween } from 'popmotion';
 import React, { Component } from 'react';
 import { clientWidth } from '../../utils/dom';
 
 import './index.css';
 import lightSrc from './light.svg';
 
+const fadeOutTween = elementStyler =>
+  tween({
+    duration: 1000,
+    from: { scale: 1, opacity: 1 },
+    to: { scale: 1, opacity: 0 },
+  }).start(elementStyler.set);
+
+const fadeInTween = elementStyler =>
+  tween({
+    duration: 1000,
+    to: { scale: 1, opacity: 1 },
+    from: { scale: 1, opacity: 0 },
+  }).start(elementStyler.set);
+
 export default class Light extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { animationPaused: false };
-  }
-
   componentDidMount() {
-    if (!this.light) return;
-
-    this.styler = styler(this.light);
+    if (!this.light || !this.styler) return;
 
     this.startAnimation();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.controllAnimation(nextProps.pauseAnimation);
+    listen(document, 'scroll').start(this.controlAnimation);
   }
 
   componentWillUnmount() {
     if (this.animation) return this.animation.stop();
   }
 
-  onLight = light => (this.light = light);
-
-  pauseAnimation = () => {
-    if (!this.animation || !this.styler) return;
-
-    this.animation.stop();
-    this.setState({ animationPaused: true });
+  onLight = light => {
+    this.light = light;
+    this.styler = styler(light);
   };
 
-  resumeAnimation = () => {
-    this.startAnimation();
-    this.setState({ animationPaused: false });
+  pauseAnimation = () => {
+    this.animation.stop();
+    this.animation = null;
+    fadeOutTween(this.styler);
   };
 
   startAnimation = () => {
-    if (!this.styler) return;
-
+    fadeInTween(this.styler);
     this.animation = pointer(this.styler.get)
       .while(() => clientWidth() >= 760)
       .start(this.styler.set);
   };
 
-  controlAnimation = pauseAnimation => {
-    if (pauseAnimation && !this.state.animationPaused) {
+  controlAnimation = () => {
+    const progress = this.props.progress();
+
+    if ((progress < 0 || progress > 1) && this.animation)
       return this.pauseAnimation();
-    } else if (!pauseAnimation && this.state.animationPaused) {
-      return this.resumeAnimation();
-    }
+
+    if (progress >= 0 && progress <= 1 && !this.animation)
+      return this.startAnimation();
   };
 
   render() {

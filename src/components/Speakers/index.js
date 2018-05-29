@@ -1,30 +1,30 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { linear, cubicBezier } from 'popmotion/easing';
+import { linear, easeInOut } from 'popmotion/easing';
 import { getProgressFromValue } from 'popmotion/calc';
-import { listen, tween, styler, transform } from 'popmotion';
+import {
+  tween,
+  listen,
+  styler,
+  keyframes,
+  composite,
+  transform,
+} from 'popmotion';
 
 import './index.css';
 
 import ArcadeFrame from './ArcadeFrame';
-import Background, { RATIO, MOBILE_RATIO } from './Background';
+import { scrollTop, clientHeight, clientWidth } from '../../utils/dom';
 
 import SpeakersList from './speakers_list.svg';
 import SpeakersListMobile from './speakers_list_mobile.svg';
-
-import {
-  scrollTop,
-  scrollHeight,
-  clientHeight,
-  clientWidth,
-} from '../../utils/dom';
+import Background, { RATIO, MOBILE_RATIO } from './Background';
 
 const ratio = () => {
   if (clientWidth() <= 700) return MOBILE_RATIO;
 
   return RATIO;
 };
-
-const quicklyEnter = cubicBezier(0, 1, 0, 1);
 
 export default class Speakers extends Component {
   constructor() {
@@ -56,10 +56,18 @@ export default class Speakers extends Component {
     const { max, min } = this.state.bounds;
     const viewportHeight = clientHeight();
 
-    return getProgressFromValue(min, max - viewportHeight * 2, scrollTop());
+    return getProgressFromValue(min, max - viewportHeight * 2.5, scrollTop());
   };
 
   progressToFadeOut = () => {
+    const viewportHeight = clientHeight();
+    const min = this.state.bounds.max - viewportHeight * 2.5;
+    const max = this.state.bounds.max - viewportHeight;
+
+    return getProgressFromValue(min, max, scrollTop());
+  };
+
+  progressToTurnOff = () => {
     const viewportHeight = clientHeight();
     const min = this.state.bounds.max - viewportHeight * 2;
     const max = this.state.bounds.max - viewportHeight;
@@ -86,26 +94,43 @@ export default class Speakers extends Component {
       .start(this.listStyler.set('y'))
       .pause();
 
-    const fadeOutTween = tween({
-      ease: linear,
-      from: { y: 0, scale: 1 },
-      to: { y: 10, scale: 0.8 },
+    const times = [0, 0.5, 0.75, 1];
+    const ease = linear;
+
+    this.contentStyler.set('overflow', 'hidden');
+
+    const fadeOutTween = composite({
+      y: keyframes({ values: [0, 10, 15, 15], times, ease }),
+      scaleX: keyframes({ values: [1, 0.8, 0.6, 0.6], times, ease }),
+      scaleY: keyframes({ values: [1, 0.8, 0, 0], times, ease }),
+      opacity: keyframes({ values: [1, 1, 0, 0], times, ease: easeInOut }),
     })
       .pipe(transform.transformMap({ y: y => `${y}%` }))
-      .start(values => {
-        this.canvasStyler.set(values);
-        this.contentStyler.set(values);
-      })
+      .start(this.contentStyler.set)
+      .pause();
+
+    const backgroundFade = keyframes({
+      ease,
+      times: [0, 0.5, 0.51],
+      values: ['#a10b53', '#a10b53', '#1c3448', '#1c3448'],
+    })
+      .start(this.rootStyler.set('background'))
       .pause();
 
     const unsubscribe = this.props.addTickListener(() => {
-      listTween.seek(this.progress());
-      fadeOutTween.seek(this.progressToFadeOut());
+      const progress = this.progress();
+      const progressToFade = this.progressToFadeOut();
+
+      listTween.seek(progress);
+      backgroundFade.seek(progressToFade);
+      _.each(fadeOutTween, animation => animation.seek(progressToFade));
     });
 
     this.unsubscribe = () => {
       unsubscribe();
       listTween.stop();
+      backgroundFade.stop();
+      _.each(fadeOutTween, animation => animation.stop());
     };
   }
 
@@ -134,11 +159,8 @@ export default class Speakers extends Component {
   componentDidMount() {
     if (!this.root) return setTimeout(() => this.onResize(), 100);
 
-    listen(window, 'load').start(() => {
-      this.calculateBounds();
-      if (clientWidth() > 700)
-        requestAnimationFrame(() => this.startAnimation());
-    });
+    this.calculateBounds();
+    if (clientWidth() > 700) requestAnimationFrame(() => this.startAnimation());
 
     listen(window, 'resize').start(() => this.onResize());
   }
@@ -157,26 +179,29 @@ export default class Speakers extends Component {
         ref={this.onRoot}
         style={{ height: this.height }}
       >
-        <div className="Speakers-background" ref={this.onCanvasWrapper}>
-          <Background
+        <div className="Speakers-background">
+          <div ref={this.onContentWrapper}>
+            <div style={{ overflow: 'hidden' }} ref={this.onCanvasWrapper}>
+              <Background
+                bounds={this.state.bounds}
+                progress={this.progress}
+                addTickListener={this.props.addTickListener}
+              />
+            </div>
+            <div
+              tabIndex="0"
+              className="Speakers-listWrapper"
+              ref={this.onListWrapper}
+            >
+              {this.renderSpeakersList()}
+            </div>
+          </div>
+          <ArcadeFrame
             bounds={this.state.bounds}
-            progress={this.progress}
+            scrollProgress={this.progressToFadeOut}
             addTickListener={this.props.addTickListener}
           />
         </div>
-        <div className="Speakers-content" ref={this.onContentWrapper}>
-          <div
-            tabIndex="0"
-            className="Speakers-listWrapper"
-            ref={this.onListWrapper}
-          >
-            {this.renderSpeakersList()}
-          </div>
-        </div>
-        <ArcadeFrame
-          bounds={this.state.bounds}
-          addTickListener={this.props.addTickListener}
-        />
       </section>
     );
   }

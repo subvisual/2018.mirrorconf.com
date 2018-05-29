@@ -14,7 +14,7 @@ export default class IndexPage extends Component {
   }
 
   componentDidMount() {
-    listen(window, 'load').start(() => this.startAnimation());
+    this.startAnimation();
   }
 
   shouldComponentUpdate() {
@@ -38,7 +38,7 @@ export default class IndexPage extends Component {
         <Hero addTickListener={this.addTickListener} />
         <About />
         <Speakers addTickListener={this.addTickListener} />
-        <Workshops />
+        <Workshops addTickListener={this.addTickListener} />
         <Location />
       </div>
     );

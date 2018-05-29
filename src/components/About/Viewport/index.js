@@ -42,7 +42,7 @@ const EVENT_STATS = [
   },
   {
     count: '1',
-    description: 'Quizz',
+    description: 'Quiz',
   },
   {
     count: '700+',
@@ -51,28 +51,24 @@ const EVENT_STATS = [
 ];
 
 export default class CommandBar extends Component {
-  renderList = (bulletpoint, index) => {
-    return (
-      <li role="listitem" key={index}>
-        <img aria-hidden="true" src={Bullet} styleName="bullet" />
-        <p styleName="bulletpoint">
-          {bulletpoint.count} {bulletpoint.description}
-        </p>
-      </li>
-    );
-  };
+  renderList = (bulletpoint, index) => (
+    <li role="listitem" key={index}>
+      <img aria-hidden="true" src={Bullet} styleName="bullet" />
+      <p styleName="bulletpoint">
+        {bulletpoint.count} {bulletpoint.description}
+      </p>
+    </li>
+  );
 
-  renderSocialLinks = (socialNetwork, index) => {
-    return (
-      <li role="listitem" styleName="listitem" key={index}>
-        <img aria-hidden="true" src={Bullet} styleName="bullet" />
-        <p styleName="bulletpoint">
-          {socialNetwork.name} -{' '}
-          <a href={socialNetwork.link}>{socialNetwork.link}</a>
-        </p>
-      </li>
-    );
-  };
+  renderSocialLinks = (socialNetwork, index) => (
+    <li role="listitem" styleName="listitem" key={index}>
+      <img aria-hidden="true" src={Bullet} styleName="bullet" />
+      <p styleName="bulletpoint">
+        {socialNetwork.name} -{' '}
+        <a href={socialNetwork.link}>{socialNetwork.link}</a>
+      </p>
+    </li>
+  );
 
   render() {
     return (
