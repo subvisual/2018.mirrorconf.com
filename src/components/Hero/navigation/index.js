@@ -131,11 +131,11 @@ export default class Navigation extends Component {
             <p className="Navigation-linkLabel">Workshops</p>
             {this.renderLinkBackground(WorkshopsPreview)}
           </a>
-          <a onClick={this.onClick} className="Navigation-link isDisabled">
+          <div onClick={this.onClick} className="Navigation-link isDisabled">
             <p className="Navigation-linkLabel">Schedule</p>
             {this.renderLinkBackground(this.state.noise[0])}
             {this.renderMalfunctionNote()}
-          </a>
+          </div>
           <a
             onClick={this.onClick}
             className="Navigation-link"
@@ -147,7 +147,11 @@ export default class Navigation extends Component {
           <div className="Navigation-hall">
             <img className="Navigation-hallEye" src={Hall} />
           </div>
-          <a onClick={this.onClick} className="Navigation-link isDisabled">
+          <a
+            onClick={this.onClick}
+            className="Navigation-link"
+            href="#sponsors"
+          >
             <p className="Navigation-linkLabel">Sponsors</p>
             {this.renderLinkBackground(this.state.noise[2])}
             {this.renderMalfunctionNote()}

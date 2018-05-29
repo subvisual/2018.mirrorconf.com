@@ -7,6 +7,7 @@ import Speakers from '../components/Speakers';
 import Workshops from '../components/Workshops';
 import Schedule from '../components/Schedule';
 import Location from '../components/Location';
+import Sponsors from '../components/Sponsors';
 import Footer from '../components/Footer';
 
 export default class IndexPage extends Component {
@@ -51,6 +52,7 @@ export default class IndexPage extends Component {
         />
         <Schedule />
         <Location />
+        <Sponsors />
         <Footer />
       </div>
     );
