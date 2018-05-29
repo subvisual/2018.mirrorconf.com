@@ -1,17 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { getProgressFromValue } from 'popmotion/calc';
-import { listen, styler, tween, timeline, transform, chain } from 'popmotion';
-import {
-  linear,
-  easeOut,
-  cubicBezier,
-  easeInOut,
-  circIn,
-  circOut,
-} from 'popmotion/easing';
+import { listen, styler, tween, timeline, transform } from 'popmotion';
+import { linear, cubicBezier, easeInOut, circOut } from 'popmotion/easing';
 
-import { scrollTop, clientHeight } from '../../../utils/dom';
+import { scrollTop } from '../../../utils/dom';
 
 import './index.css';
 
@@ -37,7 +30,7 @@ const point = (x, y = x) => ({ x, y });
 const resources = {
   logo: { source: logo, props: { alpha: 0 } },
   path: { source: path, props: { alpha: 0 } },
-  circleShadow: { source: circleShadow },
+  circleShadow: { source: circleShadow, props: { alpha: 1 } },
   circle: { source: circle },
   topCube: { source: topCube, props: { alpha: 0 } },
   lowCube: { source: lowCube, props: { alpha: 0 } },
@@ -64,14 +57,10 @@ const settings = {
   },
 };
 
-const toPercent = { x: x => `${x}%` };
-
-const initializeSprites = (memo, { source }, name) => {
-  return {
-    ...memo,
-    [name]: new PIXI.Sprite.from(source),
-  };
-};
+const initializeSprites = (memo, { source }, name) => ({
+  ...memo,
+  [name]: new PIXI.Sprite.from(source),
+});
 
 const centerSprite = ({ width, height }, sprite) => {
   sprite.anchor = point(0.5);
@@ -119,7 +108,7 @@ export default class Background extends Component {
     const sprites = _.reduce(resources, initializeSprites, {});
     _.forEach(sprites, addSpriteToStage(container));
 
-    let animation = timeline([
+    const animation = timeline([
       {
         track: 'elevator',
         from: { y: height * 0.25, alpha: 0, scale: 0.8 },
@@ -200,13 +189,22 @@ export default class Background extends Component {
         duration: 300,
         ease: cubicBezier(0, 0.49, 0.1, 1),
       },
-      {
-        track: 'circle',
-        to: { rotation: 0, alpha: 1 },
-        from: { rotation: 0.5, alpha: 0 },
-        duration: 2500,
-        ease: cubicBezier(0.15, 1.38, 0.14, 0.97),
-      },
+      [
+        {
+          track: 'circle',
+          to: { rotation: 0, alpha: 1 },
+          from: { rotation: 0.5, alpha: 0 },
+          duration: 2500,
+          ease: cubicBezier(0.15, 1.38, 0.14, 0.97),
+        },
+        {
+          track: 'circleShadow',
+          to: { alpha: 1 },
+          from: { alpha: 0 },
+          duration: 2500,
+          ease: linear,
+        },
+      ],
       '-1500',
       {
         track: 'path',
@@ -246,16 +244,16 @@ export default class Background extends Component {
           timemachineBlur: transform.transformMap({
             scale: transform.interpolate([0, 0.75, 1], [0, 1.2, 1]),
           }),
-        }),
+        })
       )
       .pipe(
         transform.transformMap({
           timemachineBlur: transform.transformMap({ scale: point }),
-        }),
+        })
       )
       .start(values => {
         _.forEach(sprites, (sprite, name) =>
-          this.updateSprite(sprite)(values[name]),
+          this.updateSprite(sprite)(values[name])
         );
         this.contentStyler.set(values.content);
       });
