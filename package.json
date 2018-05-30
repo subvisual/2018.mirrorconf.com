@@ -27,8 +27,9 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
+    "deploy-github": "gatsby build --prefix-paths && gh-pages -d public",
     "deploy-production": "gatsby build && s3-deploy './public/**' --cwd './public/' --bucket mirrorconf.com --deleteRemoved --signatureVersion v4 --distId E3LFA5PNA9AVTY",
-    "deploy-staging": "gatsby build --prefix-paths && gh-pages -d public",
+    "deploy-staging": "gatsby build && s3-deploy './public/**' --cwd './public/' --bucket test.mirrorconf.com --deleteRemoved --signatureVersion v4 --distId E27JZ4QIJH5YQI",
     "develop": "concurrently -k -n \"GATSBY,STORYBOOK\" \"gatsby develop -H 0.0.0.0\" \"start-storybook -p 9001 -c .storybook\"",
     "format": "eslint --fix src/**/*.js* && stylelint --fix src/**/*.css",
     "storybook": "start-storybook -p 9001 -c .storybook",
