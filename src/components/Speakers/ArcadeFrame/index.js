@@ -35,7 +35,7 @@ export default class ArcadeFrame extends Component {
     const times = [0, 0.5, 0.75, 1];
 
     this.frameAnimation = composite({
-      y: keyframes({ ease: linear, values: [-28, 0, 0, -28], times }),
+      y: keyframes({ ease: linear, values: [-15, 0, 0, -20], times }),
       scale: keyframes({ ease: linear, values: [1.33, 1, 1, 1.33], times }),
       opacity: keyframes({
         ease: linear,

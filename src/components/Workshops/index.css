@@ -10,6 +10,14 @@
   cursor: none;
 }
 
+.Workshops-title {
+  text-align: center;
+}
+
+.Workshops-spacer {
+  height: 100vh;
+}
+
 .Workshops-wrapper {
   padding: 120px 20px 0;
 }

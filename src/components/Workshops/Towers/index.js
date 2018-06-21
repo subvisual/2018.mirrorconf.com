@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { listen, tween } from 'popmotion';
+import { listen } from 'popmotion';
+
+import WithNodeBounds from '../../../containers/withNodeBounds';
 
 import './index.css';
 
@@ -11,6 +13,8 @@ import PIXI, {
 } from '../../../utils/pixi';
 import { point } from '../../../utils/2d';
 import thunderPath, { buildThunderLines } from './thunder';
+
+import { clientWidth } from '../../../utils/dom';
 
 import tower from './tower.png';
 
@@ -31,7 +35,7 @@ const RESOURCES = {
   tower2: {
     source: tower,
     props: {
-      position: point(1300, 100),
+      position: point(1300, 300),
       scale: point(0.2),
     },
   },
@@ -39,7 +43,7 @@ const RESOURCES = {
 
 const blur = (a, b, c) => new PIXI.filters.BlurFilter(a, b, c);
 
-export default class Towers extends Component {
+class Towers extends Component {
   constructor(props) {
     super(props);
     this.state = { paused: true, completed: false };
@@ -49,9 +53,6 @@ export default class Towers extends Component {
     if (!this.canvas) return;
 
     this.buildContext(this.canvas);
-
-    listen(window, 'load').start(this.calculateBounds);
-    listen(window, 'resize').start(this.calculateBounds);
 
     listen(document, 'scroll').start(this.onScroll);
     listen(this.canvas, 'mousemove').start(this.onScroll);
@@ -63,12 +64,13 @@ export default class Towers extends Component {
   };
 
   onScroll = () => {
-    const progress = this.props.progress();
-    const { paused } = this.state;
+    const progress = this.props.progressToInvisbile();
+    const { paused, completed } = this.state;
 
     if (progress >= 0 && progress <= 1 && paused) return this.resume();
 
-    if (progress < 0 || progress > 1) return this.reset();
+    if (progress < 0 || (progress > 1 && !paused && !completed))
+      return this.reset();
   };
 
   buildContext = () => {
@@ -94,8 +96,8 @@ export default class Towers extends Component {
     ];
 
     this.lines = [
-      buildThunderLines(point(60, 500), this.styles, this.application),
-      buildThunderLines(point(1300, 50), this.styles, this.application),
+      buildThunderLines(point(60, 520), this.styles, this.application),
+      buildThunderLines(point(1300, 230), this.styles, this.application),
     ];
 
     setTimeout(() => this.application.render(), 1000);
@@ -105,11 +107,18 @@ export default class Towers extends Component {
     if (this.state.paused || this.state.completed) return;
     if (!this.application || !this.lines || !this.lines.length) return;
 
+    let target = null;
     const { x, y } = this.application.renderer.plugins.interaction.mouse.global;
-    const target = point(x, y);
+
+    if (clientWidth() >= 1024 && (x !== -999999 && y !== -999999)) {
+      target = point(x, y);
+    } else {
+      target = point(SETTINGS.width / 2, SETTINGS.height / 2);
+    }
 
     this.lines.forEach(line => {
       const path = thunderPath([line[0].initial], target);
+
       line.forEach(graphic => {
         graphic.clear();
         graphic.lineStyle(graphic.style.size, graphic.style.color);
@@ -122,10 +131,6 @@ export default class Towers extends Component {
 
   resume = () => {
     this.setState({ paused: false });
-    tween({ from: 0, to: 1, duration: 1000 }).start({
-      update: this.update,
-      complete: this.complete,
-    });
   };
 
   pause = () => {
@@ -136,19 +141,21 @@ export default class Towers extends Component {
     this.application.render();
   };
 
-  complete = () => {
-    this.setState({ completed: true });
+  reset = () => {
+    this.setState({ paused: true, completed: false });
 
     this.lines.forEach(line => line.forEach(graphic => graphic.clear()));
 
     this.application.render();
   };
 
-  reset = () => {
-    this.setState({ paused: true, completed: false });
-  };
-
   render() {
-    return <canvas className="Towers" ref={this.onCanvas} />;
+    return (
+      <div className="Towers" ref={this.props.onNode}>
+        <canvas className="Towers-canvas" ref={this.onCanvas} />
+      </div>
+    );
   }
 }
+
+export default WithNodeBounds(Towers);

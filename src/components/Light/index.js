@@ -9,14 +9,14 @@ const fadeOutTween = elementStyler =>
   tween({
     duration: 1000,
     from: { scale: 1, opacity: 1 },
-    to: { scale: 1, opacity: 0 },
+    to: { scale: 0, opacity: 0 },
   }).start(elementStyler.set);
 
 const fadeInTween = elementStyler =>
   tween({
-    duration: 1000,
+    duration: 300,
+    from: { scale: 0.2, opacity: 0 },
     to: { scale: 1, opacity: 1 },
-    from: { scale: 1, opacity: 0 },
   }).start(elementStyler.set);
 
 export default class Light extends Component {
@@ -39,11 +39,20 @@ export default class Light extends Component {
   pauseAnimation = () => {
     this.animation.stop();
     this.animation = null;
-    fadeOutTween(this.styler);
+
+    if (this.fadeIn) {
+      this.fadeIn.stop();
+      this.fadeIn = null;
+      fadeOutTween(this.styler).seek(1);
+    } else {
+      fadeOutTween(this.styler);
+    }
   };
 
-  startAnimation = () => {
-    fadeInTween(this.styler);
+  startAnimation = lightGrowProgress => {
+    if (lightGrowProgress >= 1) fadeInTween(this.styler);
+    else this.fadeIn = fadeInTween(this.styler).pause();
+
     this.animation = pointer(this.styler.get)
       .while(() => clientWidth() >= 760)
       .start(this.styler.set);
@@ -51,12 +60,15 @@ export default class Light extends Component {
 
   controlAnimation = () => {
     const progress = this.props.progress();
+    const lightGrowProgress = this.props.lightGrowProgress();
+
+    if (this.fadeIn) this.fadeIn.seek(lightGrowProgress);
 
     if ((progress < 0 || progress > 1) && this.animation)
       return this.pauseAnimation();
 
     if (progress >= 0 && progress <= 1 && !this.animation)
-      return this.startAnimation();
+      return this.startAnimation(lightGrowProgress);
   };
 
   render() {

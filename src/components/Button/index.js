@@ -20,33 +20,41 @@ export default class Button extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { animationPaused: false };
+    this.state = { position: { x: 0, y: 0 }, size: { x: 0, y: 0 } };
   }
 
-  onButton = button => (this.button = button);
-
-  onShadow = shadow => (this.shadow = shadow);
-
-  pauseAnimation = () => {
-    if (!this.animation || !this.shadowStyler) return;
-
-    this.animation.stop();
-    this.shadowStyler.set({ x: '2px', y: '2px' });
-    this.setState({ animationPaused: true });
+  onButton = button => {
+    this.button = button;
+    this.buttonStyler = styler(button);
   };
 
-  resumeAnimation = () => {
-    this.startAnimation();
-    this.setState({ animationPaused: false });
+  onShadow = shadow => {
+    this.shadow = shadow;
+    this.shadowStyler = styler(shadow);
   };
 
-  controlAnimation = pauseAnimation => {
-    if (pauseAnimation && !this.state.animationPaused) {
-      return this.pauseAnimation();
-    } else if (!pauseAnimation && this.state.animationPaused) {
-      return this.resumeAnimation();
-    }
-  };
+  get size() {
+    return this.state.size;
+  }
+
+  set size(point) {
+    this.setState({ size: point });
+  }
+
+  get position() {
+    return this.state.position;
+  }
+
+  set position(point) {
+    this.setState({ position: point });
+  }
+
+  get center() {
+    return {
+      x: this.position.x + this.size.x / 2,
+      y: this.position.y + this.size.y / 2,
+    };
+  }
 
   isVisible = ({ cursor, text }) => calc.distance(cursor, text) < LIGHT_SIZE();
 
@@ -54,26 +62,10 @@ export default class Button extends Component {
     if (!this.button || !this.shadowStyler || !this.buttonStyler) return;
 
     this.animation = pointer().start(cursorPosition => {
-      const buttonPosition = {
-        x: this.button.getBoundingClientRect().x,
-        y: this.button.getBoundingClientRect().top,
-      };
+      const distance = calc.distance(this.center, cursorPosition);
+      const pointerAngle = calc.angle(cursorPosition, this.center);
 
-      const buttonSize = {
-        x: this.buttonStyler.get('width'),
-        y: this.buttonStyler.get('height'),
-      };
-
-      const buttonCenter = {
-        x: buttonPosition.x + buttonSize.x / 2,
-        y: buttonPosition.y + buttonSize.y / 2,
-      };
-
-      const pointerAngle = calc.angle(cursorPosition, buttonCenter);
-
-      const distance = calc.distance(buttonCenter, cursorPosition);
-
-      if (!this.isVisible({ cursor: cursorPosition, text: buttonCenter }))
+      if (!this.isVisible({ cursor: cursorPosition, text: this.center }))
         return;
 
       const textShadowPosition = calc.pointFromAngleAndDistance(
@@ -100,12 +92,21 @@ export default class Button extends Component {
     });
   }
 
+  calculatePosition = () => {
+    const { x, top, width, height } = this.button.getBoundingClientRect();
+
+    this.position = { x, y: top };
+    this.size = { x: width, y: height };
+  };
+
   componentDidMount() {
     if (!this.shadow || !this.button) return;
 
-    this.buttonStyler = styler(this.button);
-    this.shadowStyler = styler(this.shadow);
-    this.startAnimation();
+    this.calculatePosition();
+    listen(window, 'resize').start(this.calculatePosition);
+    listen(document, 'scroll').start(this.calculatePosition);
+
+    requestAnimationFrame(() => this.startAnimation());
   }
 
   componentWillUnmount() {

@@ -62,7 +62,7 @@ export default class Speakers extends Component {
   progressToFadeOut = () => {
     const viewportHeight = clientHeight();
     const min = this.state.bounds.max - viewportHeight * 2.5;
-    const max = this.state.bounds.max - viewportHeight;
+    const max = this.state.bounds.max - viewportHeight / 2;
 
     return getProgressFromValue(min, max, scrollTop());
   };
@@ -100,6 +100,7 @@ export default class Speakers extends Component {
     this.contentStyler.set('overflow', 'hidden');
 
     const fadeOutTween = composite({
+      z: tween({ from: 1, to: 1 }),
       y: keyframes({ values: [0, 10, 15, 15], times, ease }),
       scaleX: keyframes({ values: [1, 0.8, 0.6, 0.6], times, ease }),
       scaleY: keyframes({ values: [1, 0.8, 0, 0], times, ease }),

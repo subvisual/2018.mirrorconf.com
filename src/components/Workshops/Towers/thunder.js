@@ -15,10 +15,10 @@ const thunderPoint = (points, index, target, middlePoints) => {
   const pointNoise = Number(noise.perlin2(lastPoint.x, lastPoint.y));
   const normal = calc.pointFromAngleAndDistance(lastPoint, angle, stepLength);
 
-  const angleA = _.random(70, 90);
+  const angleA = _.random(0, 180);
   const lengthA = _.random(40, 140) * pointNoise;
 
-  const angleB = _.random(70, 90);
+  const angleB = _.random(0, 130);
   const lengthB = _.random(40, 140) * pointNoise;
 
   return mean(
@@ -27,7 +27,7 @@ const thunderPoint = (points, index, target, middlePoints) => {
   );
 };
 
-const thunderPath = (points, target, middlePoints = 90, current = 1) => {
+const thunderPath = (points, target, middlePoints = 60, current = 1) => {
   if (current >= middlePoints) return [...points, target];
 
   return thunderPath(

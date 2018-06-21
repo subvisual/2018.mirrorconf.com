@@ -10,6 +10,7 @@ import { clientHeight, scrollTop } from '../../utils/dom';
 import './index.css';
 
 import WORKSHOPS from './workshops';
+import workshopsTitle from './workshops_title.png';
 
 export default class Workshops extends Component {
   constructor(props) {
@@ -32,6 +33,13 @@ export default class Workshops extends Component {
     const { max, min } = this.state.bounds;
 
     return getProgressFromValue(min, max - clientHeight(), scrollTop());
+  };
+
+  lightGrowProgress = () => {
+    const { min } = this.state.bounds;
+    const height = clientHeight() * 2 * 0.6;
+
+    return getProgressFromValue(min, min + height, scrollTop());
   };
 
   calculateBounds = () => {
@@ -60,11 +68,15 @@ export default class Workshops extends Component {
   render() {
     return (
       <section className="Workshops" id="workshops" ref={this.onRoot}>
-        <Towers
+        <Light
           progress={this.progress}
-          addTickListener={this.props.addTickListener}
+          lightGrowProgress={this.lightGrowProgress}
         />
-        <Light progress={this.progress} />
+        <div className="Workshops-spacer" />
+        <Towers addTickListener={this.props.addTickListener} />
+        <h2 className="Workshops-title">
+          <img src={workshopsTitle} alt="Workshops written with lamps" />
+        </h2>
         <div className="Workshops-wrapper">{this.renderWorkshops()}</div>
       </section>
     );
