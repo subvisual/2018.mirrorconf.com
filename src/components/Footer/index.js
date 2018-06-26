@@ -59,7 +59,7 @@ export default class Footer extends Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://ti.to/subvisual/mirror-conf-2018/with/krxd0s3-khw"
+                    href="https://ti.to/subvisual/mirror-conf-2018"
                     className="Footer-link"
                   >
                     Buy your ticket

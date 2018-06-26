@@ -9,19 +9,25 @@ import { clientHeight, scrollTop } from '../../utils/dom';
 
 import './index.css';
 
-import WORKSHOPS from './workshops';
-
 export default class Workshops extends Component {
   constructor(props) {
     super(props);
     this.state = { bounds: { top: 0, height: 0, min: 0, max: 0 } };
   }
 
+  componentWillUnmount() {
+    if (this.onLoadListener) this.onLoadListener.stop();
+
+    if (this.onResizeListener) this.onResizeListener.stop();
+  }
+
   componentDidMount() {
     if (!this.root) return;
 
-    listen(window, 'load').start(this.calculateBounds);
-    listen(window, 'resize').start(this.calculateBounds);
+    this.onLoadListener = listen(window, 'load').start(this.calculateBounds);
+    this.onResizeListener = listen(window, 'resize').start(
+      this.calculateBounds
+    );
   }
 
   onRoot = root => {
@@ -54,13 +60,14 @@ export default class Workshops extends Component {
 
   renderWorkshop = (workshop, index) => (
     <li key={index} className="Workshops-listItem">
-      <Workshop index={index} {...workshop} />
+      <Workshop index={index} {...workshop.node.frontmatter} />
     </li>
   );
 
   renderWorkshops() {
+    const { edges: workshops } = this.props.data.allMarkdownRemark;
     return (
-      <ul className="Workshops-list">{WORKSHOPS.map(this.renderWorkshop)}</ul>
+      <ul className="Workshops-list">{workshops.map(this.renderWorkshop)}</ul>
     );
   }
 

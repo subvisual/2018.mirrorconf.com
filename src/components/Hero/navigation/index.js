@@ -11,6 +11,7 @@ import Noise2 from './noise_2.gif';
 import Noise3 from './noise_3.gif';
 import AboutPreview from './about_preview.jpg';
 import SpeakersPreview from './speakers_preview.jpg';
+import LocationPreview from './location_preview.jpg';
 import WorkshopsPreview from './workshops_preview.jpg';
 
 import { clientHeight } from '../../../utils/dom';
@@ -141,7 +142,7 @@ export default class Navigation extends Component {
             href="#location"
           >
             <p className="Navigation-linkLabel">Location</p>
-            {this.renderLinkBackground(this.state.noise[1])}
+            {this.renderLinkBackground(LocationPreview)}
           </a>
           <div className="Navigation-hall">
             <img className="Navigation-hallEye" src={Hall} />

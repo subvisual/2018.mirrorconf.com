@@ -1,7 +1,7 @@
 .Schedule {
   padding: 140px 0;
 
-  background: linear-gradient(180deg, #1c3448 0%, #ffd7bb 100%);
+  background: linear-gradient(to bottom, #1c3448 0%, #ffd7bb 100%);
 }
 
 .Schedule-image,

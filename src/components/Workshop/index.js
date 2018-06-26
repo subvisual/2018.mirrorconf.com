@@ -5,6 +5,9 @@ import Button from '../Button';
 import TextShadow from '../TextShadow';
 import OverlayImage from './OverlayImage';
 
+import IconDate from './icon-date.png';
+import IconTicket from './icon-ticket.png';
+
 import './index.css';
 
 const isOdd = number => number % 2;
@@ -12,14 +15,16 @@ const isOdd = number => number % 2;
 export default class Workshop extends Component {
   render() {
     const {
-      day,
+      path,
+      time,
       date,
       title,
       index,
-      picture,
+      photo,
       overlay,
-      speakerName,
-      description,
+      speaker,
+      excerpt,
+      ticket,
     } = this.props;
 
     const className = classNames({
@@ -30,24 +35,40 @@ export default class Workshop extends Component {
     return (
       <div className={className}>
         <div className="Workshop-column">
-          <TextShadow className="Workshop-dateTime">
-            <p className="Workshop-day">{day}</p>
-            <p className="Workshop-date">{date}</p>
+          <TextShadow className="Workshop-titleMobile">
+            <h3 className="Workshop-title">{title}</h3>
           </TextShadow>
-          <OverlayImage alt="Mike" src={picture} overlay={overlay} />
-          <div className="Workshop-actions">
+          <OverlayImage alt="Mike" src={photo} overlay={overlay} />
+          <h4 className="Workshop-speaker">by {speaker}</h4>
+          <div className="Workshop-information">
             <TextShadow>
-              <p className="Workshop-price">400€</p>
-              <p className="Workshop-discountPrice">250€ with Full Ticket</p>
+              <img className="Workshop-icon" alt="" src={IconTicket} />
+              <p className="Workshop-price">350€</p>
+              <p className="Workshop-discountPrice">
+                300€ with Conference Ticket
+              </p>
             </TextShadow>
-            <Button>Buy your ticket</Button>
+            <TextShadow>
+              <img className="Workshop-icon" alt="" src={IconDate} />
+              <p className="Workshop-date">{date}</p>
+              <p className="Workshop-day">{time}</p>
+            </TextShadow>
+          </div>
+          <div className="Workshop-actions">
+            <Button fullWidth href="https://ti.to/subvisual/mirror-conf-2018/">
+              Buy your ticket
+            </Button>
           </div>
         </div>
-        <TextShadow className="Workshop-column">
-          <h3 className="Workshop-title">{title}</h3>
-          <h4 className="Workshop-speaker">with {speakerName}</h4>
-          <p className="Workshop-description">{description}</p>
-        </TextShadow>
+        <div className="Workshop-column">
+          <TextShadow>
+            <h3 className="Workshop-title">{title}</h3>
+          </TextShadow>
+          <p className="Workshop-description">{excerpt}</p>
+          <div className="Workshop-actions">
+            <Button href={path}>Read More</Button>
+          </div>
+        </div>
       </div>
     );
   }

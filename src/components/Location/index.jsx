@@ -28,10 +28,11 @@ export default class Location extends Component {
               <img
                 className="Location-backgroundImage"
                 src={locationBackground}
+                alt=""
               />
             </div>
           </div>
-          <img src={path} />
+          <img style={{ maxWidth: '100%' }} alt="" src={path} />
         </div>
 
         {/* <div className="Location-accommodations">

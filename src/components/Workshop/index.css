@@ -3,8 +3,27 @@
 
   display: flex;
   flex-direction: column;
+}
 
-  padding-bottom: calc(108px + 48px + 28px); /* actions height + spacing */
+.Workshop-icon {
+  max-height: 15px;
+
+  margin-bottom: 8px;
+}
+
+.Workshop-information {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  z-index: 2;
+}
+
+.Workshop-information div:not(:first-child) {
+  margin-top: 20px;
 }
 
 .Workshop-column {
@@ -12,16 +31,16 @@
 }
 
 .Workshop-column:not(:first-child) {
-  margin-top: 20px;
+  margin-top: 29px;
 }
 
 .Workshop-actions {
-  position: absolute;
-
-  bottom: 0;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
+
+  margin: 29px 0;
 
   z-index: 2;
 }
@@ -31,24 +50,29 @@
 }
 
 .Workshop-title {
+  display: none;
+
   color: #1c3448;
   font-size: 40px;
   line-height: 52px;
   font-weight: bold;
   font-family: 'freight-text-pro';
+
+  margin-bottom: 28px;
+}
+
+.Workshop-titleMobile .Workshop-title {
+  display: block;
 }
 
 .Workshop-day {
   display: inline-block;
-
-  opacity: 0.6;
 }
 
 .Workshop-speaker {
   margin-bottom: 28px;
 }
 
-.Workshop-day,
 .Workshop-description {
   color: #1c3448;
   font-size: 20px;
@@ -62,27 +86,117 @@
   line-height: 20px;
 }
 
+.Workshop-description h2 {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  font-family: 'freight-text-pro';
+
+  margin-bottom: 8px;
+}
+
+.Workshop-link {
+  display: block;
+  position: relative;
+
+  color: #1c3448;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: 'lato';
+  font-weight: bold;
+
+  z-index: 2;
+
+  margin-top: 60px;
+}
+
+.Workshop-link.is-first {
+  margin-top: 0;
+  margin-bottom: 128px;
+}
+
+.Workshop-link + .Workshop-link {
+  margin-top: 28px;
+}
+
+.Workshop-description h2:first-child {
+  margin-top: 40px;
+}
+
+.Workshop-description * + h2 {
+  margin-top: 64px;
+}
+
+.Workshop-description *:not(h2) + h3 {
+  margin: 40px 0;
+}
+
+.Workshop-description h2 + p,
+.Workshop-description h2 + ul {
+  margin-top: 28px;
+}
+
+.Workshop-description h3 {
+  font-size: 18px;
+  line-height: 20px;
+  font-family: 'freight-text-pro';
+
+  margin-bottom: 28px;
+}
+
+.Workshop-description p {
+  margin-bottom: 28px;
+}
+
+.Workshop-description strong {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.Workshop-description ul {
+  margin-bottom: 28px;
+}
+
+.Workshop-description ul ul {
+  margin-bottom: 0px;
+}
+
+.Workshop-description li {
+  list-style-type: circle;
+}
+
+.Workshop-description a {
+  color: #1c3448;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: 'lato';
+  font-weight: bold;
+}
+
 .Workshop-date,
 .Workshop-price {
   color: #1c3448;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 20px;
   font-weight: bold;
   font-family: 'lato';
 }
 
+.Workshop-day,
 .Workshop-speaker,
 .Workshop-discountPrice {
-  opacity: 0.6;
-
   color: #1c3448;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 20px;
   font-family: 'freight-text-pro';
 }
 
+.Workshop-speaker {
+  font-weight: bold;
+}
+
 .Workshop-discountPrice {
-  margin-bottom: 28px;
+  margin-bottom: 14px;
 }
 
 .Workshop-title,
@@ -94,9 +208,22 @@
   z-index: 2;
 }
 
+.Workshop-price,
+.Workshop-title,
+.Workshop-speaker,
+.Workshop-dateTime,
+.Workshop-description,
+.Workshop-discountPrice {
+  cursor: text;
+}
+
 @media screen and (min-width: 769px) {
   .Workshop {
     flex-direction: row;
+  }
+
+  .Workshop-icon {
+    max-height: 20px;
   }
 
   .Workshop.Workshop--alternate {
@@ -132,8 +259,7 @@
   }
 
   .Workshop-dateTime {
-    width: 280px;
-    margin-left: calc(100% - 280px);
+    width: 100%;
     margin-bottom: 60px;
   }
 
@@ -146,19 +272,66 @@
     line-height: 64px;
   }
 
+  .Workshop-date,
+  .Workshop-price {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
   .Workshop-description {
     font-size: 20px;
     line-height: 28px;
   }
 
+  .Workshop-description h2 {
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: bold;
+
+    margin-bottom: 8px;
+  }
+
+  .Workshop-description * + h2 {
+    margin-top: 64px;
+  }
+
+  .Workshop-description h2 + p {
+    margin-top: 28px;
+  }
+
+  .Workshop-description h3 {
+    font-size: 28px;
+    line-height: 40px;
+    font-style: normal;
+    opacity: 0.6;
+  }
+
+  .Workshop-description strong {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: bold;
+  }
+
+  .Workshop-description a {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: bold;
+  }
+
+  .Workshop-day,
   .Workshop-speaker,
   .Workshop-discountPrice {
-    opacity: 0.6;
+    opacity: 0.8;
 
     color: #1c3448;
     font-size: 20px;
     line-height: 28px;
     font-family: 'freight-text-pro';
+  }
+
+  .Workshop-speaker {
+    opacity: 1;
+    font-weight: bold;
   }
 
   .Workshop-discountPrice {
@@ -173,5 +346,21 @@
     position: relative;
 
     z-index: 2;
+  }
+
+  .Workshop-information {
+    flex-direction: row;
+  }
+
+  .Workshop-title {
+    display: block;
+  }
+
+  .Workshop-titleMobile {
+    display: none;
+  }
+
+  .Workshop-information div:not(:first-child) {
+    margin-top: 0px;
   }
 }

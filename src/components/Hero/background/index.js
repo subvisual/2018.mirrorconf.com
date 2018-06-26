@@ -91,13 +91,15 @@ export default class Background extends Component {
   };
 
   updateSprite = sprite => values =>
-    _.forEach(values, (value, name) => (sprite[name] = value));
+    _.forEach(values, (value, name) => {
+      sprite[name] = value;
+    });
 
-  buildCanvas() {
+  buildCanvas = () => {
     if (!this.root) return;
 
     const { width, height, options } = settings;
-    const context = new PIXI.Application(width, height, options);
+    const context = new PIXI.Application({ width, height, ...options });
 
     this.root.appendChild(context.view);
 
@@ -273,19 +275,15 @@ export default class Background extends Component {
     this.props.addTickListener(() => {
       const progress = this.scrollProgress();
 
-      if (active() && progress > 0)
-        requestAnimationFrame(() => animation.pause());
-      else if (!active() && progress === 0)
-        requestAnimationFrame(() => animation.resume());
+      if (active() && progress > 0) animation.pause();
+      else if (!active() && progress === 0) animation.resume();
 
       if (progress < 0 || progress > 1) return;
 
       backgroundTween.seek(progress);
       context.render();
     });
-
-    context.render();
-  }
+  };
 
   scrollProgress = () => {
     if (!this.state.height) return 0;
@@ -293,7 +291,7 @@ export default class Background extends Component {
     return getProgressFromValue(0, this.state.height, scrollTop());
   };
 
-  onResize() {
+  onResize = () => {
     if (!this.root) return;
     const { height } = this.root.getBoundingClientRect();
 
@@ -302,6 +300,12 @@ export default class Background extends Component {
     if (height === this.state.height) return;
 
     this.setState({ height });
+  };
+
+  componentWillUnmount() {
+    if (this.onLoadListener) this.onLoadListener.stop();
+
+    if (this.onResizeListener) this.onResizeListener.stop();
   }
 
   componentDidMount() {
@@ -312,9 +316,10 @@ export default class Background extends Component {
     if (!height) setTimeout(() => this.onResize(), 100);
 
     this.setState({ height });
-    requestAnimationFrame(() => this.buildCanvas());
+    requestAnimationFrame(this.buildCanvas);
 
-    listen(window, 'resize').start(() => this.onResize());
+    this.onLoadListener = listen(window, 'load').start(this.onResize);
+    this.onResizeListener = listen(window, 'resize').start(this.onResize);
   }
 
   render() {
@@ -334,7 +339,7 @@ export default class Background extends Component {
           </div>
           <a
             className="Background-cta"
-            href="https://ti.to/subvisual/mirror-conf-2018/with/krxd0s3-khw"
+            href="https://ti.to/subvisual/mirror-conf-2018/"
             target="_blank"
           >
             <div className="Background-ctaGlow" />
@@ -346,7 +351,7 @@ export default class Background extends Component {
             href="/sponsorship_prospectus_2018.pdf"
             target="_blank"
           >
-            Sponsor us!
+            Sponsor us
           </a>
         </div>
       </div>

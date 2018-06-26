@@ -9,6 +9,7 @@
   line-height: 28px;
   font-family: 'freight-text-pro';
   text-align: center;
+  text-decoration: none;
 
   border: 2px solid #1c3448;
 
@@ -17,6 +18,10 @@
   z-index: 1;
 
   transition: transform 0.3s ease-out;
+}
+
+.Button.Button--fullWidth {
+  width: 100%;
 }
 
 .Button:hover {

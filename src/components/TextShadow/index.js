@@ -2,9 +2,11 @@ import _ from 'lodash';
 import React, { Children, Component, cloneElement } from 'react';
 import { calc, pointer, styler, listen, transform } from 'popmotion';
 
+import { clientWidth } from '../../utils/dom';
+
 const { pipe, conditional, linearSpring } = transform;
 
-const LIGHT_SIZE = () => window.innerWidth * 0.6;
+const LIGHT_SIZE = () => clientWidth() * 0.6;
 
 const springRange = (from, to, strength) =>
   pipe(
@@ -19,13 +21,10 @@ const invertVec = a => ({ x: -a.x, y: -a.y });
 const multiplyVec = (a, b) => ({ x: a.x * b.x, y: a.y * b.y });
 const inverVecAxis = axis => a => ({ [axis]: -a[axis], ...a });
 
-const insideVisibleRadious = lightSource => point => {
-  const visibleRadious = LIGHT_SIZE() * 0.5;
+const insideVisibleRadious = (lightSource, visibleRadious) => point =>
+  calc.distance(lightSource, point) < visibleRadious;
 
-  return calc.distance(lightSource, point) < visibleRadious;
-};
-
-const isVisible = (lightSource, element, size) => {
+const isVisible = (lightSource, visibleRadious, element, size) => {
   const halfSize = multiplyVec(size, { x: 0.5, y: 0.5 });
 
   const topRight = addVec(element, halfSize);
@@ -35,15 +34,20 @@ const isVisible = (lightSource, element, size) => {
 
   return _.some(
     [topRight, bottomLeft, topLeft, bottomRight],
-    insideVisibleRadious(lightSource)
+    insideVisibleRadious(lightSource, visibleRadious)
   );
 };
 
-const getElementPosition = lightSource => element => ({
+const getElementPosition = (lightSource, visibleRadious) => element => ({
   ...element,
   angle: calc.angle(lightSource, element.center),
   distance: calc.distance(lightSource, element.center),
-  isVisible: isVisible(lightSource, element.center, element.size),
+  isVisible: isVisible(
+    lightSource,
+    visibleRadious,
+    element.center,
+    element.size
+  ),
 });
 
 const setShadowPosition = element => {
@@ -61,8 +65,8 @@ const setShadowPosition = element => {
   });
 };
 
-const textShadowAnimation = lightSource =>
-  pipe(getElementPosition(lightSource), setShadowPosition);
+const textShadowAnimation = (lightSource, visibleRadious) =>
+  pipe(getElementPosition(lightSource, visibleRadious), setShadowPosition);
 
 const calculateBounds = node => {
   const { x, top, width, height } = node.getBoundingClientRect();
@@ -93,9 +97,18 @@ export default class TextShadow extends Component {
     this.listener = null;
   }
 
+  componentWillUnmount() {
+    if (this.onResizeListener) this.onResizeListener.stop();
+    if (this.onScrollListener) this.onScrollListener.stop();
+  }
+
   componentDidMount() {
-    listen(window, 'resize').start(this.recalculateElements);
-    listen(document, 'scroll').start(this.recalculateElements);
+    this.onResizeListener = listen(window, 'resize').start(
+      this.recalculateElements
+    );
+    this.onScrollListener = listen(document, 'scroll').start(
+      this.recalculateElements
+    );
   }
 
   recalculateElements = () => {
@@ -107,7 +120,14 @@ export default class TextShadow extends Component {
   };
 
   onLightSourceMove = lightSource => {
-    this.elements.forEach(textShadowAnimation(lightSource));
+    const visibleRadious = LIGHT_SIZE() * 0.5;
+
+    const updateFunc = textShadowAnimation(lightSource, visibleRadious);
+
+    let i = this.elements.length;
+    while (i--) {
+      updateFunc(this.elements[i]);
+    }
   };
 
   stopAnimations = () => {

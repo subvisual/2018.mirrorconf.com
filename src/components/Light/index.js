@@ -1,9 +1,10 @@
+import classNames from 'classnames';
 import { pointer, styler, listen, tween } from 'popmotion';
 import React, { Component } from 'react';
 import { clientWidth } from '../../utils/dom';
 
 import './index.css';
-import lightSrc from './light.svg';
+import lightSrc from './light.png';
 
 const fadeOutTween = elementStyler =>
   tween({
@@ -43,15 +44,18 @@ export default class Light extends Component {
     if (this.fadeIn) {
       this.fadeIn.stop();
       this.fadeIn = null;
-      fadeOutTween(this.styler).seek(1);
+      fadeOutTween(this.styler);
     } else {
       fadeOutTween(this.styler);
     }
   };
 
   startAnimation = lightGrowProgress => {
-    if (lightGrowProgress >= 1) fadeInTween(this.styler);
-    else this.fadeIn = fadeInTween(this.styler).pause();
+    if (lightGrowProgress >= 1 && lightGrowProgress >= 0.5) {
+      fadeInTween(this.styler);
+    } else if (!this.fadeIn) {
+      this.fadeIn = fadeInTween(this.styler).pause();
+    }
 
     this.animation = pointer(this.styler.get)
       .while(() => clientWidth() >= 760)
@@ -72,11 +76,13 @@ export default class Light extends Component {
   };
 
   render() {
+    const className = classNames({ Light: true, 'is-fixed': this.props.fixed });
+
     return (
-      <div className="Light">
+      <div className={className}>
         <div className="Light-wrapper">
           <div className="Light-imageWrapper" ref={this.onLight}>
-            <img className="Light-image" src={lightSrc} />
+            <img className="Light-image" src={lightSrc} alt="" />
           </div>
         </div>
       </div>

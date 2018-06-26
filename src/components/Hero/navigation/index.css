@@ -231,11 +231,23 @@
   }
 
   .Navigation-linkBackground {
-    height: 100%;
+    top: 50%;
+    left: 50%;
+
+    min-height: 100%;
+    min-width: 100%;
 
     animation: none;
 
-    transform: scale(1.2);
+    transform: translate(-50%, -50%);
+
+    transition: transform 2.8s ease-in-out;
+  }
+
+  .Navigation-link:hover .Navigation-linkBackground {
+    transform: translate(-50%, -50%) scale(1.2);
+
+    transition: all 0.8s easeInOut;
   }
 
   .Navigation-hall {

@@ -13,7 +13,7 @@ export default WrappedComponent =>
         node: undefined,
         mounted: false,
         attempts: 0,
-        bounds: { min: 0, max: 0, width: 0, height: 0 },
+        bounds: { x: 0, min: 0, max: 0, width: 0, height: 0 },
         listeners: [],
       };
     }
@@ -74,10 +74,28 @@ export default WrappedComponent =>
       this.setState({ listeners: [...this.listeners, ...listeners] });
     }
 
-    isVisible = () => this.min <= scrollTop() && this.max >= scrollTop();
+    get center() {
+      return {
+        x: this.bounds.x + this.bounds.width / 2,
+        y: this.min + this.bounds.height / 2,
+      };
+    }
 
-    progressToInvisbile = () =>
-      calc.getProgressFromValue(this.min, this.max, scrollTop());
+    progressToVisible = (offset = 0) =>
+      calc.getProgressFromValue(0, this.min - offset, scrollTop());
+
+    progressToInvisbile = (offset = 0) =>
+      calc.getProgressFromValue(this.min, this.max - offset, scrollTop());
+
+    isVisible = (offset = 0) => {
+      const minVisibleY = scrollTop();
+      const maxVisibleY = scrollTop() + clientHeight() - offset;
+
+      if (maxVisibleY - minVisibleY >= this.bounds.height)
+        return this.min >= minVisibleY && this.max <= maxVisibleY;
+
+      return this.max >= minVisibleY && maxVisibleY >= this.min;
+    };
 
     wait = () => {
       if (this.attempts > 3) return;
@@ -87,13 +105,14 @@ export default WrappedComponent =>
     };
 
     updateBounds = () => {
-      const { top, width, height } = this.node.getBoundingClientRect();
+      const { x, top, width, height } = this.node.getBoundingClientRect();
 
       this.bounds = {
+        x,
         width,
         height,
         min: top + scrollTop(),
-        max: top + height + scrollTop() - clientHeight(),
+        max: top + scrollTop() + height,
       };
     };
 
@@ -104,6 +123,7 @@ export default WrappedComponent =>
       const onWindowResize = listen(window, 'resize').start(this.updateBounds);
 
       this.listeners = [onWindowLoad, onWindowResize];
+      this.updateBounds();
     };
 
     stopTracking = () => {
@@ -121,12 +141,12 @@ export default WrappedComponent =>
 
     componentWillUnmount() {
       this.stopTracking();
+      this.listeners.forEach(listener => listener.stop());
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-      if (_.isEqual(this.state, nextState)) return false;
-
-      if (_.isEqual(this.props, nextProps)) return false;
+      if (_.isEqual(this.state, nextState) && _.isEqual(this.props, nextProps))
+        return false;
 
       return true;
     }
@@ -136,7 +156,9 @@ export default WrappedComponent =>
         <WrappedComponent
           {...this.props}
           bounds={this.bounds}
+          center={this.center}
           isVisible={this.isVisible}
+          progressToVisible={this.progressToVisible}
           progressToInvisbile={this.progressToInvisbile}
           onNode={node => {
             this.node = node;

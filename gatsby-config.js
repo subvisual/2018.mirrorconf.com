@@ -6,6 +6,7 @@ module.exports = {
   },
   pathPrefix: '/2018.mirrorconf.com',
   plugins: [
+    'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-css-modules',
     {
@@ -20,5 +21,13 @@ module.exports = {
         postCssPlugins: [postCSSCustomProperties()],
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data`,
+        name: 'workshops',
+      },
+    },
+    'gatsby-transformer-remark',
   ],
 };

@@ -1,11 +1,12 @@
-import { calc, pointer, styler, listen, transform } from 'popmotion';
+import classNames from 'classnames';
+import { calc, pointer, styler, transform } from 'popmotion';
 import React, { Component } from 'react';
 
 import './index.css';
 
-const { pipe, conditional, linearSpring } = transform;
+import WithNodeBounds from '../../containers/withNodeBounds';
 
-const LIGHT_SIZE = () => window.innerWidth * 0.25;
+const { pipe, conditional, linearSpring } = transform;
 
 const springRange = (from, to, strength) =>
   pipe(
@@ -16,14 +17,13 @@ const springRange = (from, to, strength) =>
 const spring = springRange(-4, 4, 0.025);
 const harderSpring = springRange(-3, 3, 0.01);
 
-export default class Button extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { position: { x: 0, y: 0 }, size: { x: 0, y: 0 } };
+class Button extends Component {
+  get center() {
+    return this.props.center;
   }
 
   onButton = button => {
+    this.props.onNode(button);
     this.button = button;
     this.buttonStyler = styler(button);
   };
@@ -33,80 +33,44 @@ export default class Button extends Component {
     this.shadowStyler = styler(shadow);
   };
 
-  get size() {
-    return this.state.size;
-  }
+  update = cursorPosition => {
+    if (!this.props.isVisible()) return;
 
-  set size(point) {
-    this.setState({ size: point });
-  }
+    const { x, pageY: y } = cursorPosition;
+    const distance = calc.distance(this.center, { x, y });
+    const pointerAngle = calc.angle({ x, y }, this.center);
 
-  get position() {
-    return this.state.position;
-  }
+    const textShadowPosition = calc.pointFromAngleAndDistance(
+      { x: 0, y: 0 },
+      pointerAngle,
+      harderSpring(distance)
+    );
 
-  set position(point) {
-    this.setState({ position: point });
-  }
+    this.shadowStyler.set(
+      calc.pointFromAngleAndDistance(
+        { x: 0, y: 0 },
+        pointerAngle,
+        spring(distance)
+      )
+    );
 
-  get center() {
-    return {
-      x: this.position.x + this.size.x / 2,
-      y: this.position.y + this.size.y / 2,
-    };
-  }
-
-  isVisible = ({ cursor, text }) => calc.distance(cursor, text) < LIGHT_SIZE();
+    this.buttonStyler.set({
+      'text-shadow': `${textShadowPosition.x}px ${
+        textShadowPosition.y
+      }px 2px rgba(31, 48, 70, 0.397702)`,
+    });
+  };
 
   startAnimation() {
     if (!this.button || !this.shadowStyler || !this.buttonStyler) return;
 
-    this.animation = pointer().start(cursorPosition => {
-      const distance = calc.distance(this.center, cursorPosition);
-      const pointerAngle = calc.angle(cursorPosition, this.center);
-
-      if (!this.isVisible({ cursor: cursorPosition, text: this.center }))
-        return;
-
-      const textShadowPosition = calc.pointFromAngleAndDistance(
-        { x: 0, y: 0 },
-        pointerAngle,
-        harderSpring(distance)
-      );
-
-      this.shadowStyler.set(
-        calc.pointFromAngleAndDistance(
-          { x: 0, y: 0 },
-          pointerAngle,
-          spring(distance)
-        )
-      );
-
-      this.buttonStyler.set({
-        'text-shadow': `${textShadowPosition.x}px ${
-          textShadowPosition.y
-        }px 2px rgba(31, 48, 70, 0.397702)`,
-      });
-
-      this.buttonStyler.set();
-    });
+    this.animation = pointer().start(this.update);
   }
-
-  calculatePosition = () => {
-    const { x, top, width, height } = this.button.getBoundingClientRect();
-
-    this.position = { x, y: top };
-    this.size = { x: width, y: height };
-  };
 
   componentDidMount() {
     if (!this.shadow || !this.button) return;
 
-    this.calculatePosition();
-    listen(window, 'resize').start(this.calculatePosition);
-    listen(document, 'scroll').start(this.calculatePosition);
-
-    requestAnimationFrame(() => this.startAnimation());
+    this.startAnimation();
   }
 
   componentWillUnmount() {
@@ -119,13 +83,23 @@ export default class Button extends Component {
     this.props.onClick(event);
   };
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
+    const className = classNames({
+      Button: true,
+      'Button--fullWidth': this.props.fullWidth,
+    });
     return (
       <a
         ref={this.onButton}
-        className="Button"
+        className={className}
         href={this.props.href}
         onClick={this.onClick}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {this.props.children}
         <div ref={this.onShadow} className="Button-shadow" />
@@ -133,3 +107,5 @@ export default class Button extends Component {
     );
   }
 }
+
+export default WithNodeBounds(Button);

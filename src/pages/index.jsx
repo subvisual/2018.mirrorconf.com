@@ -28,7 +28,12 @@ export default class IndexPage extends Component {
     return () => this.listeners.splice(index, 1);
   };
 
-  callListeners = () => this.listeners.forEach(listener => listener());
+  callListeners = () => {
+    let i = this.listeners.length;
+    while (i--) {
+      this.listeners[i]();
+    }
+  };
 
   startAnimation() {
     this.animation = everyFrame().start(this.callListeners);
@@ -40,7 +45,10 @@ export default class IndexPage extends Component {
         <Hero addTickListener={this.addTickListener} />
         <About />
         <Speakers addTickListener={this.addTickListener} />
-        <Workshops addTickListener={this.addTickListener} />
+        <Workshops
+          addTickListener={this.addTickListener}
+          data={this.props.data}
+        />
         <Schedule />
         <Location />
         <Footer />
@@ -48,3 +56,26 @@ export default class IndexPage extends Component {
     );
   }
 }
+
+export const pageQuery = graphql`
+  query AllWorkshops {
+    allMarkdownRemark {
+      edges {
+        node {
+          frontmatter {
+            path
+            title
+            path
+            speaker
+            date
+            time
+            agenda
+            photo
+            overlay
+            excerpt
+          }
+        }
+      }
+    }
+  }
+`;

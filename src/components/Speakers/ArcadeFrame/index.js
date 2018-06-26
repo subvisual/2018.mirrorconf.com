@@ -1,15 +1,12 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { linear, cubicBezier } from 'popmotion/easing';
+import { linear } from 'popmotion/easing';
 import { listen, styler, keyframes, transform, composite } from 'popmotion';
 
 import { clientWidth } from '../../../utils/dom';
 
 import './index.css';
 import arcadeFrame from './arcade-frame.png';
-import reflection from './reflection.png';
-
-const quicklyEnter = cubicBezier(0.16, 1.43, 0.83, 0.85);
 
 export default class ArcadeFrame extends Component {
   componentDidMount() {
@@ -63,11 +60,7 @@ export default class ArcadeFrame extends Component {
     return (
       <div className="ArcadeFrame">
         <div className="ArcadeFrame-wrapper" ref={this.onFrame}>
-          <img
-            className="ArcadeFrame-image"
-            src={arcadeFrame}
-            role="presentation"
-          />
+          <img className="ArcadeFrame-image" src={arcadeFrame} alt="" />
         </div>
       </div>
     );

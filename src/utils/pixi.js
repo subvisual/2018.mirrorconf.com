@@ -15,7 +15,7 @@ if (!isNode) {
 }
 
 export const drawPoints = (graphics, points) => {
-  points.forEach((point, index) => {
+  _.forEach(points, (point, index) => {
     if (index <= 0) return;
     const lastPoint = points[index - 1];
 

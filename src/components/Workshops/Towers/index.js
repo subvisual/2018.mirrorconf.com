@@ -14,7 +14,7 @@ import PIXI, {
 import { point } from '../../../utils/2d';
 import thunderPath, { buildThunderLines } from './thunder';
 
-import { clientWidth } from '../../../utils/dom';
+import { clientWidth, clientHeight } from '../../../utils/dom';
 
 import tower from './tower.png';
 import title from './workshops_title.png';
@@ -63,9 +63,9 @@ class Towers extends Component {
 
     this.buildContext(this.canvas);
 
-    listen(document, 'scroll').start(this.onScroll);
-    listen(this.canvas, 'mousemove').start(this.onScroll);
-    this.unsubscribe = this.props.addTickListener(this.update);
+    listen(document, 'scroll').start(() => this.onScroll());
+    listen(this.canvas, 'mousemove').start(() => this.onScroll());
+    this.unsubscribe = this.props.addTickListener(() => this.update());
   }
 
   onCanvas = canvas => {
@@ -73,7 +73,7 @@ class Towers extends Component {
   };
 
   onScroll = () => {
-    const progress = this.props.progressToInvisbile();
+    const progress = this.props.progressToInvisbile(clientHeight());
     const { paused, completed } = this.state;
 
     if (progress >= 0 && progress <= 1 && paused) return this.resume();
@@ -87,10 +87,6 @@ class Towers extends Component {
       ...SETTINGS,
       view: this.canvas,
     });
-
-    this.interactionManager = new PIXI.interaction.InteractionManager(
-      this.application
-    );
 
     this.sprites = _.reduce(RESOURCES, initializeSprites, {});
     _.forEach(
@@ -115,7 +111,7 @@ class Towers extends Component {
       buildThunderLines(point(980, 100), this.styles, this.application),
     ];
 
-    setTimeout(() => this.application.render(), 1000);
+    this.application.render();
   };
 
   update = () => {
@@ -131,10 +127,10 @@ class Towers extends Component {
       target = point(SETTINGS.width / 2, SETTINGS.height / 2);
     }
 
-    this.lines.forEach(line => {
+    _.forEach(this.lines, line => {
       const path = thunderPath([line[0].initial], target);
 
-      line.forEach(graphic => {
+      _.forEach(line, graphic => {
         graphic.clear();
         graphic.lineStyle(graphic.style.size, graphic.style.color);
         drawPoints(graphic, path);
@@ -153,7 +149,7 @@ class Towers extends Component {
   pause = () => {
     this.setState({ paused: true });
 
-    this.lines.forEach(line => line.forEach(graphic => graphic.clear()));
+    _.forEach(this.lines, line => _.forEach(line, graphic => graphic.clear()));
 
     this.application.render();
   };
@@ -161,7 +157,7 @@ class Towers extends Component {
   reset = () => {
     this.setState({ paused: true, completed: false });
 
-    this.lines.forEach(line => line.forEach(graphic => graphic.clear()));
+    _.forEach(this.lines, line => _.forEach(line, graphic => graphic.clear()));
 
     this.application.render();
   };
@@ -169,7 +165,9 @@ class Towers extends Component {
   render() {
     return (
       <div className="Towers" ref={this.props.onNode}>
-        <canvas className="Towers-canvas" ref={this.onCanvas} />
+        <div className="Towers-canvasWrapper">
+          <canvas className="Towers-canvas" ref={this.onCanvas} />
+        </div>
       </div>
     );
   }

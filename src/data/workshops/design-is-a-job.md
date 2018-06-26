@@ -2,12 +2,15 @@
 path: design-is-a-job
 title: Design is a Job
 speaker: Mike Monteiro
-date: 16th October
-time: 10PM
+date: October 16th
+time: 10:00 - 17:00
 agenda: ''
 photo: /assets/mike-photo.png
 overlay: /assets/mike-illustration.png
+excerpt: >
+  Whether you’re in client services, or a freelancer, working at a startup, or a big company, you’ll learn something from this workshop. Heck, you don’t even have to be a designer to get something out of this. Whether you call yourself a visual designer, a graphic designer, a web designer, an interaction designer, a developer, an engineer, a product manager, a photographer, a casual blogger, or a modern dance enthusiast, there will be something in this workshop that will make you better at your craft.
 ---
+
 ## Who it’s for
 
 Whether you’re in client services, or a freelancer, working at a startup, or a big company, you’ll learn something from this workshop. Heck, you don’t even have to be a designer to get something out of this. Whether you call yourself a visual designer, a graphic designer, a web designer, an interaction designer, a developer, an engineer, a product manager, a photographer, a casual blogger, or a modern dance enthusiast, there will be something in this workshop that will make you better at your craft.

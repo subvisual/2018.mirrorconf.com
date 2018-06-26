@@ -101,21 +101,25 @@ export default class Background extends Component {
   }
 
   resizeRender(width, height) {
-    this.context.renderer.resize(width - 1, height - 1);
-    setTimeout(() => this.context.renderer.resize(width, height), 1);
+    if (!this.application) return;
+
+    this.application.renderer.resize(width - 1, height - 1);
+    setTimeout(() => this.application.renderer.resize(width, height), 1);
   }
 
-  update() {
+  update = () => {
+    if (!this.application.render || !this.carTween || !this.backgroundTween)
+      return;
     const progress = this.props.progress();
 
     if (progress < 0 && progress > 1) return;
 
     this.carTween.seek(progress);
     this.backgroundTween.seek(progress);
-    this.context.render();
-  }
+    this.application.render();
+  };
 
-  buildCanvas() {
+  buildCanvas = () => {
     const scale = this.scale();
     const { height } = SETTINGS;
 
@@ -139,9 +143,9 @@ export default class Background extends Component {
       this.carTween.stop();
       this.backgroundTween.stop();
     };
-  }
+  };
 
-  buildAlternateCanvas() {
+  buildAlternateCanvas = () => {
     if (this.sprites.background)
       this.sprites.background.destroy({
         children: true,
@@ -165,14 +169,14 @@ export default class Background extends Component {
     this.container.addChild(this.sprites.background);
     this.resizeRender(clientWidth(), this.props.bounds.height);
 
-    setTimeout(() => this.context.render(), 1000);
-  }
+    setTimeout(() => this.application.render(), 1000);
+  };
 
   startAnimation() {
     if (clientWidth() < 700)
-      return requestAnimationFrame(() => this.buildAlternateCanvas());
+      return requestAnimationFrame(this.buildAlternateCanvas);
 
-    return requestAnimationFrame(() => this.buildCanvas());
+    return requestAnimationFrame(this.buildCanvas);
   }
 
   loadContext() {
@@ -183,21 +187,21 @@ export default class Background extends Component {
     this.container.width = SETTINGS.width;
     this.container.height = SETTINGS.height;
 
-    this.context = new PIXI.Application(
+    this.application = new PIXI.Application(
       clientWidth(),
       clientHeight(),
       SETTINGS.options
     );
 
-    this.context.stage.addChild(this.container);
-    this.canvasWrapper.appendChild(this.context.view);
+    this.application.stage.addChild(this.container);
+    this.canvasWrapper.appendChild(this.application.view);
 
     _.forEach(this.sprites, addSpriteToStage(this.container));
 
     this.startAnimation();
   }
 
-  onResize() {
+  onResize = () => {
     if (clientWidth() < 700) return;
 
     if (this.unsubscribe) this.unsubscribe();
@@ -205,7 +209,7 @@ export default class Background extends Component {
     this.resizeRender(clientWidth(), clientHeight());
     this.container.scale = point(this.scale());
     this.startAnimation();
-  }
+  };
 
   componentDidMount() {
     if (!this.canvasWrapper) return;
