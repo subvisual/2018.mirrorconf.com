@@ -341,6 +341,13 @@ export default class Background extends Component {
             <div className="Background-ctaTextBackground" />
             <p className="Background-ctaText">Buy your tickets</p>
           </a>
+          <a
+            className="Background-cta secondary"
+            href="/sponsorship_prospectus_2018.pdf"
+            target="_blank"
+          >
+            Sponsor us!
+          </a>
         </div>
       </div>
     );

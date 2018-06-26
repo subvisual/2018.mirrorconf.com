@@ -31,17 +31,19 @@
 
   top: 50%;
   right: 0;
-
   width: 100%;
 
-  z-index: 1;
-
   padding: 0 20px;
+
+  text-align: left;
+
+  z-index: 1;
 
   transform: translateY(-50%);
 }
 
-.Background-text {
+.Background-text,
+.Background-cta.secondary {
   font-family: 'alice';
   font-style: normal;
   font-weight: normal;
@@ -59,13 +61,16 @@
 
 .Background-visibleTitle {
   text-align: left;
+
+  margin-top: 180px;
 }
 
 .Background-date {
   text-align: right;
 
-  padding-top: 120px;
+  margin-top: 120px;
 }
+
 .Background-location {
   text-align: right;
 
@@ -73,9 +78,28 @@
 }
 
 .Background-cta {
-  display: block;
   position: relative;
-  transform: translate(0%, 60px);
+
+  display: block;
+  height: 50px;
+
+  margin: 20px 0;
+
+  text-align: left;
+}
+
+.Background-cta.secondary {
+  display: inline-block;
+
+  min-width: 177px;
+
+  margin-top: 20px;
+
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+
+  transform: none;
 }
 
 .Background-ctaGlow {
@@ -118,7 +142,7 @@
 }
 
 .Background-cta:hover .Background-ctaTextBackground {
-  filter: none;
+  filter: blur(1px);
 }
 
 .Background-ctaText {
@@ -139,13 +163,23 @@
 }
 
 @media screen and (min-width: 700px) {
-  .Background-cta {
-    transform: translate(0%, 96px);
+  .Background-visibleTitle {
+    margin-top: 280px;
   }
 
-  .Background-text {
+  .Background-text,
+  .Background-cta.secondary {
     line-height: 40px;
     font-size: 28px;
+  }
+
+  .Background-cta.secondary {
+    min-width: none;
+    text-align: left;
+  }
+
+  .Background-cta {
+    margin: 40px 0;
   }
 
   .Background-ctaText {
@@ -176,9 +210,5 @@
   .Background-date,
   .Background-location {
     position: relative;
-  }
-
-  .Background-cta {
-    transform: translate(-7%, 96px);
   }
 }

@@ -1,4 +1,5 @@
-import { tween, listen, easing } from 'popmotion';
+import _ from 'lodash';
+import { tween, easing } from 'popmotion';
 import scroll from 'stylefire/scroll';
 import React, { Component } from 'react';
 
@@ -22,14 +23,14 @@ const findElementByHref = href => {
   return document.getElementById(elementId);
 };
 
-const animateScrollTo = (scroll, options) => {
+const animateScrollTo = (scrollStyler, options) => {
   const animation = tween({
     ...options,
     duration: 500,
     ease: easing.easeInOut,
   });
 
-  requestAnimationFrame(() => animation.start(scroll.set('top')));
+  requestAnimationFrame(() => animation.start(scrollStyler.set('top')));
 };
 
 const HALL = {
