@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Speakers from '../components/Speakers';
-import Location from '../components/Location';
 import Workshops from '../components/Workshops';
+import Schedule from '../components/Schedule';
+import Location from '../components/Location';
 import Footer from '../components/Footer';
 
 export default class IndexPage extends Component {
@@ -40,6 +41,7 @@ export default class IndexPage extends Component {
         <About />
         <Speakers addTickListener={this.addTickListener} />
         <Workshops addTickListener={this.addTickListener} />
+        <Schedule />
         <Location />
         <Footer />
       </div>
