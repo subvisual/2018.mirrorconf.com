@@ -25,20 +25,13 @@
 .Footer-columns {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 
   max-width: 100%;
 }
 
-.Footer-column {
-  flex: 2;
-}
-
 .Footer-column:not(:first-child) {
   margin-top: 60px;
-}
-
-.Footer-largeColumn {
-  flex: 3;
 }
 
 .Footer-largeColumn:not(:first-child) {
