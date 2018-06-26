@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { listen } from 'popmotion';
+import { listen, tween } from 'popmotion';
 
 import WithNodeBounds from '../../../containers/withNodeBounds';
 
@@ -17,6 +17,7 @@ import thunderPath, { buildThunderLines } from './thunder';
 import { clientWidth } from '../../../utils/dom';
 
 import tower from './tower.png';
+import title from './workshops_title.png';
 
 const SETTINGS = {
   width: 1440,
@@ -30,13 +31,21 @@ const SETTINGS = {
 const RESOURCES = {
   tower: {
     source: tower,
-    props: { position: point(60, 693), scale: point(0.5) },
+    props: { position: point(380, 550), scale: point(0.5) },
   },
   tower2: {
     source: tower,
     props: {
-      position: point(1300, 300),
+      position: point(980, 160),
       scale: point(0.2),
+    },
+  },
+  title: {
+    source: title,
+    props: {
+      position: point(700, 400),
+      scale: point(0.8),
+      alpha: 0,
     },
   },
 };
@@ -89,6 +98,12 @@ class Towers extends Component {
       addSpriteToStage(this.application.stage, RESOURCES, SETTINGS)
     );
 
+    this.titleTween = tween({ from: 0, to: 1 })
+      .start(alpha => {
+        this.sprites.title.alpha = alpha;
+      })
+      .pause();
+
     this.styles = [
       { size: 5, color: 0xffffff, blur: blur(1, 2, 1) },
       { size: 5, color: 0xffffff, blur: blur(8, 5, 1) },
@@ -96,8 +111,8 @@ class Towers extends Component {
     ];
 
     this.lines = [
-      buildThunderLines(point(60, 520), this.styles, this.application),
-      buildThunderLines(point(1300, 230), this.styles, this.application),
+      buildThunderLines(point(380, 380), this.styles, this.application),
+      buildThunderLines(point(980, 100), this.styles, this.application),
     ];
 
     setTimeout(() => this.application.render(), 1000);
@@ -125,6 +140,8 @@ class Towers extends Component {
         drawPoints(graphic, path);
       });
     });
+
+    this.titleTween.seek(this.props.lightGrowProgress());
 
     this.application.render();
   };

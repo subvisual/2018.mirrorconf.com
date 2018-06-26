@@ -10,7 +10,6 @@ import { clientHeight, scrollTop } from '../../utils/dom';
 import './index.css';
 
 import WORKSHOPS from './workshops';
-import workshopsTitle from './workshops_title.png';
 
 export default class Workshops extends Component {
   constructor(props) {
@@ -73,10 +72,10 @@ export default class Workshops extends Component {
           lightGrowProgress={this.lightGrowProgress}
         />
         <div className="Workshops-spacer" />
-        <Towers addTickListener={this.props.addTickListener} />
-        <h2 className="Workshops-title">
-          <img src={workshopsTitle} alt="Workshops written with lamps" />
-        </h2>
+        <Towers
+          addTickListener={this.props.addTickListener}
+          lightGrowProgress={this.lightGrowProgress}
+        />
         <div className="Workshops-wrapper">{this.renderWorkshops()}</div>
       </section>
     );
