@@ -3,6 +3,7 @@
 
   background: linear-gradient(
       180deg,
+      #ffd7bb 0%,
       rgba(255, 215, 188, 0.8) 3.5%,
       rgba(254, 217, 188, 0.6) 33.34%,
       rgba(255, 227, 193, 0.6) 69.79%,
@@ -13,12 +14,6 @@
   background-repeat: no-repeat;
   background-position: top center;
   background-size: 100% 100%;
-}
-
-.Location-wrapper {
-  max-width: 1440px;
-
-  margin: 0 auto;
 }
 
 .Location-title {
@@ -204,7 +199,7 @@
   text-align: right;
 }
 
-.Location-sectionBackground img {
+.Location-backgroundImage {
   position: relative;
   margin-top: 20px;
 
@@ -223,7 +218,9 @@
 
 @media screen and (min-width: 760px) {
   .Location {
-    padding: 184px 116px;
+    padding: 184px 0;
+
+    overflow: hidden;
   }
 
   .Location-venueWrapper {
@@ -240,9 +237,17 @@
     display: none;
   }
 
+  .Location-venue {
+    position: relative;
+
+    padding: 0 0 0 60px;
+  }
+
   .Location-venue,
-  .Location-accommodations {
-    margin-bottom: 300px;
+  .Location-directions {
+    max-width: 1440px;
+
+    margin: 0 auto 100px;
   }
 
   .Location-banner.desktop {
@@ -291,6 +296,10 @@
     justify-content: center;
   }
 
+  .Location-directions {
+    padding: 60px;
+  }
+
   .Location-direction {
     flex: 1;
   }
@@ -314,19 +323,33 @@
   .Location-cta:not(:last-child) {
     margin-right: 28px;
   }
+
   .Location-sectionBackground {
     flex: 1;
   }
 
-  .Location-sectionBackground img {
-    position: relative;
-    right: -116px;
+  .Location-venue .Location-backgroundImage {
+    position: static;
 
-    width: 440px;
+    width: 100%;
+    margin-left: 60px;
   }
 
-  .Location-accommodations .Location-sectionBackground img {
+  .Location-accommodations .Location-backgroundImage {
     width: 100%;
     max-width: 700px;
+  }
+}
+
+@media screen and (min-width: 1441px) {
+  .Location-venue .Location-backgroundImage {
+    position: relative;
+
+    top: 0;
+    right: calc(50vh - 720px - 60px);
+
+    margin: 0;
+
+    width: 100%;
   }
 }
