@@ -5,8 +5,10 @@ speaker: Mike Monteiro
 date: 16th October
 time: 10PM
 agenda: ''
-description: >-
-  **Who it’s for**
+photo: /assets/mike-photo.png
+overlay: /assets/mike-illustration.png
+---
+**Who it’s for**
 
 
   Whether you’re in client services, or a freelancer, working at a startup, or a
@@ -77,7 +79,3 @@ description: >-
 
 
   \- Getting your money
-photo: /assets/mike-photo.png
-overlay: /assets/mike-illustration.png
----
-
