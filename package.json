@@ -8,7 +8,6 @@
     "classnames": "^2.2.5",
     "detect-node": "^2.0.3",
     "fse": "^4.0.1",
-    "fsevents": "^1.2.4",
     "gatsby": "^1.9.273",
     "gatsby-link": "^1.6.34",
     "gatsby-plugin-catch-links": "^1.0.24",
@@ -29,6 +28,9 @@
     "react-helmet": "^5.2.0",
     "style-value-types": "^1.0.4",
     "webpack": "^1.15.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^1.2.4"
   },
   "keywords": [
     "mirrorconf"
