@@ -340,6 +340,7 @@ export default class Background extends Component {
           <a
             className="Background-cta"
             href="https://ti.to/subvisual/mirror-conf-2018/"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <div className="Background-ctaGlow" />
@@ -349,6 +350,7 @@ export default class Background extends Component {
           <a
             className="Background-cta secondary"
             href="/sponsorship_prospectus_2018.pdf"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Sponsor us

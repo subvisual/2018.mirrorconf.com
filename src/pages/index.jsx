@@ -59,7 +59,10 @@ export default class IndexPage extends Component {
 
 export const pageQuery = graphql`
   query AllWorkshops {
-    allMarkdownRemark(limit: 1000) {
+    allMarkdownRemark(
+      limit: 1000
+      sort: { fields: [frontmatter___date], order: ASC }
+    ) {
       edges {
         node {
           frontmatter {

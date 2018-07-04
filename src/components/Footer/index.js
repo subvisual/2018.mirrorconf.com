@@ -72,6 +72,14 @@ export default class Footer extends Component {
                   >
                     Call for Speakers
                   </a>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="/sponsorship_prospectus_2018.pdf"
+                    className="Footer-link"
+                  >
+                    Sponsor Us
+                  </a>
                 </div>
               </div>
             </div>
