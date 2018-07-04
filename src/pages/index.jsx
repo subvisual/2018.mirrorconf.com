@@ -29,10 +29,10 @@ export default class IndexPage extends Component {
   };
 
   callListeners = () => {
-    let i = this.listeners.length;
-    while (i--) {
-      this.listeners[i]();
-    }
+    this.listeners
+      .slice()
+      .reverse()
+      .forEach(l => l());
   };
 
   startAnimation() {
