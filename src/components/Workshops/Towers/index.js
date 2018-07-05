@@ -63,12 +63,34 @@ class Towers extends Component {
 
     this.buildContext(this.canvas);
 
-    listen(document, 'scroll').start(() => this.onScroll());
-    listen(this.canvas, 'mousemove').start(() => this.onScroll());
-    this.unsubscribe = this.props.addTickListener(() => this.update());
+    const scrollListener = listen(document, 'scroll').start(() =>
+      this.onScroll()
+    );
+    const mouseListener = listen(this.canvas, 'mousemove').start(() =>
+      this.onScroll()
+    );
+    const unsubscribeTick = this.props.addTickListener(() => this.update());
+
+    this.unsubscribe = () => {
+      scrollListener.stop();
+      mouseListener.stop();
+      unsubscribeTick();
+    };
   }
 
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  onRoot = root => {
+    if (!root) return;
+
+    this.props.onNode(root);
+  };
+
   onCanvas = canvas => {
+    if (!canvas) return;
+
     this.canvas = canvas;
   };
 
@@ -164,7 +186,7 @@ class Towers extends Component {
 
   render() {
     return (
-      <div className="Towers" ref={this.props.onNode}>
+      <div className="Towers" ref={this.onRoot}>
         <div className="Towers-canvasWrapper">
           <canvas className="Towers-canvas" ref={this.onCanvas} />
         </div>

@@ -18,9 +18,8 @@ import planet1 from './planet1.svg';
 import planet2 from './planet2.svg';
 import planet3 from './planet3.svg';
 
-const scrollProgress = () => {
-  return getProgressFromValue(0, clientHeight(), scrollTop());
-};
+const scrollProgress = () =>
+  getProgressFromValue(0, clientHeight(), scrollTop());
 
 const appendPercentSymbol = input => `${input}%`;
 
@@ -31,21 +30,29 @@ const toPercent = transform.transformMap({
 
 export default class Planets extends Component {
   onRoot = root => {
+    if (!root) return;
+
     this.root = root;
     this.rootStyler = styler(root);
   };
 
   onPlanet1 = planet => {
+    if (!planet) return;
+
     this.planet1 = planet;
     this.planet1Styler = styler(planet);
   };
 
   onPlanet2 = planet => {
+    if (!planet) return;
+
     this.planet2 = planet;
     this.planet2Styler = styler(planet);
   };
 
   onPlanet3 = planet => {
+    if (!planet) return;
+
     this.planet3 = planet;
     this.planet3Styler = styler(planet);
   };

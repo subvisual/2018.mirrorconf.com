@@ -23,12 +23,16 @@ class Button extends Component {
   }
 
   onButton = button => {
+    if (!button) return;
+
     this.props.onNode(button);
     this.button = button;
     this.buttonStyler = styler(button);
   };
 
   onShadow = shadow => {
+    if (!shadow) return;
+
     this.shadow = shadow;
     this.shadowStyler = styler(shadow);
   };

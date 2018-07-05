@@ -24,7 +24,6 @@ export default class Workshop extends Component {
       overlay,
       speaker,
       excerpt,
-      ticket,
     } = this.props;
 
     const className = classNames({
@@ -33,7 +32,7 @@ export default class Workshop extends Component {
     });
 
     return (
-      <div className={className}>
+      <div id={path} className={className}>
         <div className="Workshop-column">
           <TextShadow className="Workshop-titleMobile">
             <h3 className="Workshop-title">{title}</h3>

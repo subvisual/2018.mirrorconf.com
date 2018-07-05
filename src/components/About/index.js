@@ -29,13 +29,15 @@ export default class About extends Component {
   scrollProgress = () => this.viewportScroll.get('top') / this.scrollableArea();
 
   onViewport = viewport => {
+    if (!viewport) return;
+
     this.viewport = viewport;
     this.viewportScroll = scroll(viewport);
   };
 
   startAnimation() {
     this.animation = listen(this.viewport, 'scroll').start(() =>
-      this.setState({ viewportScrollProgress: this.scrollProgress() }),
+      this.setState({ viewportScrollProgress: this.scrollProgress() })
     );
   }
 

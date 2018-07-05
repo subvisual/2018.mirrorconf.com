@@ -22,8 +22,7 @@ export default class Workshops extends Component {
   }
 
   componentDidMount() {
-    if (!this.root) return;
-
+    setTimeout(this.calculateBounds, 1000);
     this.onLoadListener = listen(window, 'load').start(this.calculateBounds);
     this.onResizeListener = listen(window, 'resize').start(
       this.calculateBounds
@@ -36,21 +35,26 @@ export default class Workshops extends Component {
 
   progress = () => {
     const { max, min } = this.state.bounds;
+    if (max === 0 && min === 0) return 0;
 
     return getProgressFromValue(min, max - clientHeight(), scrollTop());
   };
 
   lightGrowProgress = () => {
-    const { min } = this.state.bounds;
+    const { min, max } = this.state.bounds;
+    if (max === 0 && min === 0) return 0;
+
     const height = clientHeight() * 2 * 0.6;
 
     return getProgressFromValue(min, min + height, scrollTop());
   };
 
   calculateBounds = () => {
+    if (!this.root) return setTimeout(this.calculateBounds, 500);
+
     const { top, height } = this.root.getBoundingClientRect();
 
-    if (!height) setTimeout(this.calculateBounds, 100);
+    if (!height) return setTimeout(this.calculateBounds, 500);
     if (height === this.state.height) return;
 
     const min = top + scrollTop();

@@ -81,11 +81,15 @@ const addSpriteToStage = stage => (sprite, name) => {
 
 export default class Background extends Component {
   onRoot = root => {
+    if (!root) return;
+
     this.root = root;
     this.rootStyler = styler(root);
   };
 
   onContent = content => {
+    if (!content) return;
+
     this.content = content;
     this.contentStyler = styler(content);
   };

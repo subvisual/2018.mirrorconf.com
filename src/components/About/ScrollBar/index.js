@@ -18,12 +18,17 @@ export default class ScrollBar extends Component {
   }
 
   onScrollbar = scrollbar => {
+    if (!scrollbar) return;
+
     this.scrollbar = scrollbar;
     this.scrollbarY = value(0, styler(scrollbar).set('y'));
   };
 
-  onScrollbarContainer = scrollbarContainer =>
-    (this.scrollbarContainer = scrollbarContainer);
+  onScrollbarContainer = scrollbarContainer => {
+    if (!scrollbarContainer) return;
+
+    this.scrollbarContainer = scrollbarContainer;
+  };
 
   moveScrollbar = event => {
     event.preventDefault();

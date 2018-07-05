@@ -138,6 +138,8 @@ export default class TextShadow extends Component {
   };
 
   onNode = node => {
+    if (!node) return;
+
     if (this.id) clearTimeout(this.id);
     this.id = setTimeout(this.startAnimations, 1000);
 

@@ -67,6 +67,8 @@ const addSpriteToStage = stage => (sprite, name) => {
 
 export default class Background extends Component {
   onCanvasWrapper = canvasWrapper => {
+    if (!canvasWrapper) return;
+
     this.canvasWrapper = canvasWrapper;
     this.canvasStyler = styler(canvasWrapper);
   };

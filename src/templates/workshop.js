@@ -18,7 +18,15 @@ const lightGrowProgress = () => 1;
 export default class Template extends Component {
   render() {
     const { markdownRemark: post } = this.props.data;
-    const { title, time, date, photo, overlay, speaker } = post.frontmatter;
+    const {
+      path,
+      title,
+      time,
+      date,
+      photo,
+      overlay,
+      speaker,
+    } = post.frontmatter;
 
     return (
       <section className="Workshops Workshops--template">
@@ -66,16 +74,14 @@ export default class Template extends Component {
                 <TextShadow>
                   <h1 className="Workshop-title">{title}</h1>
                 </TextShadow>
-                <p key={Date()} className="Workshop-description">
-                  {parser(post.html)}
-                </p>
+                <div className="Workshop-description">{parser(post.html)}</div>
                 <a
                   className="Workshop-link"
                   href="https://ti.to/subvisual/mirror-conf-2018/"
                 >
                   Buy your ticket
                 </a>
-                <a className="Workshop-link" href="/#workshops">
+                <a className="Workshop-link" href={`/#${path}`}>
                   Go back to workshops
                 </a>
               </div>
@@ -92,6 +98,7 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
+        path
         title
         speaker
         date

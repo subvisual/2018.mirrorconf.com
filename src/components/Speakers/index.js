@@ -33,21 +33,29 @@ export default class Speakers extends Component {
   }
 
   onRoot = root => {
+    if (!root) return;
+
     this.root = root;
     this.rootStyler = styler(root);
   };
 
   onListWrapper = listWrapper => {
+    if (!listWrapper) return;
+
     this.listWrapper = listWrapper;
     this.listStyler = styler(listWrapper);
   };
 
   onCanvasWrapper = canvasWrapper => {
+    if (!canvasWrapper) return;
+
     this.canvasWrapper = canvasWrapper;
     this.canvasStyler = styler(canvasWrapper);
   };
 
   onContentWrapper = contentWrapper => {
+    if (!contentWrapper) return;
+
     this.contentWrapper = contentWrapper;
     this.contentStyler = styler(contentWrapper);
   };

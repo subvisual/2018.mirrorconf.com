@@ -18,6 +18,8 @@ export default class ArcadeFrame extends Component {
   }
 
   onFrame = frame => {
+    if (!frame) return;
+
     this.frame = frame;
     this.frameStyler = styler(frame);
   };
