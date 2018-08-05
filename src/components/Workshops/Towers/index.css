@@ -25,6 +25,7 @@
   transform: translateY(calc(50vh - 50%));
 
   overflow: hidden;
+  pointer-events: none;
 }
 
 .Towers-canvas {

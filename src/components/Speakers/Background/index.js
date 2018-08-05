@@ -23,7 +23,7 @@ export const SETTINGS = {
   },
 };
 
-const MOBILE_SETTINGS = { width: 1440, height: 8545 };
+const MOBILE_SETTINGS = { width: 1440, height: 10160 };
 
 export const RATIO = SETTINGS.width / SETTINGS.height;
 export const MOBILE_RATIO = MOBILE_SETTINGS.width / MOBILE_SETTINGS.height;
