@@ -6,7 +6,7 @@ const QUERY = `
       edges {
         node {
           frontmatter {
-            path
+            slug
           }
         }
       }
@@ -24,8 +24,8 @@ module.exports = ({ boundActionCreators, graphql }) => {
 
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       boundActionCreators.createPage({
-        path: node.frontmatter.path,
-        context: { path: node.frontmatter.path },
+        path: node.frontmatter.slug,
+        context: { slug: node.frontmatter.slug },
         component: Template,
       });
     });

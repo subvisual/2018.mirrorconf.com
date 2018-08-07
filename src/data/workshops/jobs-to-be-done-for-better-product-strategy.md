@@ -1,5 +1,5 @@
 ---
-path: jobs-to-be-done-for-better-product-strategy
+slug: jobs-to-be-done-for-better-product-strategy
 title: Jobs-to-Be-Done for Better Product Strategy
 speaker: Steph
 date: October 16th

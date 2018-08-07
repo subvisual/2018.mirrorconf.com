@@ -1,5 +1,5 @@
 ---
-path: designing-for-delight
+slug: designing-for-delight
 title: Designing for Delight
 speaker: Jared Spool
 date: October 17th

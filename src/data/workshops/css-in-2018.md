@@ -1,5 +1,5 @@
 ---
-path: css-in-2018
+slug: css-in-2018
 title: CSS in 2018
 speaker: Lea Verou & Chris Lilley
 date: October 17th

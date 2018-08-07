@@ -66,9 +66,8 @@ export const pageQuery = graphql`
       edges {
         node {
           frontmatter {
-            path
+            slug
             title
-            path
             speaker
             date
             time

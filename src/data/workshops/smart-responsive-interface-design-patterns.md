@@ -1,5 +1,5 @@
 ---
-path: smart-responsive-interface-design-patterns
+slug: smart-responsive-interface-design-patterns
 title: Smart Responsive Interface Design Patterns
 speaker: Vitaly Friedman
 date: October 15th

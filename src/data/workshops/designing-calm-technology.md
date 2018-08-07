@@ -1,5 +1,5 @@
 ---
-path: designing-calm-technology
+slug: designing-calm-technology
 title: Designing Calm Technology
 speaker: Amber Case
 date: October 15th

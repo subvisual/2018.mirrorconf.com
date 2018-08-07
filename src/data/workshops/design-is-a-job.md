@@ -1,5 +1,5 @@
 ---
-path: design-is-a-job
+slug: design-is-a-job
 title: Design is a Job
 speaker: Mike Monteiro
 date: October 16th

@@ -94,11 +94,11 @@ export default class Template extends Component {
 }
 
 export const pageQuery = graphql`
-  query WorkshopByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query WorkshopBySlug($slug: String!) {
+    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
-        path
+        slug
         title
         speaker
         date
