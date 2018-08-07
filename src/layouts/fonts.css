@@ -2,3 +2,11 @@
   font-family: 'alice';
   src: url('./alice.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'clip';
+  src: url('./clip.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'still-time';
+  src: url('./stilltime.ttf') format('truetype');
+}

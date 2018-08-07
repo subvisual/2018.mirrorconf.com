@@ -62,6 +62,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       limit: 1000
       sort: { fields: [frontmatter___date], order: ASC }
+      filter: { fileAbsolutePath: { regex: "/(workshops)/.*\\.md$/" } }
     ) {
       edges {
         node {

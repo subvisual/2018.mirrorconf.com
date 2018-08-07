@@ -15,7 +15,7 @@ const isOdd = number => number % 2;
 export default class Workshop extends Component {
   render() {
     const {
-      path,
+      slug,
       time,
       date,
       title,
@@ -32,7 +32,7 @@ export default class Workshop extends Component {
     });
 
     return (
-      <div id={path} className={className}>
+      <div id={slug} className={className}>
         <div className="Workshop-column">
           <TextShadow className="Workshop-titleMobile">
             <h3 className="Workshop-title">{title}</h3>
@@ -65,7 +65,7 @@ export default class Workshop extends Component {
           </TextShadow>
           <p className="Workshop-description">{excerpt}</p>
           <div className="Workshop-actions">
-            <Button href={path}>Read More</Button>
+            <Button href={slug}>Read More</Button>
           </div>
         </div>
       </div>

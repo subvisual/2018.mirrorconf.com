@@ -19,7 +19,7 @@ export default class Template extends Component {
   render() {
     const { markdownRemark: post } = this.props.data;
     const {
-      path,
+      slug,
       title,
       time,
       date,
@@ -81,7 +81,7 @@ export default class Template extends Component {
                 >
                   Buy your ticket
                 </a>
-                <a className="Workshop-link" href={`/#${path}`}>
+                <a className="Workshop-link" href={`/#${slug}`}>
                   Go back to workshops
                 </a>
               </div>

@@ -1,33 +1,45 @@
 const path = require(`path`);
 
-const QUERY = `
-  {
-    allMarkdownRemark {
-      edges {
-        node {
-          frontmatter {
-            slug
-          }
-        }
-      }
-    }
+const query = folder => `
+{
+  allMarkdownRemark(filter: { fileAbsolutePath: {regex: "/(${folder})/.*/"}}) {
+    edges { node { frontmatter { slug } } }
   }
+}
 `;
 
-module.exports = ({ boundActionCreators, graphql }) => {
-  const Template = path.resolve(`src/templates/workshop.js`);
+const SPEAKERS = {
+  query: query('speakers'),
+  template: 'src/templates/speaker.js',
+};
 
-  return graphql(QUERY).then(result => {
-    if (result.errors) {
-      Promise.reject(result.errors);
-    }
+const WORKSHOPS = {
+  query: query('workshops'),
+  template: 'src/templates/workshop.js',
+};
 
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      boundActionCreators.createPage({
-        path: node.frontmatter.slug,
-        context: { slug: node.frontmatter.slug },
-        component: Template,
-      });
-    });
-  });
+const render = createPage => templatePath => result => {
+  if (result.errors) {
+    Promise.reject(result.errors);
+  }
+
+  const component = path.resolve(templatePath);
+  const { edges } = result.data.allMarkdownRemark;
+
+  return edges.map(({ node: { frontmatter: { slug } } }) =>
+    createPage({
+      component,
+      path: slug,
+      context: { slug },
+    })
+  );
+};
+
+module.exports = ({ boundActionCreators: { createPage }, graphql }) => {
+  const renderFn = render(createPage);
+
+  return Promise.all([
+    graphql(SPEAKERS.query).then(renderFn(SPEAKERS.template)),
+    graphql(WORKSHOPS.query).then(renderFn(WORKSHOPS.template)),
+  ]);
 };
