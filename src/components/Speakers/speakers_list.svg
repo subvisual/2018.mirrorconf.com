@@ -68,9 +68,9 @@
     <g id="speakers-list" role="list" aria-label="The speakers' list">
       <g id="speaker-6" role="listitem">
         <a
-          xlink:href="#speaker-6-link"
+          xlink:href="/lea-verou"
           role="img"
-          aria-labelledby="speaker-6-name speaker-6-description"
+          aria-labelledby="Lea Verou, Research Assistant at CSAIL, MIT"
           tabIndex="0"
           id="speaker-6-link"
         >
@@ -111,9 +111,9 @@
         </a>
       </g>
       <g id="speaker-5" role="listitem">
-        <a xlink:href="#speaker-5-link"
+        <a xlink:href="/amber-case"
         role="img"
-        aria-labelledby="speaker-5-name speaker-5-description"
+        aria-labelledby="Amber Case, Digital Anthropologist"
         tabIndex="0"
         id="speaker-5-link">
           <text id="speaker-5-name">Amber Case </text>
@@ -157,9 +157,9 @@
         </a>
       </g>
       <g id="speaker-2" role="listitem">
-        <a xlink:href="#speaker-2-link"
+        <a xlink:href="/jared-spool"
         role="img"
-        aria-labelledby="speaker-2-name speaker-2-description"
+        aria-labelledby="Jared Spool, Founder at UIE"
         tabIndex="0"
         id="speaker-2-link">
           <text id="speaker-2-name">Jared Spool</text>
@@ -197,9 +197,9 @@
         </a>
       </g>
       <g id="speaker-1" role="listitem">
-        <a xlink:href="#speaker-1-link"
+        <a xlink:href="/mike-monteiro"
         role="img"
-        aria-labelledby="speaker-1-name speaker-1-description"
+        aria-labelledby="Mike Monteiro, Co-founder and design director of Mule Design"
         tabIndex="0"
         id="speaker-1-link">
           <text id="speaker-1-name">Mike Monteiro</text>
@@ -242,13 +242,13 @@
       </g>
       <g id="speaker-4" role="listitem">
         <a
-          xlink:href="#speaker-4-link"
+          xlink:href="/vitaly-friedman"
           role="img"
-          aria-labelledby="speaker-4-name speaker-4-description"
+          aria-labelledby="Vitaly Friedman, Editor-in-chief of Smashing Magazine"
           tabIndex="0"
           id="speaker-4-link"
         >
-          <text id="speaker-4-name">Vitaly Friedman </text>
+          <text id="speaker-4-name">Vitaly Friedman</text>
           <text id="speaker-4-description">Editor-in-chief of Smashing Magazine</text>
           <path d="M0 0h259.336v360.888H0V0z" transform="translate(216.664 1539.11)" fill="url(#pattern4)"/>
           <path d="M0 0h259.336v74.254H0V0z" transform="translate(216.664 1825.75)" fill="#FF33DE"/>
@@ -289,9 +289,9 @@
         </a>
       </g>
       <g id="speaker-3" role="listitem">
-        <a xlink:href="#speaker-3-link"
+        <a xlink:href="/stephanie-troeth"
         role="img"
-        aria-labelledby="speaker-3-name speaker-3-description"
+        aria-labelledby="Stephanie Troeth, Strategist and Researcher"
         tabIndex="0"
         id="speaker-3-link">
           <text id="speaker-3-name">Stephanie Troeth</text>
