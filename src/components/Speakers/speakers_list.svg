@@ -68,7 +68,7 @@
     <g id="speakers-list" role="list" aria-label="The speakers' list">
       <g id="speaker-6" role="listitem">
         <a
-          xlink:href="/lea-verou"
+          xlink:href="/speakers#lea-verou"
           role="img"
           aria-labelledby="Lea Verou, Research Assistant at CSAIL, MIT"
           tabIndex="0"
@@ -111,7 +111,7 @@
         </a>
       </g>
       <g id="speaker-5" role="listitem">
-        <a xlink:href="/amber-case"
+        <a xlink:href="/speakers#amber-case"
         role="img"
         aria-labelledby="Amber Case, Digital Anthropologist"
         tabIndex="0"
@@ -157,7 +157,7 @@
         </a>
       </g>
       <g id="speaker-2" role="listitem">
-        <a xlink:href="/jared-spool"
+        <a xlink:href="/speakers#jared-spool"
         role="img"
         aria-labelledby="Jared Spool, Founder at UIE"
         tabIndex="0"
@@ -197,7 +197,7 @@
         </a>
       </g>
       <g id="speaker-1" role="listitem">
-        <a xlink:href="/mike-monteiro"
+        <a xlink:href="/speakers#mike-monteiro"
         role="img"
         aria-labelledby="Mike Monteiro, Co-founder and design director of Mule Design"
         tabIndex="0"
@@ -242,7 +242,7 @@
       </g>
       <g id="speaker-4" role="listitem">
         <a
-          xlink:href="/vitaly-friedman"
+          xlink:href="/speakers#vitaly-friedman"
           role="img"
           aria-labelledby="Vitaly Friedman, Editor-in-chief of Smashing Magazine"
           tabIndex="0"
@@ -289,7 +289,7 @@
         </a>
       </g>
       <g id="speaker-3" role="listitem">
-        <a xlink:href="/stephanie-troeth"
+        <a xlink:href="/speakers#stephanie-troeth"
         role="img"
         aria-labelledby="Stephanie Troeth, Strategist and Researcher"
         tabIndex="0"

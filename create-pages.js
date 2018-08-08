@@ -8,11 +8,6 @@ const query = folder => `
 }
 `;
 
-const SPEAKERS = {
-  query: query('speakers'),
-  template: 'src/templates/speaker.js',
-};
-
 const WORKSHOPS = {
   query: query('workshops'),
   template: 'src/templates/workshop.js',
@@ -39,7 +34,6 @@ module.exports = ({ boundActionCreators: { createPage }, graphql }) => {
   const renderFn = render(createPage);
 
   return Promise.all([
-    graphql(SPEAKERS.query).then(renderFn(SPEAKERS.template)),
     graphql(WORKSHOPS.query).then(renderFn(WORKSHOPS.template)),
   ]);
 };

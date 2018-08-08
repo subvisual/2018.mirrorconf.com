@@ -1,42 +1,15 @@
-.SpeakerPage {
-  display: flex;
-  flex-direction: column;
-}
-
-.SpeakerPage-content {
-  max-width: 1440px;
-
-  margin: 0 auto;
-}
-
-.SpeakerPage-contentWrapper {
-  background: linear-gradient(#430e47, #a10b53);
-}
-
-.SpeakerPage-header {
-  display: none;
-}
-
-.SpeakerPage-header.is-mobile {
-  display: block;
-}
-
-.SpeakerPage-information {
+.SpeakerSection {
   display: flex;
   flex-direction: column;
 
   margin-top: 275px;
 }
 
-.SpeakerPage-overview {
+.SpeakerSection-overview {
   position: relative;
 }
 
-.SpeakerPage-navigation {
-  padding: 0 14px;
-}
-
-.SpeakerPage-link {
+.SpeakerSection-link {
   display: flex;
   align-items: center;
 
@@ -50,15 +23,15 @@
   transition: text-shadow 0.3s ease-in-out;
 }
 
-.SpeakerPage-link:hover {
+.SpeakerSection-link:hover {
   text-shadow: 0 0 20px #fad691;
 }
 
-.SpeakerPage-link:hover .SpeakerPage-linkIcon {
+.SpeakerSection-link:hover .SpeakerSection-linkIcon {
   transform: translate(5px);
 }
 
-.SpeakerPage-linkIcon {
+.SpeakerSection-linkIcon {
   max-height: 28px;
   width: 30px;
 
@@ -69,13 +42,13 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.SpeakerPage-picture {
+.SpeakerSection-picture {
   max-width: 100%;
 
   margin-top: -14px;
 }
 
-.SpeakerPage-name {
+.SpeakerSection-name {
   position: absolute;
 
   max-width: 242px;
@@ -92,16 +65,16 @@
   transform: rotate(-30deg) translateY(50%);
 }
 
-.SpeakerPage-speakerLinks {
+.SpeakerSection-speakerLinks {
   padding: 0 14px;
   margin-bottom: 40px;
 }
 
-.SpeakerPage-speakerLinks .SpeakerPage-link {
+.SpeakerSection-speakerLinks .SpeakerSection-link {
   margin-bottom: 20px;
 }
 
-.SpeakerPage-dateTime {
+.SpeakerSection-dateTime {
   font-family: 'clip';
   line-height: 28px;
   font-size: 20px;
@@ -109,7 +82,7 @@
   text-shadow: 0 0 #ffffff 7px;
 }
 
-.SpeakerPage-details {
+.SpeakerSection-details {
   margin-bottom: 52px;
   padding: 20px 14px 0;
 
@@ -119,7 +92,7 @@
   font-family: 'proxima-nova';
 }
 
-.SpeakerPage-details h2 {
+.SpeakerSection-details h2 {
   margin-bottom: 8px;
 
   font-family: 'clip';
@@ -129,24 +102,24 @@
   text-shadow: 0 0 #ffcff7 7px;
 }
 
-.SpeakerPage-details h2:first-child {
+.SpeakerSection-details h2:first-child {
   margin-top: 40px;
 }
 
-.SpeakerPage-details * + h2 {
+.SpeakerSection-details * + h2 {
   margin-top: 64px;
 }
 
-.SpeakerPage-details *:not(h2) + h3 {
+.SpeakerSection-details *:not(h2) + h3 {
   margin: 40px 0;
 }
 
-.SpeakerPage-details h2 + p,
-.SpeakerPage-details h2 + ul {
+.SpeakerSection-details h2 + p,
+.SpeakerSection-details h2 + ul {
   margin-top: 28px;
 }
 
-.SpeakerPage-details h3 {
+.SpeakerSection-details h3 {
   font-size: 18px;
   line-height: 20px;
   font-family: 'freight-text-pro';
@@ -154,28 +127,28 @@
   margin-bottom: 28px;
 }
 
-.SpeakerPage-details p {
+.SpeakerSection-details p {
   margin-bottom: 28px;
 }
 
-.SpeakerPage-details strong {
+.SpeakerSection-details strong {
   font-size: 16px;
   font-weight: bold;
 }
 
-.SpeakerPage-details ul {
+.SpeakerSection-details ul {
   margin-bottom: 28px;
 }
 
-.SpeakerPage-details ul ul {
+.SpeakerSection-details ul ul {
   margin-bottom: 0px;
 }
 
-.SpeakerPage-details li {
+.SpeakerSection-details li {
   list-style-type: circle;
 }
 
-.SpeakerPage-details a {
+.SpeakerSection-details a {
   color: #1c3448;
   font-size: 16px;
   line-height: 20px;
@@ -184,41 +157,21 @@
 }
 
 @media screen and (min-width: 769px) {
-  .SpeakerPage-header {
-    display: block;
-  }
-
-  .SpeakerPage-header.is-mobile {
-    display: none;
-  }
-
-  .SpeakerPage-navigation {
-    padding: 0 146px;
-  }
-
-  .SpeakerPage-footerNavigation {
-    position: relative;
-
-    padding: 0 146px;
-
-    transform: translateY(224px);
-  }
-
-  .SpeakerPage-information {
+  .SpeakerSection {
     flex-direction: row;
     flex-wrap: wrap;
 
     padding: 0 146px;
   }
 
-  .SpeakerPage-overview {
+  .SpeakerSection-overview {
     flex: 3;
     min-width: 366px;
 
     margin-right: 146px;
   }
 
-  .SpeakerPage-name {
+  .SpeakerSection-name {
     position: absolute;
 
     max-width: 242px;
@@ -226,7 +179,7 @@
     transform: translateX(-108px) rotate(-30deg) translateY(100%);
   }
 
-  .SpeakerPage-speakerLinks {
+  .SpeakerSection-speakerLinks {
     position: absolute;
 
     width: 100%;
@@ -235,7 +188,7 @@
     left: -59px;
   }
 
-  .SpeakerPage-details {
+  .SpeakerSection-details {
     flex: 5;
 
     min-width: 300px;
@@ -246,7 +199,7 @@
     line-height: 28px;
   }
 
-  .SpeakerPage-details h2 {
+  .SpeakerSection-details h2 {
     font-size: 40px;
     line-height: 40px;
     font-weight: bold;
@@ -254,32 +207,32 @@
     margin-bottom: 8px;
   }
 
-  .SpeakerPage-details * + h2 {
+  .SpeakerSection-details * + h2 {
     margin-top: 64px;
   }
 
-  .SpeakerPage-details h2:first-child {
+  .SpeakerSection-details h2:first-child {
     margin-top: 0px;
   }
 
-  .SpeakerPage-details h2 + p {
+  .SpeakerSection-details h2 + p {
     margin-top: 28px;
   }
 
-  .SpeakerPage-details h3 {
+  .SpeakerSection-details h3 {
     font-size: 28px;
     line-height: 40px;
     font-style: normal;
     opacity: 0.6;
   }
 
-  .SpeakerPage-details strong {
+  .SpeakerSection-details strong {
     font-size: 20px;
     line-height: 28px;
     font-weight: bold;
   }
 
-  .SpeakerPage-details a {
+  .SpeakerSection-details a {
     font-size: 20px;
     line-height: 28px;
     font-weight: bold;
