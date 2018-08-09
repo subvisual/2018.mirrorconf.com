@@ -46,6 +46,8 @@
   max-width: 100%;
 
   z-index: 1;
+
+  transform: translateY(120px);
 }
 
 @media screen and (min-width: 700px) {
