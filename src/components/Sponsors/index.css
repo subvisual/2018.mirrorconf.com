@@ -30,6 +30,10 @@
   background-repeat: no-repeat no-repeat;
 }
 
+.Sponsors-topGroup {
+  margin-bottom: 178px;
+}
+
 .Sponsors-group {
   display: flex;
   flex-direction: column;
@@ -77,5 +81,9 @@
     max-width: 1440px;
 
     margin: 0 auto;
+  }
+
+  .Sponsors-topGroup {
+    margin-bottom: 292px;
   }
 }
