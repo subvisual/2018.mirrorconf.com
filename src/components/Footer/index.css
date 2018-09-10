@@ -1,10 +1,14 @@
 .Footer {
+}
+
+.Footer-hero {
+  padding-top: 120px;
+
   background: linear-gradient(
     180deg,
     rgba(249, 223, 191, 0.8) 0%,
-    #622970 40%,
-    #281040 60%,
-    #1e0d4a 100%
+    #622970 80%,
+    #281040 100%
   );
 }
 
@@ -13,13 +17,11 @@
 }
 
 .Footer-content {
-  padding: 0 20px;
-  margin: 60px 0;
+  padding: 60px 20px;
 
-  background-image: url('./stars.svg');
+  background: url('./stars.svg'),
+    linear-gradient(180deg, #281040 0%, #1e0d4a 100%);
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .Footer-columns {

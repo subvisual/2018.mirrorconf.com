@@ -70,10 +70,15 @@
   font-size: 12px;
   color: #a35c4d;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
-.Location-contacts:not(:last-child) {
+.Location-description + .Location-contacts:not(:last-child) {
   margin-top: 24px;
+}
+
+.Location-phone + .Location-contacts:not(:last-child) {
+  margin-top: 16px;
 }
 
 .Location-cta {
@@ -208,6 +213,10 @@
   width: 50%;
 }
 
+.Location-accommodations .Location-backgroundImage {
+  width: 100%;
+}
+
 .Location-phone {
   margin-top: 8px;
 }
@@ -244,6 +253,7 @@
   }
 
   .Location-venue,
+  .Location-accommodation,
   .Location-directions {
     max-width: 1440px;
 
@@ -335,14 +345,18 @@
     margin-left: 60px;
   }
 
-  .Location-accommodations .Location-backgroundImage {
-    width: 100%;
-    max-width: 700px;
+  .Location-accommodations {
+    padding: 0 0 0 60px;
+  }
+
+  .Location-accommodations .Location-sectionBackground {
+    margin-right: -20px;
   }
 }
 
 @media screen and (min-width: 1441px) {
-  .Location-venue .Location-backgroundImage {
+  .Location-venue .Location-backgroundImage,
+  .Location-backgroundImage {
     position: relative;
 
     top: 0;

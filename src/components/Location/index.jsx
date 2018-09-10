@@ -5,6 +5,9 @@ import './index.css';
 import path from './path.svg';
 import banner from './banner.svg';
 import locationBackground from './forum-illustration.png';
+import accommodationBackground from './accommodation_background.svg';
+
+import { Burgus, Mercure, DonaSofia, IbisCentro, IbisBudget } from './hotels';
 
 export default class Location extends Component {
   render() {
@@ -35,71 +38,25 @@ export default class Location extends Component {
           <img style={{ maxWidth: '100%' }} alt="" src={path} />
         </div>
 
-        {/* <div className="Location-accommodations">
+        <div className="Location-accommodations">
           <h2 className="Location-title">Where to stay</h2>
           <div className="Location-columnContainer">
             <ul>
-              <li className="Location-accommodation">
-                <h3 className="Location-subtitle">Hotel Dona Sofia</h3>
-                <div className="Location-stars">
-                  <img src={star} />
-                  <img src={star} />
-                  <img src={star} />
-                </div>
-                <p className="Location-description">
-                  Largo de S.João do Souto 131, 4700-326 Braga
-                </p>
-                <p className="Location-description">
-                  <img src={walking} className="Location-icon" />(4 minutes
-                  walking distance to the venue)
-                </p>
-                <p className="Location-contacts">info@hoteldonasofia.com</p>
-                <p className="Location-phone">+351 253 263 160</p>
-                <p className="Location-contacts">
-                  <img src={warrior} className="Location-icon" />
-                  <img src={warrior} className="Location-icon hidden" />
-                  Single 45€
-                </p>
-
-                <p className="Location-contacts">
-                  <img src={warrior} className="Location-icon" />
-                  <img src={warrior} className="Location-icon" /> Double 52€
-                </p>
-              </li>
-
-              <li className="Location-accommodation">
-                <h3 className="Location-subtitle">Hotel Ibis Centro</h3>
-                <div className="Location-stars">
-                  <img src={star} />
-                  <img src={star} />
-                  <img src={star} />
-                </div>
-                <p className="Location-description">
-                  Largo de S.João do Souto 131, 4700-326 Braga
-                </p>
-                <p className="Location-description">
-                  <img src={walking} className="Location-icon" />(4 minutes
-                  walking distance to the venue)
-                </p>
-                <p className="Location-contacts">info@hoteldonasofia.com</p>
-                <p className="Location-phone">+351 253 263 160</p>
-                <p className="Location-contacts">
-                  <img src={warrior} className="Location-icon" />
-                  <img src={warrior} className="Location-icon hidden" />
-                  Single 45€
-                </p>
-
-                <p className="Location-contacts">
-                  <img src={warrior} className="Location-icon" />
-                  <img src={warrior} className="Location-icon" /> Double 52€
-                </p>
-              </li>
+              <Burgus />
+              <Mercure />
+              <DonaSofia />
+              <IbisCentro />
+              <IbisBudget />
             </ul>
             <div className="Location-sectionBackground">
-              <img src={accommodationBackground} />
+              <img
+                className="Location-backgroundImage"
+                src={accommodationBackground}
+                alt=""
+              />
             </div>
           </div>
-        </div> */}
+        </div>
 
         <div className="Location-directions">
           <h2 className="Location-title">Getting to Braga</h2>
@@ -134,7 +91,7 @@ export default class Location extends Component {
               </p>
             </li>
 
-            <img src={banner} className="Location-banner desktop" />
+            <img src={banner} alt="" className="Location-banner desktop" />
 
             <li className="Location-direction">
               <h3 className="Location-subtitle">From Lisbon Airport (LIS)</h3>
@@ -157,7 +114,7 @@ export default class Location extends Component {
               </p>
             </li>
           </ul>
-          <img src={banner} className="Location-banner" />
+          <img src={banner} alt="" className="Location-banner" />
         </div>
       </section>
     );
