@@ -184,8 +184,9 @@
 
     width: 100%;
 
-    bottom: 0;
     left: -59px;
+
+    transform: translateY(-156px);
   }
 
   .SpeakerSection-details {

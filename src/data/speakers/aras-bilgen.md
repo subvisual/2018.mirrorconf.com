@@ -1,7 +1,7 @@
 ---
 slug: aras-bilgen
 name: Aras Bilgen
-website:
+website: http://www.arasbilgen.com/
 twitter: https://twitter.com/arasb
 dateTime:
 photo: /assets/aras-bilgen.svg
@@ -18,3 +18,9 @@ Prior to Garanti, he was the Product Director for ÇiçekSepeti, the largest flo
 Previously, he was at Microsoft Research, where he developed a gestural system for interacting with displays remotely. He completed similar research efforts at the University of California, Irvine and Lancaster University, United Kingdom.
 
 Aras holds a BSc from Bilkent University and an MSc in Computer Science from Georgia Tech. He is currently pursuing a BA in Sociology from Anadolu University. He is an avid cook and he drives his colleagues crazy by winning all food-related trivia games.
+
+## Avoiding Arctic Expeditions: Ways to do research together
+
+A bad user research program feels like an arctic expedition. A small team of researchers take their super-special equipment, go to far places by themselves, and then send a report six months later. No one knows about how they worked, no one knows if they made the right assumptions, no one was able to help them with the hard work. The team struggles to relate to the users by reading a dense report, so they stop at page 5.
+
+It doesn’t have to be this way. Everyone can and should be a part of user research, so that we can all learn faster and find better insights. In this talk we will go over four steps to turn heavy, siloed research efforts into distributed, collaborative research projects. We will discuss tenets of good user research, show methods to work with actual users, and share ways to sustain a user-centric culture, so that you and your teams can get richer insights faster, together.
