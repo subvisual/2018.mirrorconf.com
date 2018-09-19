@@ -20,7 +20,7 @@
   padding: 60px 20px;
 
   background: url('./stars.svg'),
-    linear-gradient(180deg, #281040 0%, #1e0d4a 100%);
+    black;
   background-size: cover;
 }
 

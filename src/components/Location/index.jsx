@@ -116,6 +116,7 @@ export default class Location extends Component {
           </ul>
           <img src={banner} alt="" className="Location-banner" />
         </div>
+        <div className="Location-transition"></div>
       </section>
     );
   }

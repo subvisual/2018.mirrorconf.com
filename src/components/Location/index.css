@@ -225,9 +225,18 @@
   display: none;
 }
 
+.Location-transition {
+  height: 50px;
+  width: calc(100% + 40px);
+  margin-bottom: -30px;
+  margin-left: -20px;
+  background: linear-gradient(to bottom, black 0, black 100%);
+  filter: blur(10px);
+}
+
 @media screen and (min-width: 760px) {
   .Location {
-    padding: 184px 0;
+    padding: 184px 0 0;
 
     overflow: hidden;
   }

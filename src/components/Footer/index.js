@@ -32,13 +32,6 @@ export default class Footer extends Component {
   render() {
     return (
       <footer className="Footer">
-        <div className="Footer-hero">
-          <img
-            className="Footer-image"
-            src={Hero}
-            alt="Roman legion platoon fadding in the mist"
-          />
-        </div>
         <div className="Footer-content">
           <div className="Footer-columns">
             <div className="Footer-column">
