@@ -35,27 +35,47 @@ export default class Sponsors extends Component {
             <div className="Sponsors-group">
               <img alt="Gold sponsors" src={goldLabel} />
               <div className="Sponsors-groupContent">
-                <img alt="FarfetchLogo" className="Sponsors-logo" src={FarfetchLogo} />
-                <img alt="Hostelworld" className="Sponsors-logo" src={HostelworldLogo} />
-                <img alt="XingLogo" className="Sponsors-logo" src={XingLogo} />
-                <img alt="HiLogo" className="Sponsors-logo" src={HiLogo} />
+                <a href="http://www.farfetch.com/">
+                  <img alt="FarfetchLogo" className="Sponsors-logo" src={FarfetchLogo} />
+                </a>
+                <a href="https://www.hostelworld.com/">
+                  <img alt="Hostelworld" className="Sponsors-logo" src={HostelworldLogo} />
+                </a>
+                <a href="https://www.xing.com/en">
+                  <img alt="XingLogo" className="Sponsors-logo" src={XingLogo} />
+                </a>
+                <a href="https://www.hi-interactive.pt/en/">
+                  <img alt="HiLogo" className="Sponsors-logo" src={HiLogo} />
+                </a>
               </div>
             </div>
           </div>
           <div className="Sponsors-group">
             <img alt="Stone sponsors" src={stoneLabel} />
             <div className="Sponsors-groupContent">
-              <img alt="Balsamiq" className="Sponsors-logo" src={BalsamiqLogo} />
-              <img alt="Pixelmatters" className="Sponsors-logo" src={PixelmattersLogo} />
-              <img alt="Mediaweb" className="Sponsors-logo" src={MediawebLogo} />
-              <img alt="Burocratik" className="Sponsors-logo" src={BurocratikLogo} />
-              <img alt="Prozis" className="Sponsors-logo" src={ProzisLogo} />
+              <a href="https://balsamiq.com/">
+                <img alt="Balsamiq" className="Sponsors-logo" src={BalsamiqLogo} />
+              </a>
+              <a href="http://pixelmatters.com/">
+                <img alt="Pixelmatters" className="Sponsors-logo" src={PixelmattersLogo} />
+              </a>
+              <a href="https://mediaweb.pt/">
+                <img alt="Mediaweb" className="Sponsors-logo" src={MediawebLogo} />
+              </a>
+              <a href="https://www.burocratik.com/">
+                <img alt="Burocratik" className="Sponsors-logo" src={BurocratikLogo} />
+              </a>
+              <a href="https://www.prozis.com/pt/en">
+                <img alt="Prozis" className="Sponsors-logo" src={ProzisLogo} />
+              </a>
             </div>
           </div>
           <div className="Sponsors-group">
             <img alt="Partnerships" src={partnershipsLabel} />
             <div className="Sponsors-groupContent">
-              <img alt="Portuguese Women In Tech" className="Sponsors-pwit" src={PWITLogo} />
+              <a href="http://www.portuguesewomenintech.com/">
+                <img alt="Portuguese Women In Tech" className="Sponsors-pwit" src={PWITLogo} />
+              </a>
             </div>
           </div>
           <div className="Sponsors-group">

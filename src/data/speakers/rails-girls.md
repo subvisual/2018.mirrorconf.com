@@ -1,6 +1,6 @@
 ---
 slug: rails-girls
-name: Rails Girls
+name: Rails Girls Summer of Code
 website:
 twitter:
 dateTime:
