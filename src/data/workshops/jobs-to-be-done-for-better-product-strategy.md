@@ -1,7 +1,7 @@
 ---
 slug: jobs-to-be-done-for-better-product-strategy
 title: Jobs-to-Be-Done for Better Product Strategy
-speaker: Steph
+speaker: Stephanie Troeth
 date: October 16th
 time: 10:00 - 17:00
 agenda: ''
