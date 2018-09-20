@@ -19,6 +19,7 @@ import MediawebLogo from './logos/mediaweb.png';
 import PixelmattersLogo from './logos/pixelmatters.svg';
 import PWITLogo from './logos/pwit.svg';
 import ProzisLogo from './logos/prozis.svg';
+import SeegnoLogo from './logos/seegno.svg';
 import XingLogo from './logos/xing.svg';
 
 export default class Sponsors extends Component {
@@ -46,6 +47,9 @@ export default class Sponsors extends Component {
                 </a>
                 <a href="https://www.hi-interactive.pt/en/">
                   <img alt="HiLogo" className="Sponsors-logo" src={HiLogo} />
+                </a>
+                <a href="https://www.hi-interactive.pt/en/">
+                  <img alt="SeegnoLogo" className="Sponsors-logo" src={SeegnoLogo} />
                 </a>
               </div>
             </div>
