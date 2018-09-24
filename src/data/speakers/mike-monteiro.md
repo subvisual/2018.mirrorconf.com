@@ -3,7 +3,7 @@ slug: mike-monteiro
 name: Mike Monteiro
 website: http://mikemonteiro.com/
 twitter: https://twitter.com/monteiro
-dateTime: October 12 - 17:00
+dateTime:
 photo: /assets/mike-monteiro.svg
 ---
 

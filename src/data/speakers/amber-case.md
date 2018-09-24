@@ -3,7 +3,7 @@ slug: amber-case
 name: Amber Case
 website: http://caseorganic.com/
 twitter: https://twitter.com/caseorganic
-dateTime: October 15
+dateTime:
 photo: /assets/amber-case.svg
 ---
 

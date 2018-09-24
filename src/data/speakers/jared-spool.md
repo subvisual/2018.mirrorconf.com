@@ -3,7 +3,7 @@ slug: jared-spool
 name: Jared Spool
 website: https://www.uie.com/
 twitter: https://twitter.com/jmspool
-dateTime: October 17
+dateTime:
 photo: /assets/jared-spool.svg
 ---
 

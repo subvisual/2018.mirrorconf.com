@@ -3,7 +3,7 @@ slug: lea-verou
 name: Lea Verou
 website: http://lea.verou.me/
 twitter: https://twitter.com/LeaVerou
-dateTime: October 17
+dateTime:
 photo: /assets/lea-verou.svg
 ---
 

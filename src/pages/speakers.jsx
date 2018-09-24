@@ -29,7 +29,6 @@ export const pageQuery = graphql`
             photo
             website
             twitter
-            dateTime
           }
         }
       }
