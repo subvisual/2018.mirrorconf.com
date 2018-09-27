@@ -19,6 +19,17 @@ maintains a technical blog at [lea.verou.me]. She holds a MSc in Computer
 Science from MIT. Despite her academic pursuits in Computer Science, Lea is one
 of the few misfits who love code and design equally.
 
+## Even More CSS Secrets
+
+CSS Secrets was a series of talks that were loved by audiences all around the
+globe and led to Lea’s bestselling book “CSS Secrets”. The premise is simple:
+Ten surprising yet practical things you didn’t know you could do in CSS,
+live-coded in Lea’s trademark interactive presentation style. This third
+installment of the series will include new juicy secrets related to CSS
+Variables, SVG, grid layout, flexbox, variable fonts, among other things.
+Prepare to be inspired again as Lea debuts ten all-new feats of advanced CSS
+wizardry, which will help you understand CSS at a much deeper level.
+
 [MIT CSAIL]: http://csail.mit.edu
 [CSS Secrets]: http://shop.oreilly.com/product/0636920031123.do
 [W3C]: http://w3.org

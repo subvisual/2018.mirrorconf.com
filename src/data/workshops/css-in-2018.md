@@ -5,8 +5,8 @@ speaker: Lea Verou & Chris Lilley
 date: October 17th
 time: 10:00 - 17:00
 agenda: ''
-photo: /assets/lea-photo.png
-overlay: /assets/lea-illustration.png
+photo: /assets/lea-chris-photo.png
+overlay: /assets/lea-chris-illustration.png
 excerpt: >
   Feeling overwhelmed at the amount of new CSS and SVG features and techniques you keep hearing about?
   Join CSS superstar Lea Verou and “Father of SVG” Chris Lilley in a day jam-packed with CSS and SVG goodness that will not only bring you up to date, it will help you understand all these new features at a deeper level.
