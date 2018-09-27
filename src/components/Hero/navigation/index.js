@@ -13,6 +13,8 @@ import AboutPreview from './about_preview.jpg';
 import SpeakersPreview from './speakers_preview.jpg';
 import LocationPreview from './location_preview.jpg';
 import WorkshopsPreview from './workshops_preview.jpg';
+import SchedulePreview from './schedule_preview.jpg';
+import SponsorsPreview from './sponsors_preview.jpg';
 
 import { clientHeight } from '../../../utils/dom';
 
@@ -131,11 +133,14 @@ export default class Navigation extends Component {
             <p className="Navigation-linkLabel">Workshops</p>
             {this.renderLinkBackground(WorkshopsPreview)}
           </a>
-          <div onClick={this.onClick} className="Navigation-link isDisabled">
+          <a
+            href="#schedule"
+            onClick={this.onClick}
+            className="Navigation-link"
+          >
             <p className="Navigation-linkLabel">Schedule</p>
-            {this.renderLinkBackground(this.state.noise[0])}
-            {this.renderMalfunctionNote()}
-          </div>
+            {this.renderLinkBackground(SchedulePreview)}
+          </a>
           <a
             onClick={this.onClick}
             className="Navigation-link"
@@ -153,8 +158,7 @@ export default class Navigation extends Component {
             href="#sponsors"
           >
             <p className="Navigation-linkLabel">Sponsors</p>
-            {this.renderLinkBackground(this.state.noise[2])}
-            {this.renderMalfunctionNote()}
+            {this.renderLinkBackground(SponsorsPreview)}
           </a>
         </div>
         <p className="Navigation-hallOutput">{this.state.hall}</p>
