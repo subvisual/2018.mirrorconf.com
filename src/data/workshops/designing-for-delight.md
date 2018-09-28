@@ -1,7 +1,7 @@
 ---
 slug: designing-for-delight
 title: Designing for Delight
-speaker: Jared Spool
+speaker: Jared Spool & Dana Chisnell
 date: October 17th
 time: 10:00 - 17:00
 agenda: ''
