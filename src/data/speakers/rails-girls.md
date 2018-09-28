@@ -1,13 +1,13 @@
 ---
 slug: rails-girls
-name: Rails Girls Summer of Code
+name: RGSoC
 website:
 twitter:
 dateTime:
 photo: /assets/rails-girls.svg
 ---
 
-##
+## Rails Girls Summer of Code 2018
 
 [Sabine van der Eijk], Software Developer at RGSoC & Front End developer at ANWB
 [Alina Leuca], Software Developer at RGSoC
