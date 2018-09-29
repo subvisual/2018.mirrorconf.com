@@ -33,7 +33,7 @@ export default (
         </Row>
         <Row className="SchedulePage-row">
           <h3 className="SchedulePage-room">
-            Fórum Braga <br /> Main Room
+            Forum Braga <br /> Main Room
           </h3>
         </Row>
 
@@ -179,7 +179,7 @@ export default (
 
         <Row className="SchedulePage-row">
           <h3 className="SchedulePage-room">
-            Fórum Braga <br /> Main Room
+            Forum Braga <br /> Main Room
           </h3>
         </Row>
 
@@ -257,7 +257,7 @@ export default (
           </p>
         </Row>
 
-        <Row className="SchedulePage-entry">
+        <Row className="SchedulePage-entry xl">
           <p className="SchedulePage-entryTime">16:00</p>
           <a href="/speakers#rails-girls" className="SchedulePage-entryTitle">
             Hurdles of Junior Developers and How To Overcome Them{' '}
@@ -280,7 +280,7 @@ export default (
           </a>
         </Row>
 
-        <Row className="SchedulePage-entry l">
+        <Row className="SchedulePage-entry xl">
           <p className="SchedulePage-entryTime">18:00</p>
           <p className="SchedulePage-entryTitle">
             Talk Shop{' '}

@@ -9,6 +9,7 @@ export default (
         <Row className="SchedulePage-row">
           <h2 className="SchedulePage-title no-topMargin">15</h2>
         </Row>
+
         <Container className="SchedulePage-columns">
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
@@ -16,6 +17,7 @@ export default (
                 Gnration <br /> Room 1
               </h3>
             </Row>
+
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">10:00</p>
               <a
@@ -26,10 +28,12 @@ export default (
                 <span className="SchedulePage-entrySpeaker">by Amber Case</span>
               </a>
             </Row>
+
             <Row className="SchedulePage-entry is-small">
               <p className="SchedulePage-entryTime">12:30</p>
               <p className="SchedulePage-entryTitle">Lunch</p>
             </Row>
+
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">14:00</p>
               <a
@@ -41,12 +45,14 @@ export default (
               </a>
             </Row>
           </Column>
+
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
               <h3 className="SchedulePage-room no-locationDot">
                 Gnration <br /> Room 2
               </h3>
             </Row>
+
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">10:00</p>
               <a
@@ -59,10 +65,12 @@ export default (
                 </span>
               </a>
             </Row>
+
             <Row className="SchedulePage-entry is-small">
               <p className="SchedulePage-entryTime">12:30</p>
               <p className="SchedulePage-entryTitle">Lunch</p>
             </Row>
+
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">14:00</p>
               <a
@@ -78,10 +86,12 @@ export default (
           </Column>
         </Container>
       </Column>
+
       <Column className="SchedulePage-column">
         <Row className="SchedulePage-row">
           <h2 className="SchedulePage-title">16</h2>
         </Row>
+
         <Container className="SchedulePage-columns">
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
@@ -112,6 +122,7 @@ export default (
               </a>
             </Row>
           </Column>
+
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
               <h3 className="SchedulePage-room no-locationDot">
@@ -148,25 +159,29 @@ export default (
             </Row>
           </Column>
         </Container>
-        <Row className="SchedulePage-row">
-          <h3 className="SchedulePage-room">Braga City Center</h3>
-        </Row>
-        <Row className="SchedulePage-entry  is-small">
-          <p className="SchedulePage-entryTime">16:00</p>
-          <p className="SchedulePage-entryTitle">Free Walking Tour</p>
-        </Row>
-        <Row className="SchedulePage-row">
-          <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
-        </Row>
-        <Row className="SchedulePage-entry">
-          <p className="SchedulePage-entryTime">18:30</p>
-          <p className="SchedulePage-entryTitle">
-            Meetup:{' '}
-            <span className="SchedulePage-entrySpeaker">
-              Braga.Design + Braga.JS
-            </span>
-          </p>
-        </Row>
+        <Container className="SchedulePage-columns">
+          <Column className="SchedulePage-column">
+            <Row className="SchedulePage-row">
+              <h3 className="SchedulePage-room">Braga City Center</h3>
+            </Row>
+            <Row className="SchedulePage-entry  is-small">
+              <p className="SchedulePage-entryTime">16:00</p>
+              <p className="SchedulePage-entryTitle">Free Walking Tour</p>
+            </Row>
+            <Row className="SchedulePage-row">
+              <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
+            </Row>
+            <Row className="SchedulePage-entry">
+              <p className="SchedulePage-entryTime">18:30</p>
+              <p className="SchedulePage-entryTitle">
+                Meetup:{' '}
+                <span className="SchedulePage-entrySpeaker">
+                  Braga.Design + Braga.JS
+                </span>
+              </p>
+            </Row>
+          </Column>
+        </Container>
       </Column>
       <Column className="SchedulePage-column">
         <Row className="SchedulePage-row">
@@ -238,20 +253,24 @@ export default (
             </Row>
           </Column>
         </Container>
-        <Row className="SchedulePage-row">
-          <h3 className="SchedulePage-room">Braga City Center</h3>
-        </Row>
-        <Row className="SchedulePage-entry is-small">
-          <p className="SchedulePage-entryTime">16:00</p>
-          <p className="SchedulePage-entryTitle">Free Walking Tour</p>
-        </Row>
-        <Row className="SchedulePage-row">
-          <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
-        </Row>
-        <Row className="SchedulePage-entry">
-          <p className="SchedulePage-entryTime">18:30</p>
-          <p className="SchedulePage-entryTitle">Welcome Drinks</p>
-        </Row>
+        <Container className="SchedulePage-columns">
+          <Column className="SchedulePage-column">
+            <Row className="SchedulePage-row">
+              <h3 className="SchedulePage-room">Braga City Center</h3>
+            </Row>
+            <Row className="SchedulePage-entry is-small">
+              <p className="SchedulePage-entryTime">16:00</p>
+              <p className="SchedulePage-entryTitle">Free Walking Tour</p>
+            </Row>
+            <Row className="SchedulePage-row">
+              <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
+            </Row>
+            <Row className="SchedulePage-entry">
+              <p className="SchedulePage-entryTime">18:30</p>
+              <p className="SchedulePage-entryTitle">Welcome Drinks</p>
+            </Row>
+          </Column>
+        </Container>
       </Column>
     </Container>
   </div>

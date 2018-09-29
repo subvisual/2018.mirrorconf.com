@@ -4,6 +4,8 @@ import React, { cloneElement, Children, Component } from 'react';
 
 import './index.css';
 
+import back from '../back.svg';
+
 const Tab = posed.div({
   active: {
     delayChildren: 200,
@@ -13,6 +15,16 @@ const Tab = posed.div({
     delayChildren: 200,
     staggerChildren: 50,
     delay: 180,
+    beforeChildren: false,
+  },
+});
+
+const Image = posed.img({
+  active: {
+    opacity: 1,
+  },
+  inactive: {
+    opacity: 0,
   },
 });
 
@@ -29,14 +41,19 @@ export default class Tabss extends Component {
 
   renderNavigation = () =>
     Children.map(this.props.children, (child, index) => {
+      const active = this.isActive(index);
+      console.log(active);
+      const pose = active ? 'active' : 'inactive';
       const className = classNames({
         'Tabs-button': true,
-        'is-active': this.isActive(index),
+        'is-active': active,
+        flip: index === 0,
       });
 
       return (
         <button className={className} onClick={this.switchToTab(index)}>
           {child.props.title}
+          <Image pose={pose} className="Tabs-activeTabIndicator" src={back} />
         </button>
       );
     });
