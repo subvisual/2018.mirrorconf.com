@@ -42,7 +42,6 @@ export default class Tabss extends Component {
   renderNavigation = () =>
     Children.map(this.props.children, (child, index) => {
       const active = this.isActive(index);
-      console.log(active);
       const pose = active ? 'active' : 'inactive';
       const className = classNames({
         'Tabs-button': true,

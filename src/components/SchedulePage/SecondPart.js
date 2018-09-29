@@ -206,7 +206,7 @@ export default (
           </a>
         </Row>
 
-        <Row className="SchedulePage-entry">
+        <Row className="SchedulePage-entry xl">
           <p className="SchedulePage-entryTime">10:45</p>
           <a href="/speakers#jackie-balzer" className="SchedulePage-entryTitle">
             Preprocessors, Components, and CSS in JS or: How I Learned to Stop

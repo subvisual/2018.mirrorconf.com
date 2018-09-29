@@ -171,7 +171,7 @@ export default (
             <Row className="SchedulePage-row">
               <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
             </Row>
-            <Row className="SchedulePage-entry">
+            <Row className="SchedulePage-entry no-margin">
               <p className="SchedulePage-entryTime">18:30</p>
               <p className="SchedulePage-entryTitle">
                 Meetup:{' '}
@@ -265,7 +265,7 @@ export default (
             <Row className="SchedulePage-row">
               <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
             </Row>
-            <Row className="SchedulePage-entry">
+            <Row className="SchedulePage-entry no-margin">
               <p className="SchedulePage-entryTime">18:30</p>
               <p className="SchedulePage-entryTitle">Welcome Drinks</p>
             </Row>

@@ -186,7 +186,7 @@
   background-position: center;
 }
 
-.SchedulePage-entry:not(.is-small) {
+.SchedulePage-entry:not(.is-small):not(.no-margin) {
   flex: 1;
 }
 
@@ -218,6 +218,54 @@
 
 .SchedulePage-fillers {
   display: none;
+}
+
+@media screen and (min-width: 736px) {
+  .SchedulePage-title {
+    padding: 15px;
+    margin-top: 0px;
+  }
+
+  .SchedulePage-column:not(:last-child) {
+    margin-right: 28px;
+  }
+
+  .SchedulePage-column:not(:last-child)::before {
+    position: absolute;
+
+    content: ' ';
+
+    top: 50%;
+    left: 100%;
+
+    width: 1px;
+    height: calc(100% - 20px);
+
+    transform: translateX(calc(-50% + 14px)) translateY(-50%);
+
+    background: #313131;
+  }
+
+  .SchedulePage-columns {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .SchedulePage-columns.is-firstPart .SchedulePage-column .SchedulePage-entry {
+    flex: 1;
+  }
+
+  .SchedulePage-entry:not(.is-small):not(.no-margin) {
+    flex: none;
+  }
+
+  .SchedulePage-entry.xl {
+    min-height: 94px;
+  }
+
+  .SchedulePage-entry.l {
+    min-height: 74px;
+  }
 }
 
 @media screen and (min-width: 1000px) {
@@ -303,18 +351,50 @@
   }
 }
 
+@media screen and (min-width: 736px) {
+  .SchedulePage-columns.is-firstPart
+    .SchedulePage-column
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
+    min-height: 174px;
+  }
+}
+
+@media screen and (min-width: 782px) {
+  .SchedulePage-columns.is-firstPart
+    .SchedulePage-column
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
+    min-height: 154px;
+  }
+}
+
+@media screen and (min-width: 863px) {
+  .SchedulePage-columns.is-firstPart
+    .SchedulePage-column
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
+    min-height: 134px;
+  }
+}
+
+@media screen and (min-width: 902px) {
+  .SchedulePage-columns.is-firstPart
+    .SchedulePage-column
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
+    min-height: 114px;
+  }
+}
+
 @media screen and (min-width: 1000px) {
   .SchedulePage-columns.is-firstPart
     .SchedulePage-column
-    .SchedulePage-entry:not(.is-small) {
-    min-height: 240px;
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
+    min-height: 238px;
   }
 }
 
 @media screen and (min-width: 1054px) {
   .SchedulePage-columns.is-firstPart
     .SchedulePage-column
-    .SchedulePage-entry:not(.is-small) {
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
     min-height: 212px;
   }
 }
@@ -322,7 +402,7 @@
 @media screen and (min-width: 1089px) {
   .SchedulePage-columns.is-firstPart
     .SchedulePage-column
-    .SchedulePage-entry:not(.is-small) {
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
     min-height: 210px;
   }
 }
@@ -330,7 +410,7 @@
 @media screen and (min-width: 1155px) {
   .SchedulePage-columns.is-firstPart
     .SchedulePage-column
-    .SchedulePage-entry:not(.is-small) {
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
     min-height: 182px;
   }
 }
@@ -344,7 +424,7 @@
 @media screen and (min-width: 1205px) {
   .SchedulePage-columns.is-firstPart
     .SchedulePage-column
-    .SchedulePage-entry:not(.is-small) {
+    .SchedulePage-entry:not(.is-small):not(.no-margin) {
     min-height: 154px;
   }
 }

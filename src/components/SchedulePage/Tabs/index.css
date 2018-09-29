@@ -102,8 +102,13 @@
   z-index: 2;
 }
 
-@media screen and (min-width: 768px) {
+.Tabs-activeTabIndicator {
+  display: none;
+}
+
+@media screen and (min-width: 667px) {
   .Tabs-activeTabIndicator {
+    display: block;
     position: absolute;
 
     top: calc(50% - 8px);
