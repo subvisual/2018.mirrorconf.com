@@ -11,8 +11,11 @@ import goldLabel from './gold_label.svg';
 import platinumLabel from './platinum_label.svg';
 
 import BalsamiqLogo from './logos/balsamiq.png';
+import BoschLogo from './logos/bosch.svg';
 import BurocratikLogo from './logos/burocratik.svg';
 import FarfetchLogo from './logos/farfetch.svg';
+import FullsixLogo from './logos/fullsix.svg';
+import GinettaLogo from './logos/ginetta.svg'
 import HiLogo from './logos/hi.svg';
 import HostelworldLogo from './logos/hostelworld.svg';
 import MediawebLogo from './logos/mediaweb.png';
@@ -37,19 +40,22 @@ export default class Sponsors extends Component {
               <img alt="Gold sponsors" src={goldLabel} />
               <div className="Sponsors-groupContent">
                 <a href="http://www.farfetch.com/">
-                  <img alt="FarfetchLogo" className="Sponsors-logo" src={FarfetchLogo} />
+                  <img alt="Farfetch" className="Sponsors-logo" src={FarfetchLogo} />
                 </a>
                 <a href="https://www.hostelworld.com/">
                   <img alt="Hostelworld" className="Sponsors-logo" src={HostelworldLogo} />
                 </a>
                 <a href="https://www.xing.com/en">
-                  <img alt="XingLogo" className="Sponsors-logo" src={XingLogo} />
+                  <img alt="Xing" className="Sponsors-logo" src={XingLogo} />
                 </a>
                 <a href="https://www.hi-interactive.pt/en/">
-                  <img alt="HiLogo" className="Sponsors-logo" src={HiLogo} />
+                  <img alt="Hi-Interactive" className="Sponsors-logo" src={HiLogo} />
                 </a>
                 <a href="https://www.hi-interactive.pt/en/">
                   <img alt="SeegnoLogo" className="Sponsors-logo" src={SeegnoLogo} />
+                </a>
+                <a href="https://ginetta.net/">
+                  <img alt="Ginetta" className="Sponsors-logo" src={GinettaLogo} />
                 </a>
               </div>
             </div>
@@ -71,6 +77,12 @@ export default class Sponsors extends Component {
               </a>
               <a href="https://www.prozis.com/pt/en">
                 <img alt="Prozis" className="Sponsors-logo" src={ProzisLogo} />
+              </a>
+              <a href="http://www.fullsix.pt/">
+                <img alt="Fullsix" className="Sponsors-logo" src={FullsixLogo} />
+              </a>
+              <a href="https://www.bosch.pt/">
+                <img alt="Bosch" className="Sponsors-logo" src={BoschLogo} />
               </a>
             </div>
           </div>
