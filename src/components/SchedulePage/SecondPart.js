@@ -79,12 +79,11 @@ export default (
 
         <Row className="SchedulePage-entry">
           <p className="SchedulePage-entryTime">12:15</p>
-          <a
-            href="/speakers#jessica-jordan"
-            className="SchedulePage-entryTitle"
-          >
-            Crafting Web Comics with Ember{' '}
-            <span className="SchedulePage-entrySpeaker">by Jessica Jordan</span>
+          <a href="/speakers#rails-girls" className="SchedulePage-entryTitle">
+            Hurdles of Junior Developers and How To Overcome Them{' '}
+            <span className="SchedulePage-entrySpeaker">
+              by Sabine van der Eijk & Alina Leuca
+            </span>
           </a>
         </Row>
 
@@ -259,11 +258,12 @@ export default (
 
         <Row className="SchedulePage-entry xl">
           <p className="SchedulePage-entryTime">16:00</p>
-          <a href="/speakers#rails-girls" className="SchedulePage-entryTitle">
-            Hurdles of Junior Developers and How To Overcome Them{' '}
-            <span className="SchedulePage-entrySpeaker">
-              by Sabine van der Eijk & Alina Leuca
-            </span>
+          <a
+            href="/speakers#jessica-jordan"
+            className="SchedulePage-entryTitle"
+          >
+            Crafting Web Comics with Ember{' '}
+            <span className="SchedulePage-entrySpeaker">by Jessica Jordan</span>
           </a>
         </Row>
 
