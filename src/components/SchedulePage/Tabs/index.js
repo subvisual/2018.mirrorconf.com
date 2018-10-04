@@ -28,7 +28,7 @@ const Image = posed.img({
   },
 });
 
-export default class Tabss extends Component {
+export default class Tabs extends Component {
   constructor() {
     super();
     this.state = { activeTabIndex: 0 };
