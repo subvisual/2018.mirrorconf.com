@@ -23,6 +23,8 @@ import PixelmattersLogo from './logos/pixelmatters.svg';
 import PWITLogo from './logos/pwit.svg';
 import ProzisLogo from './logos/prozis.svg';
 import SeegnoLogo from './logos/seegno.svg';
+import StartupBragaLogo from './logos/startup@2x.png';
+import TndsLogo from './logos/tnds.svg';
 import XingLogo from './logos/xing.svg';
 
 export default class Sponsors extends Component {
@@ -91,6 +93,12 @@ export default class Sponsors extends Component {
             <div className="Sponsors-groupContent">
               <a href="http://www.portuguesewomenintech.com/">
                 <img alt="Portuguese Women In Tech" className="Sponsors-pwit" src={PWITLogo} />
+              </a>
+              <a href="https://www.startupbraga.com/">
+                <img alt="Startup Braga" className="Sponsors-logo" src={StartupBragaLogo} />
+              </a>
+              <a href="http://thenewdigitalschool.com/">
+                <img alt="The New Digital School" className="Sponsors-logo" src={TndsLogo} />
               </a>
             </div>
           </div>

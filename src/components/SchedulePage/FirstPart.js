@@ -30,7 +30,7 @@ export default (
             </Row>
 
             <Row className="SchedulePage-entry is-small">
-              <p className="SchedulePage-entryTime">12:30</p>
+              <p className="SchedulePage-entryTime">13:00</p>
               <p className="SchedulePage-entryTitle">Lunch</p>
             </Row>
 
@@ -67,7 +67,7 @@ export default (
             </Row>
 
             <Row className="SchedulePage-entry is-small">
-              <p className="SchedulePage-entryTime">12:30</p>
+              <p className="SchedulePage-entryTime">13:00</p>
               <p className="SchedulePage-entryTitle">Lunch</p>
             </Row>
 
@@ -109,7 +109,7 @@ export default (
               </a>
             </Row>
             <Row className="SchedulePage-entry is-small">
-              <p className="SchedulePage-entryTime">12:30</p>
+              <p className="SchedulePage-entryTime">13:00</p>
               <p className="SchedulePage-entryTitle">Lunch</p>
             </Row>
             <Row className="SchedulePage-entry">
@@ -142,7 +142,7 @@ export default (
               </a>
             </Row>
             <Row className="SchedulePage-entry is-small">
-              <p className="SchedulePage-entryTime">12:30</p>
+              <p className="SchedulePage-entryTime">13:00</p>
               <p className="SchedulePage-entryTitle">Lunch</p>
             </Row>
             <Row className="SchedulePage-entry">
@@ -204,7 +204,7 @@ export default (
               </a>
             </Row>
             <Row className="SchedulePage-entry is-small">
-              <p className="SchedulePage-entryTime">12:30</p>
+              <p className="SchedulePage-entryTime">13:00</p>
               <p className="SchedulePage-entryTitle">Lunch</p>
             </Row>
             <Row className="SchedulePage-entry">
@@ -236,7 +236,7 @@ export default (
               </a>
             </Row>
             <Row className="SchedulePage-entry is-small">
-              <p className="SchedulePage-entryTime">12:30</p>
+              <p className="SchedulePage-entryTime">13:00</p>
               <p className="SchedulePage-entryTitle">Lunch</p>
             </Row>
             <Row className="SchedulePage-entry">

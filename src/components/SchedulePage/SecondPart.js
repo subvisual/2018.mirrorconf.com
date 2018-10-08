@@ -20,7 +20,7 @@ const Ginetta = (
     className="SchedulePage-link"
     href="https://ginetta.net/"
   >
-    sponsored by Ginetta
+    hosted by Ginetta
   </a>
 );
 
@@ -105,7 +105,7 @@ export default (
           <p className="SchedulePage-entryTitle">
             Talk Shop{' '}
             <span className="SchedulePage-entrySpeaker">
-              with Jessica Jordan and Arne Kittler
+              with Sabine van der Eijk, Alina Leuca and Arne Kittler
             </span>
           </p>
         </Row>
@@ -285,7 +285,7 @@ export default (
           <p className="SchedulePage-entryTitle">
             Talk Shop{' '}
             <span className="SchedulePage-entrySpeaker">
-              with Sabine van der Eijk, Alina Leuca and Mike Monteiro
+              with Jessica Jordan and Mike Monteiro
             </span>
           </p>
         </Row>
