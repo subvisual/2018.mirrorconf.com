@@ -124,7 +124,7 @@
   box-shadow: 0px 4px 5px #d6936c;
 }
 
-.Location-accommodations:not(:last-child) {
+.Location-accommodation:not(:last-child) {
   margin-bottom: 60px;
 }
 
