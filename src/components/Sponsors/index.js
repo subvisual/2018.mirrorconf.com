@@ -19,6 +19,7 @@ import GinettaLogo from './logos/ginetta.svg'
 import HiLogo from './logos/hi.svg';
 import HostelworldLogo from './logos/hostelworld.svg';
 import MediawebLogo from './logos/mediaweb.png';
+import OutsystemsLogo from './logos/outsystems.svg';
 import PixelmattersLogo from './logos/pixelmatters.svg';
 import PWITLogo from './logos/pwit.svg';
 import ProzisLogo from './logos/prozis.svg';
@@ -58,6 +59,9 @@ export default class Sponsors extends Component {
                 </a>
                 <a href="https://ginetta.net/">
                   <img alt="Ginetta" className="Sponsors-logo" src={GinettaLogo} />
+                </a>
+                <a href="https://www.outsystems.com/">
+                  <img alt="Outsystems" className="Sponsors-logo" src={OutsystemsLogo} />
                 </a>
               </div>
             </div>
