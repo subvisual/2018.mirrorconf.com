@@ -166,19 +166,27 @@ export default (
             </Row>
             <Row className="SchedulePage-entry  is-small">
               <p className="SchedulePage-entryTime">16:00</p>
-              <p className="SchedulePage-entryTitle">Free Walking Tour</p>
+              <a
+                href="https://subvisual.typeform.com/to/l9DwYF"
+                className="SchedulePage-entryTitle"
+              >
+                Free Walking Tour
+              </a>
             </Row>
             <Row className="SchedulePage-row">
               <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
             </Row>
             <Row className="SchedulePage-entry no-margin">
               <p className="SchedulePage-entryTime">18:30</p>
-              <p className="SchedulePage-entryTitle">
+              <a
+                href="https://www.meetup.com/pt-BR/bragadesign/events/255085502/"
+                className="SchedulePage-entryTitle"
+              >
                 Meetup:{' '}
                 <span className="SchedulePage-entrySpeaker">
                   Braga.Design + Braga.JS
                 </span>
-              </p>
+              </a>
             </Row>
           </Column>
         </Container>
@@ -260,14 +268,24 @@ export default (
             </Row>
             <Row className="SchedulePage-entry is-small">
               <p className="SchedulePage-entryTime">16:00</p>
-              <p className="SchedulePage-entryTitle">Free Walking Tour</p>
+              <a
+                href="https://subvisual.typeform.com/to/l9DwYF"
+                className="SchedulePage-entryTitle"
+              >
+                Free Walking Tour
+              </a>
             </Row>
             <Row className="SchedulePage-row">
               <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
             </Row>
             <Row className="SchedulePage-entry no-margin">
               <p className="SchedulePage-entryTime">18:30</p>
-              <p className="SchedulePage-entryTitle">Welcome Drinks</p>
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5531265,-8.4284087,17z/data=!3m1!4b1!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-entryTitle"
+              >
+                Welcome Drinks
+              </a>
             </Row>
           </Column>
         </Container>

@@ -198,11 +198,37 @@
 }
 
 .SchedulePage-entryTitle {
+  position: relative;
+
+  top: 0;
+
   font-family: 'goudy-old-style';
   line-height: 20px;
   font-size: 16px;
   font-weight: bold;
   color: #313131;
+  text-decoration: none;
+
+  transition: top 0.3s ease-in-out;
+}
+
+.SchedulePage-entryTitle:hover {
+  top: 3px;
+}
+
+@keyframes float {
+  0% {
+    top: 0px;
+  }
+  25% {
+    top: 3px;
+  }
+  75%: {
+    top: -3px;
+  }
+  100% {
+    top: 0px;
+  }
 }
 
 .SchedulePage-entrySpeaker,
