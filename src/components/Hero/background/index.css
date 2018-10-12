@@ -16,7 +16,7 @@
   position: relative;
 }
 
-.Background canvas {
+.Background {
   display: inline-block;
 
   width: 100%;
@@ -24,13 +24,21 @@
   max-height: 1000px;
 
   transform: translateZ(0px);
+
+  margin-top: 100px;
+}
+
+.Background-machine {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 100%;
+  max-width: 800px;
+  z-index: -1;
 }
 
 .Background-content {
-  position: absolute;
-
-  top: 50%;
-  right: 0;
   width: 100%;
 
   padding: 0 20px;
@@ -39,7 +47,8 @@
 
   z-index: 1;
 
-  transform: translateY(-50%);
+  margin: 0 auto;
+  max-width: 1092px;
 }
 
 .Background-text,
@@ -201,7 +210,7 @@
 }
 
 @media screen and (min-width: 1600px) {
-  .Background canvas {
+  .Background {
     max-width: 1200px;
     max-height: none;
   }
