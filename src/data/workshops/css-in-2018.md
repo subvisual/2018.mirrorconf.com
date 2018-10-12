@@ -1,6 +1,6 @@
 ---
 slug: css-in-2018
-title: CSS in 2018
+title: CSS and SVG in 2018
 speaker: Lea Verou & Chris Lilley
 date: October 17th
 time: 10:00 - 17:00

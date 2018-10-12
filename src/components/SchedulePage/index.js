@@ -14,7 +14,7 @@ export default class SchedulePage extends Component {
     return (
       <section className="SchedulePage">
         <div className="SchedulePage-wrapper">
-          <a className="SchedulePage-backLink" href="/">
+          <a className="SchedulePage-backLink" href="/#schedule">
             <img className="SchedulePage-backImage" src={back} />
             Go back
           </a>

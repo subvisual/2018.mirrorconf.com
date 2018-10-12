@@ -205,7 +205,7 @@ export default (
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">10:00</p>
               <a href="/css-in-2018" className="SchedulePage-entryTitle">
-                CSS in 2018 pt.1{' '}
+                CSS and SVG in 2018 pt.1{' '}
                 <span className="SchedulePage-entrySpeaker">
                   by Lea Verou & Chris Lilley
                 </span>
@@ -218,7 +218,7 @@ export default (
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">14:00</p>
               <a href="/css-in-2018" className="SchedulePage-entryTitle">
-                CSS in 2018 pt.2{' '}
+                CSS and SVG in 2018 pt.2{' '}
                 <span className="SchedulePage-entrySpeaker">
                   by Lea Verou & Chris Lilley
                 </span>
