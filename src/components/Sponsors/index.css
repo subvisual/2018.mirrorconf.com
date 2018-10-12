@@ -3,7 +3,7 @@
 
   padding: 150px 0;
 
-  background: black;
+  background: #111514;
 }
 
 .Sponsors-cave {
@@ -30,8 +30,8 @@
   background-repeat: no-repeat no-repeat;
 }
 
-.Sponsors-topGroup {
-  margin-bottom: 178px;
+.Sponsors-bottomGroup {
+  margin-bottom: 0px;
 }
 
 .Sponsors-group {
@@ -58,7 +58,7 @@
 .Sponsors-logo {
   height: 28px;
 
-  margin: 8px 28px;
+  margin: 28px;
 }
 
 .Sponsors-pwit {
@@ -87,9 +87,5 @@
     max-width: 800px;
 
     margin: 0 auto;
-  }
-
-  .Sponsors-topGroup {
-    margin-bottom: 292px;
   }
 }

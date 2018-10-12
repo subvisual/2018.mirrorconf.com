@@ -20,7 +20,7 @@
   padding: 60px 20px;
 
   background: url('./stars.svg'),
-    black;
+    #111514;
   background-size: cover;
 }
 
