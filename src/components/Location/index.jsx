@@ -6,6 +6,7 @@ import path from './path.svg';
 import banner from './banner.svg';
 import locationBackground from './forum-illustration.png';
 import accommodationBackground from './accommodation_background.svg';
+import transitionBackground from './roman_legion.png';
 
 import { Burgus, Mercure, DonaSofia, IbisCentro, IbisBudget } from './hotels';
 
@@ -48,14 +49,18 @@ export default class Location extends Component {
               <IbisCentro />
               <IbisBudget />
             </ul>
-            <div className="Location-sectionBackground">
-              <img
-                className="Location-backgroundImage"
-                src={accommodationBackground}
-                alt=""
-              />
+            <div className="Location-mapWrapper">
+              <div className="Location-sectionBackground">
+                <img
+                  className="Location-backgroundImage"
+                  src={accommodationBackground}
+                  alt=""
+                />
+              </div>
+              <iframe className="Location-map" src="https://www.google.com/maps/d/u/0/embed?mid=1N3Fz0MmKNS-H4e_7EltElG0qhQLWT6lm"></iframe>
             </div>
           </div>
+          <iframe className="Location-mapMobile" src="https://www.google.com/maps/d/u/0/embed?mid=1N3Fz0MmKNS-H4e_7EltElG0qhQLWT6lm"></iframe>
         </div>
 
         <div className="Location-directions">
@@ -116,7 +121,13 @@ export default class Location extends Component {
           </ul>
           <img src={banner} alt="" className="Location-banner" />
         </div>
-        <div className="Location-transition"></div>
+        <div className="Location-transition">
+          <img
+            src={transitionBackground}
+            alt=""
+            className="Location-romanLegion"
+          />
+        </div>
       </section>
     );
   }

@@ -1,5 +1,5 @@
 .Location {
-  padding: 122px 20px;
+  padding: 122px 20px 0;
 
   background: linear-gradient(
       180deg,
@@ -225,13 +225,32 @@
   display: none;
 }
 
+.Location-mapWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.Location-map {
+  display: none;
+}
+
+.Location-mapMobile {
+  width: 100%;
+  height: 480px;
+  padding: 60px 60px 0 0;
+}
+
+
+.Location-romanLegion {
+  width: 100%;
+  margin-bottom: -3px;
+}
+
 .Location-transition {
-  height: 50px;
   width: calc(100% + 40px);
-  margin-bottom: -30px;
   margin-left: -20px;
-  background: linear-gradient(to bottom, black 0, black 100%);
-  filter: blur(10px);
 }
 
 @media screen and (min-width: 760px) {
@@ -266,7 +285,7 @@
   .Location-directions {
     max-width: 1440px;
 
-    margin: 0 auto 100px;
+    margin: 0 auto 0;
   }
 
   .Location-banner.desktop {
@@ -316,7 +335,7 @@
   }
 
   .Location-directions {
-    padding: 60px;
+    padding: 60px 60px 0;
   }
 
   .Location-direction {
@@ -374,5 +393,16 @@
     margin: 0;
 
     width: 100%;
+  }
+
+  .Location-map {
+    display:inline;
+    width: 100%;
+    height: 480px;
+    margin-bottom: 60px;
+  }
+
+  .Location-mapMobile {
+    display: none;
   }
 }
