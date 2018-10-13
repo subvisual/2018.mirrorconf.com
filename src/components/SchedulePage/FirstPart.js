@@ -13,9 +13,12 @@ export default (
         <Container className="SchedulePage-columns">
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room no-locationDot">
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5646428,-8.4807824,13z/data=!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-room no-locationDot"
+              >
                 Gnration <br /> Room 1
-              </h3>
+              </a>
             </Row>
 
             <Row className="SchedulePage-entry">
@@ -48,9 +51,12 @@ export default (
 
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room no-locationDot">
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5646428,-8.4807824,13z/data=!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-room no-locationDot"
+              >
                 Gnration <br /> Room 2
-              </h3>
+              </a>
             </Row>
 
             <Row className="SchedulePage-entry">
@@ -95,9 +101,12 @@ export default (
         <Container className="SchedulePage-columns">
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room no-locationDot">
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5646428,-8.4807824,13z/data=!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-room no-locationDot"
+              >
                 Gnration <br /> Room 1
-              </h3>
+              </a>
             </Row>
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">10:00</p>
@@ -125,9 +134,12 @@ export default (
 
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room no-locationDot">
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5646428,-8.4807824,13z/data=!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-room no-locationDot"
+              >
                 Gnration <br /> Room 2
-              </h3>
+              </a>
             </Row>
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">10:00</p>
@@ -162,7 +174,12 @@ export default (
         <Container className="SchedulePage-columns">
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room">Braga City Center</h3>
+              <a
+                className="SchedulePage-room"
+                href="https://www.google.pt/maps/place/Arco+Da+Porta+Nova/@41.5414507,-8.4246834,17z/data=!4m5!3m4!1s0xd24feddbb951979:0x79eaea00892f7625!8m2!3d41.5502494!4d-8.4294138"
+              >
+                Braga City Center, Arco da Porta Nova
+              </a>
             </Row>
             <Row className="SchedulePage-entry  is-small">
               <p className="SchedulePage-entryTime">16:00</p>
@@ -174,7 +191,12 @@ export default (
               </a>
             </Row>
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5646428,-8.4807824,13z/data=!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-room"
+              >
+                Startup Braga, Gnration
+              </a>
             </Row>
             <Row className="SchedulePage-entry no-margin">
               <p className="SchedulePage-entryTime">18:30</p>
@@ -198,9 +220,12 @@ export default (
         <Container className="SchedulePage-columns">
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room no-locationDot">
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5646428,-8.4807824,13z/data=!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-room no-locationDot"
+              >
                 Gnration <br /> Room 1
-              </h3>
+              </a>
             </Row>
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">10:00</p>
@@ -227,9 +252,12 @@ export default (
           </Column>
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room no-locationDot">
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5646428,-8.4807824,13z/data=!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-room no-locationDot"
+              >
                 Gnration <br /> Room 2
-              </h3>
+              </a>
             </Row>
             <Row className="SchedulePage-entry">
               <p className="SchedulePage-entryTime">10:00</p>
@@ -264,7 +292,12 @@ export default (
         <Container className="SchedulePage-columns">
           <Column className="SchedulePage-column">
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room">Braga City Center</h3>
+              <a
+                className="SchedulePage-room"
+                href="https://www.google.pt/maps/place/Arco+Da+Porta+Nova/@41.5414507,-8.4246834,17z/data=!4m5!3m4!1s0xd24feddbb951979:0x79eaea00892f7625!8m2!3d41.5502494!4d-8.4294138"
+              >
+                Braga City Center, Arco da Porta Nova
+              </a>
             </Row>
             <Row className="SchedulePage-entry is-small">
               <p className="SchedulePage-entryTime">16:00</p>
@@ -276,7 +309,12 @@ export default (
               </a>
             </Row>
             <Row className="SchedulePage-row">
-              <h3 className="SchedulePage-room">Startup Braga, Gnration</h3>
+              <a
+                href="https://www.google.pt/maps/place/GNRation/@41.5646428,-8.4807824,13z/data=!4m5!3m4!1s0xd24fee9ae15fe63:0xf715da419f911455!8m2!3d41.5531265!4d-8.42622"
+                className="SchedulePage-room"
+              >
+                Startup Braga, Gnration
+              </a>
             </Row>
             <Row className="SchedulePage-entry no-margin">
               <p className="SchedulePage-entryTime">18:30</p>

@@ -32,9 +32,12 @@ export default (
           <h2 className="SchedulePage-title no-topMargin">18</h2>
         </Row>
         <Row className="SchedulePage-row">
-          <h3 className="SchedulePage-room">
-            Forum Braga <br /> Main Room
-          </h3>
+          <a
+            href="https://www.google.pt/maps/place/Altice+Forum+Braga/@41.5414507,-8.4246834,17z/data=!3m1!4b1!4m5!3m4!1s0xd24fc6519e03b3d:0xb47f5e1a7515bd95!8m2!3d41.5414467!4d-8.4224894"
+            className="SchedulePage-room"
+          >
+            Altice Forum Braga <br /> Main Room
+          </a>
         </Row>
 
         <Row className="SchedulePage-entry">
@@ -50,7 +53,7 @@ export default (
         <Row className="SchedulePage-entry">
           <p className="SchedulePage-entryTime">10:00</p>
           <a href="/speakers#jared-spool" className="SchedulePage-entryTitle">
-            TBA{' '}
+            Design is a team sport{' '}
             <span className="SchedulePage-entrySpeaker">by Jared Spool</span>
           </a>
         </Row>
@@ -160,10 +163,12 @@ export default (
         </Row>
 
         <Row className="SchedulePage-row">
-          <h3 className="SchedulePage-room">
-            Parque da Ponte <br />
-            Party Room
-          </h3>
+          <a
+            href="https://www.google.pt/maps/place/ArtBar+Old+House/@41.5537646,-8.3762957,17z/data=!3m1!4b1!4m5!3m4!1s0xd24fc6ac9da79bd:0x7a403b0ed0998a69!8m2!3d41.5537606!4d-8.3741017"
+            className="SchedulePage-room"
+          >
+            Casa Velha
+          </a>
         </Row>
 
         <Row className="SchedulePage-entry">
@@ -177,9 +182,12 @@ export default (
         </Row>
 
         <Row className="SchedulePage-row">
-          <h3 className="SchedulePage-room">
-            Forum Braga <br /> Main Room
-          </h3>
+          <a
+            href="https://www.google.pt/maps/place/Altice+Forum+Braga/@41.5414507,-8.4246834,17z/data=!3m1!4b1!4m5!3m4!1s0xd24fc6519e03b3d:0xb47f5e1a7515bd95!8m2!3d41.5414467!4d-8.4224894"
+            className="SchedulePage-room"
+          >
+            Altice Forum Braga <br /> Main Room
+          </a>
         </Row>
 
         <Row className="SchedulePage-entry">

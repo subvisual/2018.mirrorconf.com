@@ -123,6 +123,9 @@
 
 .SchedulePage-room {
   position: relative;
+  display: inline-block;
+
+  top: 0;
 
   width: 100%;
 
@@ -134,6 +137,9 @@
   text-align: center;
   font-weight: bold;
   color: #313131;
+  text-decoration: none;
+
+  transition: top 0.3s ease-in-out;
 }
 
 .SchedulePage-entry {
@@ -212,7 +218,8 @@
   transition: top 0.3s ease-in-out;
 }
 
-.SchedulePage-entryTitle:hover {
+.SchedulePage-entryTitle:hover,
+a.SchedulePage-room:hover {
   top: 3px;
 }
 
