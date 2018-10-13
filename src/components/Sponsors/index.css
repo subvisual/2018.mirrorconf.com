@@ -28,6 +28,8 @@
   background-position: bottom center;
   background-image: url('./cave.svg');
   background-repeat: no-repeat no-repeat;
+
+  overflow: hidden;
 }
 
 .Sponsors-bottomGroup {

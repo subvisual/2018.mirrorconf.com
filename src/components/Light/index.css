@@ -53,6 +53,13 @@
   pointer-events: none;
 }
 
+/* Safari-Opera specific declarations here */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .Light-imageWrapper {
+    transform-origin: -50% 0%;
+  }
+}
+
 .Light-image {
   position: absolute;
 
@@ -77,6 +84,13 @@
 }
 
 @media screen and (min-width: 769px) {
+  /* Safari-Opera specific declarations here */
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .Light-imageWrapper {
+      transform-origin: 0% 0%;
+    }
+  }
+
   .Light-imageWrapper {
     top: 0;
     left: 0;

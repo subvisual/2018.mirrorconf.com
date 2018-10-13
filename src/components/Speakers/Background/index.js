@@ -23,7 +23,7 @@ export const SETTINGS = {
   },
 };
 
-const MOBILE_SETTINGS = { width: 1440, height: 10160 };
+const MOBILE_SETTINGS = { width: 1440, height: 17500 };
 
 export const RATIO = SETTINGS.width / SETTINGS.height;
 export const MOBILE_RATIO = MOBILE_SETTINGS.width / MOBILE_SETTINGS.height;
@@ -65,6 +65,27 @@ const addSpriteToStage = stage => (sprite, name) => {
   stage.addChild(sprite);
 };
 
+const isMobile = () => clientWidth() < 100;
+
+const calculateRatio = () => {
+  if (isMobile()) return MOBILE_RATIO;
+
+  return RATIO;
+};
+
+const worldWidth = () => {
+  if (isMobile()) return MOBILE_SETTINGS.width;
+
+  return SETTINGS.width;
+};
+
+const calculateScale = () => {
+  const ratio = calculateRatio();
+  const height = clientWidth() / ratio;
+
+  return (height * ratio) / worldWidth();
+};
+
 export default class Background extends Component {
   onCanvasWrapper = canvasWrapper => {
     if (!canvasWrapper) return;
@@ -72,35 +93,6 @@ export default class Background extends Component {
     this.canvasWrapper = canvasWrapper;
     this.canvasStyler = styler(canvasWrapper);
   };
-
-  isMobile() {
-    return clientWidth() < 700;
-  }
-
-  ratio() {
-    if (this.isMobile()) return MOBILE_RATIO;
-
-    return RATIO;
-  }
-
-  worldWidth() {
-    if (this.isMobile()) return MOBILE_SETTINGS.width;
-
-    return SETTINGS.width;
-  }
-
-  worldHeight() {
-    if (this.isMobile()) return MOBILE_SETTINGS.height;
-
-    return SETTINGS.height;
-  }
-
-  scale() {
-    const ratio = this.ratio();
-    const height = clientWidth() / ratio;
-
-    return height * ratio / this.worldWidth();
-  }
 
   resizeRender(width, height) {
     if (!this.application) return;
@@ -122,7 +114,7 @@ export default class Background extends Component {
   };
 
   buildCanvas = () => {
-    const scale = this.scale();
+    const scale = calculateScale();
     const { height } = SETTINGS;
 
     this.container.scale = point(scale);
@@ -156,7 +148,7 @@ export default class Background extends Component {
       });
 
     const { width, height } = MOBILE_SETTINGS;
-    const scale = this.scale();
+    const scale = calculateScale();
 
     this.container.width = width;
     this.container.height = height;
@@ -164,7 +156,7 @@ export default class Background extends Component {
 
     this.sprites.background = new PIXI.Sprite.from(backgroundMobileSource);
     this.sprites.background.anchor = point(0.5);
-    this.sprites.background.width = height * 1024 / 4026;
+    this.sprites.background.width = (height * 1024) / 4026;
     this.sprites.background.height = height;
     this.sprites.background.position = point(width / 2, height / 2);
 
@@ -209,7 +201,7 @@ export default class Background extends Component {
     if (this.unsubscribe) this.unsubscribe();
 
     this.resizeRender(clientWidth(), clientHeight());
-    this.container.scale = point(this.scale());
+    this.container.scale = point(calculateScale());
     this.startAnimation();
   };
 
