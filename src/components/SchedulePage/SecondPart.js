@@ -167,7 +167,7 @@ export default (
             href="https://www.google.pt/maps/place/ArtBar+Old+House/@41.5537646,-8.3762957,17z/data=!3m1!4b1!4m5!3m4!1s0xd24fc6ac9da79bd:0x7a403b0ed0998a69!8m2!3d41.5537606!4d-8.3741017"
             className="SchedulePage-room"
           >
-            Casa Velha
+            Casa Velha, Parque da Ponte
           </a>
         </Row>
 
