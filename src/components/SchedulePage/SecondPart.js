@@ -104,7 +104,7 @@ export default (
         </Row>
 
         <Row className="SchedulePage-entry">
-          <p className="SchedulePage-entryTime">15:45</p>
+          <p className="SchedulePage-entryTime">15:30</p>
           <p className="SchedulePage-entryTitle">
             Talk Shop{' '}
             <span className="SchedulePage-entrySpeaker">
@@ -114,7 +114,7 @@ export default (
         </Row>
 
         <Row className="SchedulePage-entry xl">
-          <p className="SchedulePage-entryTime">16:00</p>
+          <p className="SchedulePage-entryTime">15:45</p>
           <a
             href="/speakers#vivianne-castillo"
             className="SchedulePage-entryTitle"
@@ -125,12 +125,12 @@ export default (
         </Row>
 
         <Row className="SchedulePage-entry">
-          <p className="SchedulePage-entryTime">16:45</p>
+          <p className="SchedulePage-entryTime">16:15</p>
           <p className="SchedulePage-entryTitle">Coffe Break {Xing}</p>
         </Row>
 
         <Row className="SchedulePage-entry">
-          <p className="SchedulePage-entryTime">17:15</p>
+          <p className="SchedulePage-entryTime">17:00</p>
           <a href="/speakers#lea-verou" className="SchedulePage-entryTitle">
             Even More CSS Secrets{' '}
             <span className="SchedulePage-entrySpeaker">by Lea Verou</span>
@@ -276,7 +276,7 @@ export default (
         </Row>
 
         <Row className="SchedulePage-entry">
-          <p className="SchedulePage-entryTime">16:45</p>
+          <p className="SchedulePage-entryTime">16:30</p>
           <p className="SchedulePage-entryTitle">Coffe Break {Xing}</p>
         </Row>
 

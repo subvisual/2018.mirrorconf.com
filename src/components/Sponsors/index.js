@@ -25,6 +25,7 @@ import SeegnoLogo from './logos/seegno.svg';
 import StartupBragaLogo from './logos/startup@2x.png';
 import TndsLogo from './logos/tnds.svg';
 import UtrustLogo from './logos/utrust.svg';
+import WitLogo from './logos/wit.png';
 import XingLogo from './logos/xing.svg';
 
 export default class Sponsors extends Component {
@@ -63,6 +64,9 @@ export default class Sponsors extends Component {
               </a>
               <a href="https://www.outsystems.com/">
                 <img alt="Outsystems" className="Sponsors-logo" src={OutsystemsLogo} />
+              </a>
+              <a href="https://www.wit-software.com/">
+                <img alt="Wit Software" className="Sponsors-logo" src={WitLogo} />
               </a>
             </div>
           </div>
