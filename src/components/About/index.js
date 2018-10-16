@@ -35,13 +35,13 @@ export default class About extends Component {
     this.viewportScroll = scroll(viewport);
   };
 
-  startAnimation() {
+  startAnimation = () => {
     this.animation = listen(this.viewport, 'scroll').start(() =>
       this.setState({ viewportScrollProgress: this.scrollProgress() })
     );
-  }
+  };
 
-  onResize() {
+  onResize = () => {
     if (!this.viewport) return;
     if (this.animation) this.animation.stop();
 
@@ -52,6 +52,11 @@ export default class About extends Component {
     this.setState({ viewportHeight: height });
 
     requestAnimationFrame(() => this.startAnimation());
+  };
+
+  componentWillUnmount() {
+    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
+    this.onResizeListener.stop();
   }
 
   componentDidMount() {
@@ -63,9 +68,8 @@ export default class About extends Component {
 
     this.setState({ viewportHeight: height });
 
-    listen(window, 'resize').start(() => this.onResize());
-
-    requestAnimationFrame(() => this.startAnimation());
+    this.onResizeListener = listen(window, 'resize').start(this.onResize);
+    this.animationFrame = requestAnimationFrame(this.startAnimation);
   }
 
   render() {

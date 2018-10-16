@@ -1,4 +1,3 @@
-import { everyFrame } from 'popmotion';
 import React, { Component } from 'react';
 
 import Hero from '../components/Hero';
@@ -11,45 +10,13 @@ import Sponsors from '../components/Sponsors';
 import Footer from '../components/Footer';
 
 export default class IndexPage extends Component {
-  constructor() {
-    super();
-    this.listeners = [];
-  }
-
-  componentDidMount() {
-    this.startAnimation();
-  }
-
-  shouldComponentUpdate() {
-    return false;
-  }
-
-  addTickListener = listener => {
-    const index = this.listeners.push(listener) - 1;
-    return () => this.listeners.splice(index, 1);
-  };
-
-  callListeners = () => {
-    this.listeners
-      .slice()
-      .reverse()
-      .forEach(l => l());
-  };
-
-  startAnimation() {
-    this.animation = everyFrame().start(this.callListeners);
-  }
-
   render() {
     return (
       <div className="Layout-content">
-        <Hero addTickListener={this.addTickListener} />
+        <Hero />
         <About />
-        <Speakers addTickListener={this.addTickListener} />
-        <Workshops
-          addTickListener={this.addTickListener}
-          data={this.props.data}
-        />
+        <Speakers />
+        <Workshops data={this.props.data} />
         <Schedule />
         <Location />
         <Sponsors />

@@ -130,8 +130,6 @@ export default WrappedComponent =>
       this.listeners.forEach(listener => {
         if (listener && listener.stop) return listener.stop();
       });
-
-      this.listeners = [];
     };
 
     componentDidMount() {
@@ -141,14 +139,6 @@ export default WrappedComponent =>
 
     componentWillUnmount() {
       this.stopTracking();
-      this.listeners.forEach(listener => listener.stop());
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-      if (_.isEqual(this.state, nextState) && _.isEqual(this.props, nextProps))
-        return false;
-
-      return true;
     }
 
     render() {

@@ -74,9 +74,16 @@ export default class ScrollBar extends Component {
 
   componentDidMount() {
     this.getDimensions();
-    listen(window, 'resize').start(() => this.getDimensions());
-    listen(document, 'mouseup touchend').start(this.stopScrollbar);
-    listen(this.scrollbar, 'mousedown touchstart').start(this.moveScrollbar);
+
+    this.listeners = [
+      listen(window, 'resize').start(() => this.getDimensions()),
+      listen(this.scrollbar, 'mouseup touchend').start(this.stopScrollbar),
+      listen(this.scrollbar, 'mousedown touchstart').start(this.moveScrollbar),
+    ];
+  }
+
+  componentWillUnmount() {
+    this.listeners.forEach(listener => listener.stop());
   }
 
   updateScrollBarPosition() {

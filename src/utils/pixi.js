@@ -23,10 +23,18 @@ export const drawPoints = (graphics, points) => {
   });
 };
 
-export const initializeSprites = (memo, { source }, name) => ({
-  ...memo,
-  [name]: new PIXI.Sprite.from(source),
-});
+export const initializeSprites = (memo, { name, source }) => {
+  let sprite = null;
+  try {
+    sprite = new PIXI.Sprite.from(source);
+  } catch (error) {
+    console.log(error);
+  }
+  return {
+    ...memo,
+    [name]: sprite,
+  };
+};
 
 export const centerSprite = ({ width, height }, sprite) => {
   sprite.anchor = point(0.5);

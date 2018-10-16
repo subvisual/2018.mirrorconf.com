@@ -46,10 +46,18 @@ const RESOURCES = {
   },
 };
 
-const initializeSprites = (memo, { name, source }) => ({
-  ...memo,
-  [name]: new PIXI.Sprite.from(source),
-});
+const initializeSprites = (memo, { name, source }) => {
+  let sprite = null;
+  try {
+    sprite = new PIXI.Sprite.from(source);
+  } catch (error) {
+    console.log(error);
+  }
+  return {
+    ...memo,
+    [name]: sprite,
+  };
+};
 
 const addSpriteToStage = stage => (sprite, name) => {
   if (!RESOURCES || !RESOURCES[name]) return;
@@ -102,6 +110,8 @@ export default class Background extends Component {
   }
 
   update = () => {
+    this.animationFrame = requestAnimationFrame(this.update);
+
     if (!this.application.render || !this.carTween || !this.backgroundTween)
       return;
     const progress = this.props.progress();
@@ -130,10 +140,10 @@ export default class Background extends Component {
       })
       .pause();
 
-    const unsubscribe = this.props.addTickListener(this.update.bind(this));
+    this.animationFrame = requestAnimationFrame(this.update);
 
     this.unsubscribe = () => {
-      unsubscribe();
+      cancelAnimationFrame(this.animationFrame);
       this.carTween.stop();
       this.backgroundTween.stop();
     };
@@ -154,7 +164,13 @@ export default class Background extends Component {
     this.container.height = height;
     this.container.scale = point(scale);
 
-    this.sprites.background = new PIXI.Sprite.from(backgroundMobileSource);
+    try {
+      this.sprites.background = new PIXI.Sprite.from(backgroundMobileSource);
+    } catch (error) {
+      console.log(error);
+      requestAnimationFrame(this.buildAlternateCanvas);
+    }
+
     this.sprites.background.anchor = point(0.5);
     this.sprites.background.width = (height * 1024) / 4026;
     this.sprites.background.height = height;
@@ -210,6 +226,11 @@ export default class Background extends Component {
 
     this.loadContext();
     listen(window, 'resize').start(() => this.onResize());
+  }
+
+  componentWillUnmount() {
+    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
+    this.application.destroy(this.canvas);
   }
 
   render() {

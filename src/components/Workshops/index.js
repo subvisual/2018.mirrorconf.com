@@ -83,10 +83,7 @@ export default class Workshops extends Component {
           lightGrowProgress={this.lightGrowProgress}
         />
         <div className="Workshops-spacer" />
-        <Towers
-          addTickListener={this.props.addTickListener}
-          lightGrowProgress={this.lightGrowProgress}
-        />
+        <Towers lightGrowProgress={this.lightGrowProgress} />
         <div className="Workshops-wrapper">{this.renderWorkshops()}</div>
       </section>
     );

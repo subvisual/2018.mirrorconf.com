@@ -94,7 +94,7 @@ export default class Speakers extends Component {
   }
 
   startAnimation() {
-    const listTween = tween({
+    this.listTween = tween({
       to: 0,
       from: -this.state.bounds.height,
       ease: linear,
@@ -107,7 +107,7 @@ export default class Speakers extends Component {
 
     this.contentStyler.set('overflow', 'hidden');
 
-    const fadeOutTween = composite({
+    this.fadeOutTween = composite({
       z: tween({ from: 1, to: 1 }),
       y: keyframes({ values: [0, 10, 15, 15], times, ease }),
       scaleX: keyframes({ values: [1, 0.8, 0.6, 0.6], times, ease }),
@@ -118,7 +118,7 @@ export default class Speakers extends Component {
       .start(this.contentStyler.set)
       .pause();
 
-    const backgroundFade = keyframes({
+    this.backgroundFade = keyframes({
       ease,
       times: [0, 0.5, 0.51],
       values: ['#a10b53', '#a10b53', '#1c3448', '#1c3448'],
@@ -126,22 +126,27 @@ export default class Speakers extends Component {
       .start(this.rootStyler.set('background'))
       .pause();
 
-    const unsubscribe = this.props.addTickListener(() => {
-      const progress = this.progress();
-      const progressToFade = this.progressToFadeOut();
-
-      listTween.seek(progress);
-      backgroundFade.seek(progressToFade);
-      _.each(fadeOutTween, animation => animation.seek(progressToFade));
-    });
+    this.animationFrame = requestAnimationFrame(this.update);
 
     this.unsubscribe = () => {
-      unsubscribe();
-      listTween.stop();
-      backgroundFade.stop();
-      _.each(fadeOutTween, animation => animation.stop());
+      cancelAnimationFrame(this.animationFrame);
+
+      this.listTween.stop();
+      this.backgroundFade.stop();
+      _.each(this.fadeOutTween, animation => animation.stop());
     };
   }
+
+  update = () => {
+    this.animationFrame = requestAnimationFrame(this.update);
+
+    const progress = this.progress();
+    const progressToFade = this.progressToFadeOut();
+
+    this.listTween.seek(progress);
+    this.backgroundFade.seek(progressToFade);
+    _.each(this.fadeOutTween, animation => animation.seek(progressToFade));
+  };
 
   calculateBounds() {
     const { width, top } = this.root.getBoundingClientRect();
@@ -180,6 +185,10 @@ export default class Speakers extends Component {
     return this.state.bounds.height;
   }
 
+  componentWillUnmount() {
+    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
+  }
+
   render() {
     return (
       <section
@@ -191,11 +200,7 @@ export default class Speakers extends Component {
         <div className="Speakers-background">
           <div ref={this.onContentWrapper}>
             <div style={{ overflow: 'hidden' }} ref={this.onCanvasWrapper}>
-              <Background
-                bounds={this.state.bounds}
-                progress={this.progress}
-                addTickListener={this.props.addTickListener}
-              />
+              <Background bounds={this.state.bounds} progress={this.progress} />
             </div>
             <div
               tabIndex="0"
@@ -208,7 +213,6 @@ export default class Speakers extends Component {
           <ArcadeFrame
             bounds={this.state.bounds}
             scrollProgress={this.progressToFadeOut}
-            addTickListener={this.props.addTickListener}
           />
         </div>
       </section>

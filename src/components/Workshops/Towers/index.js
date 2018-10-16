@@ -66,20 +66,20 @@ class Towers extends Component {
     const scrollListener = listen(document, 'scroll').start(() =>
       this.onScroll()
     );
-    const mouseListener = listen(this.canvas, 'mousemove').start(() =>
-      this.onScroll()
-    );
-    const unsubscribeTick = this.props.addTickListener(() => this.update());
+    const mouseListener = listen(this.canvas, 'mousemove').start(this.onScroll);
+
+    this.animationFrame = requestAnimationFrame(this.update);
 
     this.unsubscribe = () => {
+      cancelAnimationFrame(this.animationFrame);
       scrollListener.stop();
       mouseListener.stop();
-      unsubscribeTick();
     };
   }
 
   componentWillUnmount() {
     this.unsubscribe();
+    this.application.destroy(this.canvas);
   }
 
   onRoot = root => {
@@ -137,6 +137,8 @@ class Towers extends Component {
   };
 
   update = () => {
+    this.animationFrame = requestAnimationFrame(this.update);
+
     if (this.state.paused || this.state.completed) return;
     if (!this.application || !this.lines || !this.lines.length) return;
 

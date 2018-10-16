@@ -46,16 +46,24 @@ export default class ArcadeFrame extends Component {
       .start(this.frameStyler.set)
       .pause();
 
-    const unsubscribe = this.props.addTickListener(() => {
-      const progress = this.props.scrollProgress();
-
-      _.each(this.frameAnimation, animation => animation.seek(progress));
-    });
+    this.animationFrame = requestAnimationFrame(this.update);
 
     this.unsubscribe = () => {
-      unsubscribe();
+      cancelAnimationFrame(this.animationFrame);
       _.each(this.frameAnimation, animation => animation.stop());
     };
+  }
+
+  update = () => {
+    this.animationFrame = requestAnimationFrame(this.update);
+
+    const progress = this.props.scrollProgress();
+
+    _.each(this.frameAnimation, animation => animation.seek(progress));
+  };
+
+  componentWillUnmount() {
+    if (this.animationFrame) cancelAnimationFrame(this.animationFrame);
   }
 
   render() {
