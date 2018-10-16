@@ -11,6 +11,7 @@ import thanks from './thanks.svg';
 import BalsamiqLogo from './logos/balsamiq.png';
 import BoschLogo from './logos/bosch.svg';
 import BurocratikLogo from './logos/burocratik.svg';
+import DankeLogo from './logos/danke.svg';
 import FarfetchLogo from './logos/farfetch.svg';
 import FullsixLogo from './logos/fullsix.svg';
 import GinettaLogo from './logos/ginetta.svg'
@@ -94,6 +95,9 @@ export default class Sponsors extends Component {
               </a>
               <a href="https://www.bosch.pt/">
                 <img alt="Bosch" className="Sponsors-logo" src={BoschLogo} />
+              </a>
+              <a href="https://www.danke.pt/">
+                <img alt="Danke" className="Sponsors-logo" src={DankeLogo} />
               </a>
             </div>
           </div>
