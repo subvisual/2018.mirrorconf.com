@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - name: workshops
+    label: workshops
+    folder: src/data/workshops
+    create: true
+    fields:
+      - { name: path, label: Path }
+      - { name: title, label: Title }
+      - { name: speaker, label: "Speaker Name" }
+      - { name: date, label: Date }
+      - { name: time, label: Time }
+      - { name: agenda, label: Agenda, widget: markdown, required: false }
+      - { name: body, label: Description, widget: markdown }
+      - {label: "Photo", name: "photo", widget: "image"}
+      - {label: "Overlay", name: "overlay", widget: "image"}
